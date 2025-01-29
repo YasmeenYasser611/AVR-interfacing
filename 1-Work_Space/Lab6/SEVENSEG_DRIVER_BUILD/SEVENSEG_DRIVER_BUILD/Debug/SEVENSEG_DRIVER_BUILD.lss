@@ -1,0 +1,1022 @@
+
+SEVENSEG_DRIVER_BUILD.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004e8  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000003a  00800060  000004e8  0000055c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000596  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000005c8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000d0  00000000  00000000  00000604  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000017bc  00000000  00000000  000006d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000a08  00000000  00000000  00001e90  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000008c1  00000000  00000000  00002898  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000016c  00000000  00000000  0000315c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00001304  00000000  00000000  000032c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000c83  00000000  00000000  000045cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000c0  00000000  00000000  0000524f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 ee       	ldi	r30, 0xE8	; 232
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 39       	cpi	r26, 0x9A	; 154
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 c5 01 	call	0x38a	; 0x38a <main>
+  7a:	0c 94 72 02 	jmp	0x4e4	; 0x4e4 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <HSEVENSEG_vInit>:
+#define IS_INVALID_SEVENSEG_NAME(X)			((((u8)X) > Num_of_SEVENSEG) || (((u8)X) < 0))
+#define IS_INVALID_SEVENSEG_VALUE(X)			((((u8)X) > 9) || (((u8)X) < 0))
+
+
+void HSEVENSEG_vInit(void)
+{
+  82:	1f 93       	push	r17
+  84:	cf 93       	push	r28
+  86:	df 93       	push	r29
+	
+	u8 Local_u8_LED1PinPort=0 ,Local_u8_LED2PinPort=0 ,Local_u8_LED3PinPort=0 ,Local_u8_LED4PinPort=0 ,Local_u8_LED5PinPort=0 ,Local_u8_LED6PinPort=0 ,Local_u8_LED7PinPort=0 ,Local_u8_DOTPinPort=0 ,Local_u8_CONPinPort=0  ;
+	u8 Local_u8_i=0;
+	for(Local_u8_i =0 ; Local_u8_i < Num_of_SEVENSEG ; Local_u8_i++)
+  88:	10 e0       	ldi	r17, 0x00	; 0
+  8a:	58 c0       	rjmp	.+176    	; 0x13c <HSEVENSEG_vInit+0xba>
+	{
+		Local_u8_LED1PinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED1_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED1_Pin);
+  8c:	23 e1       	ldi	r18, 0x13	; 19
+  8e:	12 9f       	mul	r17, r18
+  90:	e0 01       	movw	r28, r0
+  92:	11 24       	eor	r1, r1
+  94:	cc 58       	subi	r28, 0x8C	; 140
+  96:	df 4f       	sbci	r29, 0xFF	; 255
+  98:	98 81       	ld	r25, Y
+  9a:	89 81       	ldd	r24, Y+1	; 0x01
+		MPORT_enuSetPinDirection(Local_u8_LED1PinPort , MPORT_enuPINOUTPUT);
+  9c:	60 e0       	ldi	r22, 0x00	; 0
+  9e:	20 e1       	ldi	r18, 0x10	; 16
+  a0:	92 9f       	mul	r25, r18
+  a2:	80 0d       	add	r24, r0
+  a4:	11 24       	eor	r1, r1
+  a6:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_LED2PinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED2_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED2_Pin);
+  aa:	9a 81       	ldd	r25, Y+2	; 0x02
+  ac:	8b 81       	ldd	r24, Y+3	; 0x03
+		MPORT_enuSetPinDirection(Local_u8_LED2PinPort , MPORT_enuPINOUTPUT);
+  ae:	60 e0       	ldi	r22, 0x00	; 0
+  b0:	20 e1       	ldi	r18, 0x10	; 16
+  b2:	92 9f       	mul	r25, r18
+  b4:	80 0d       	add	r24, r0
+  b6:	11 24       	eor	r1, r1
+  b8:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_LED3PinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED3_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED3_Pin);
+  bc:	9c 81       	ldd	r25, Y+4	; 0x04
+  be:	8d 81       	ldd	r24, Y+5	; 0x05
+		MPORT_enuSetPinDirection(Local_u8_LED3PinPort , MPORT_enuPINOUTPUT);
+  c0:	60 e0       	ldi	r22, 0x00	; 0
+  c2:	20 e1       	ldi	r18, 0x10	; 16
+  c4:	92 9f       	mul	r25, r18
+  c6:	80 0d       	add	r24, r0
+  c8:	11 24       	eor	r1, r1
+  ca:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_LED4PinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED4_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED4_Pin);
+  ce:	9e 81       	ldd	r25, Y+6	; 0x06
+  d0:	8f 81       	ldd	r24, Y+7	; 0x07
+		MPORT_enuSetPinDirection(Local_u8_LED4PinPort , MPORT_enuPINOUTPUT);
+  d2:	60 e0       	ldi	r22, 0x00	; 0
+  d4:	20 e1       	ldi	r18, 0x10	; 16
+  d6:	92 9f       	mul	r25, r18
+  d8:	80 0d       	add	r24, r0
+  da:	11 24       	eor	r1, r1
+  dc:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_LED5PinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED5_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED5_Pin);
+  e0:	98 85       	ldd	r25, Y+8	; 0x08
+  e2:	89 85       	ldd	r24, Y+9	; 0x09
+		MPORT_enuSetPinDirection(Local_u8_LED5PinPort , MPORT_enuPINOUTPUT);
+  e4:	60 e0       	ldi	r22, 0x00	; 0
+  e6:	20 e1       	ldi	r18, 0x10	; 16
+  e8:	92 9f       	mul	r25, r18
+  ea:	80 0d       	add	r24, r0
+  ec:	11 24       	eor	r1, r1
+  ee:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_LED6PinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED6_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED6_Pin);
+  f2:	9a 85       	ldd	r25, Y+10	; 0x0a
+  f4:	8b 85       	ldd	r24, Y+11	; 0x0b
+		MPORT_enuSetPinDirection(Local_u8_LED6PinPort , MPORT_enuPINOUTPUT);
+  f6:	60 e0       	ldi	r22, 0x00	; 0
+  f8:	20 e1       	ldi	r18, 0x10	; 16
+  fa:	92 9f       	mul	r25, r18
+  fc:	80 0d       	add	r24, r0
+  fe:	11 24       	eor	r1, r1
+ 100:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_LED7PinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED7_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].LED7_Pin);
+ 104:	9c 85       	ldd	r25, Y+12	; 0x0c
+ 106:	8d 85       	ldd	r24, Y+13	; 0x0d
+		MPORT_enuSetPinDirection(Local_u8_LED7PinPort , MPORT_enuPINOUTPUT);
+ 108:	60 e0       	ldi	r22, 0x00	; 0
+ 10a:	20 e1       	ldi	r18, 0x10	; 16
+ 10c:	92 9f       	mul	r25, r18
+ 10e:	80 0d       	add	r24, r0
+ 110:	11 24       	eor	r1, r1
+ 112:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_DOTPinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].DOT_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].DOT_Pin);
+ 116:	9e 85       	ldd	r25, Y+14	; 0x0e
+ 118:	8f 85       	ldd	r24, Y+15	; 0x0f
+		MPORT_enuSetPinDirection(Local_u8_DOTPinPort , MPORT_enuPINOUTPUT);
+ 11a:	60 e0       	ldi	r22, 0x00	; 0
+ 11c:	20 e1       	ldi	r18, 0x10	; 16
+ 11e:	92 9f       	mul	r25, r18
+ 120:	80 0d       	add	r24, r0
+ 122:	11 24       	eor	r1, r1
+ 124:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+		Local_u8_CONPinPort = ((HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].CONN_Port<<4) + HSEVENSEG_enuArrHEVENSEGCongf[Local_u8_i].CONN_Pin);
+ 128:	98 89       	ldd	r25, Y+16	; 0x10
+ 12a:	89 89       	ldd	r24, Y+17	; 0x11
+		MPORT_enuSetPinDirection(Local_u8_CONPinPort , MPORT_enuPINOUTPUT);
+ 12c:	60 e0       	ldi	r22, 0x00	; 0
+ 12e:	20 e1       	ldi	r18, 0x10	; 16
+ 130:	92 9f       	mul	r25, r18
+ 132:	80 0d       	add	r24, r0
+ 134:	11 24       	eor	r1, r1
+ 136:	0e 94 21 02 	call	0x442	; 0x442 <MPORT_enuSetPinDirection>
+void HSEVENSEG_vInit(void)
+{
+	
+	u8 Local_u8_LED1PinPort=0 ,Local_u8_LED2PinPort=0 ,Local_u8_LED3PinPort=0 ,Local_u8_LED4PinPort=0 ,Local_u8_LED5PinPort=0 ,Local_u8_LED6PinPort=0 ,Local_u8_LED7PinPort=0 ,Local_u8_DOTPinPort=0 ,Local_u8_CONPinPort=0  ;
+	u8 Local_u8_i=0;
+	for(Local_u8_i =0 ; Local_u8_i < Num_of_SEVENSEG ; Local_u8_i++)
+ 13a:	1f 5f       	subi	r17, 0xFF	; 255
+ 13c:	12 30       	cpi	r17, 0x02	; 2
+ 13e:	08 f4       	brcc	.+2      	; 0x142 <HSEVENSEG_vInit+0xc0>
+ 140:	a5 cf       	rjmp	.-182    	; 0x8c <HSEVENSEG_vInit+0xa>
+		MPORT_enuSetPinDirection(Local_u8_CONPinPort , MPORT_enuPINOUTPUT);
+
+	}
+
+	
+}
+ 142:	df 91       	pop	r29
+ 144:	cf 91       	pop	r28
+ 146:	1f 91       	pop	r17
+ 148:	08 95       	ret
+
+0000014a <HSEVENSEG_vSetValue>:
+
+
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_vSetValue(u8 Copy_enuSevenSegNum , u8 Copy_u8Value)
+{
+ 14a:	0f 93       	push	r16
+ 14c:	1f 93       	push	r17
+ 14e:	cf 93       	push	r28
+ 150:	df 93       	push	r29
+	HSEVENSEG_enuErrorStatus_t Ret_enuError = HSEVENSEG_enuNOK;
+	if(IS_INVALID_SEVENSEG_NAME(Copy_enuSevenSegNum) )
+ 152:	83 30       	cpi	r24, 0x03	; 3
+ 154:	08 f0       	brcs	.+2      	; 0x158 <HSEVENSEG_vSetValue+0xe>
+ 156:	7f c0       	rjmp	.+254    	; 0x256 <HSEVENSEG_vSetValue+0x10c>
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGNAME;
+
+		
+	}
+	else if(IS_INVALID_SEVENSEG_VALUE(Copy_u8Value))
+ 158:	6a 30       	cpi	r22, 0x0A	; 10
+ 15a:	08 f0       	brcs	.+2      	; 0x15e <HSEVENSEG_vSetValue+0x14>
+ 15c:	7e c0       	rjmp	.+252    	; 0x25a <HSEVENSEG_vSetValue+0x110>
+ 15e:	16 2f       	mov	r17, r22
+	}
+	else
+	{
+		Ret_enuError = HSEVENSEG_enuOK ;
+		u8 Local_u8_segmentPattern =0 ;
+		if(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONNECTION == HSEVENSEG_enuSEVENSEG_CA)
+ 160:	c8 2f       	mov	r28, r24
+ 162:	d0 e0       	ldi	r29, 0x00	; 0
+ 164:	83 e1       	ldi	r24, 0x13	; 19
+ 166:	8c 9f       	mul	r24, r28
+ 168:	f0 01       	movw	r30, r0
+ 16a:	8d 9f       	mul	r24, r29
+ 16c:	f0 0d       	add	r31, r0
+ 16e:	11 24       	eor	r1, r1
+ 170:	ec 58       	subi	r30, 0x8C	; 140
+ 172:	ff 4f       	sbci	r31, 0xFF	; 255
+ 174:	82 89       	ldd	r24, Z+18	; 0x12
+ 176:	81 30       	cpi	r24, 0x01	; 1
+ 178:	a1 f4       	brne	.+40     	; 0x1a2 <HSEVENSEG_vSetValue+0x58>
+		{
+			MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Pin, MDIO_enuHIGH);
+ 17a:	83 e1       	ldi	r24, 0x13	; 19
+ 17c:	8c 9f       	mul	r24, r28
+ 17e:	f0 01       	movw	r30, r0
+ 180:	8d 9f       	mul	r24, r29
+ 182:	f0 0d       	add	r31, r0
+ 184:	11 24       	eor	r1, r1
+ 186:	ec 58       	subi	r30, 0x8C	; 140
+ 188:	ff 4f       	sbci	r31, 0xFF	; 255
+ 18a:	61 89       	ldd	r22, Z+17	; 0x11
+ 18c:	41 e0       	ldi	r20, 0x01	; 1
+ 18e:	80 89       	ldd	r24, Z+16	; 0x10
+ 190:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+			Local_u8_segmentPattern = HSEVENSEG_enuCA_Patterns[Copy_u8Value] ;
+ 194:	e1 2f       	mov	r30, r17
+ 196:	f0 e0       	ldi	r31, 0x00	; 0
+ 198:	e0 5a       	subi	r30, 0xA0	; 160
+ 19a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 19c:	00 81       	ld	r16, Z
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGVALUE ;
+	}
+	else
+	{
+		Ret_enuError = HSEVENSEG_enuOK ;
+ 19e:	10 e0       	ldi	r17, 0x00	; 0
+ 1a0:	18 c0       	rjmp	.+48     	; 0x1d2 <HSEVENSEG_vSetValue+0x88>
+		{
+			MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Pin, MDIO_enuHIGH);
+			Local_u8_segmentPattern = HSEVENSEG_enuCA_Patterns[Copy_u8Value] ;
+			
+		}
+		else if(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONNECTION == HSEVENSEG_enuSEVENSEG_CC)
+ 1a2:	81 11       	cpse	r24, r1
+ 1a4:	14 c0       	rjmp	.+40     	; 0x1ce <HSEVENSEG_vSetValue+0x84>
+		{
+			
+			MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Pin, MDIO_enuLOW);
+ 1a6:	83 e1       	ldi	r24, 0x13	; 19
+ 1a8:	8c 9f       	mul	r24, r28
+ 1aa:	f0 01       	movw	r30, r0
+ 1ac:	8d 9f       	mul	r24, r29
+ 1ae:	f0 0d       	add	r31, r0
+ 1b0:	11 24       	eor	r1, r1
+ 1b2:	ec 58       	subi	r30, 0x8C	; 140
+ 1b4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1b6:	61 89       	ldd	r22, Z+17	; 0x11
+ 1b8:	40 e0       	ldi	r20, 0x00	; 0
+ 1ba:	80 89       	ldd	r24, Z+16	; 0x10
+ 1bc:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+			Local_u8_segmentPattern = HSEVENSEG_enuCC_Patterns[Copy_u8Value] ;
+ 1c0:	e1 2f       	mov	r30, r17
+ 1c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c4:	e6 59       	subi	r30, 0x96	; 150
+ 1c6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1c8:	00 81       	ld	r16, Z
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGVALUE ;
+	}
+	else
+	{
+		Ret_enuError = HSEVENSEG_enuOK ;
+ 1ca:	10 e0       	ldi	r17, 0x00	; 0
+ 1cc:	02 c0       	rjmp	.+4      	; 0x1d2 <HSEVENSEG_vSetValue+0x88>
+		u8 Local_u8_segmentPattern =0 ;
+ 1ce:	00 e0       	ldi	r16, 0x00	; 0
+			MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].CONN_Pin, MDIO_enuLOW);
+			Local_u8_segmentPattern = HSEVENSEG_enuCC_Patterns[Copy_u8Value] ;
+		}
+		else
+		{
+			Ret_enuError =HSEVENSEG_enuINVALID_Connection ;
+ 1d0:	14 e0       	ldi	r17, 0x04	; 4
+		}
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED1_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED1_Pin,(Local_u8_segmentPattern >> 0) & 0x01 );
+ 1d2:	23 e1       	ldi	r18, 0x13	; 19
+ 1d4:	2c 9f       	mul	r18, r28
+ 1d6:	c0 01       	movw	r24, r0
+ 1d8:	2d 9f       	mul	r18, r29
+ 1da:	90 0d       	add	r25, r0
+ 1dc:	11 24       	eor	r1, r1
+ 1de:	ec 01       	movw	r28, r24
+ 1e0:	cc 58       	subi	r28, 0x8C	; 140
+ 1e2:	df 4f       	sbci	r29, 0xFF	; 255
+ 1e4:	69 81       	ldd	r22, Y+1	; 0x01
+ 1e6:	40 2f       	mov	r20, r16
+ 1e8:	41 70       	andi	r20, 0x01	; 1
+ 1ea:	88 81       	ld	r24, Y
+ 1ec:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED2_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED2_Pin,(Local_u8_segmentPattern >> 1) & 0x01 );
+ 1f0:	6b 81       	ldd	r22, Y+3	; 0x03
+ 1f2:	01 fb       	bst	r16, 1
+ 1f4:	44 27       	eor	r20, r20
+ 1f6:	40 f9       	bld	r20, 0
+ 1f8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1fa:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED3_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED3_Pin,(Local_u8_segmentPattern >> 2) & 0x01 );
+ 1fe:	6d 81       	ldd	r22, Y+5	; 0x05
+ 200:	02 fb       	bst	r16, 2
+ 202:	44 27       	eor	r20, r20
+ 204:	40 f9       	bld	r20, 0
+ 206:	8c 81       	ldd	r24, Y+4	; 0x04
+ 208:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED4_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED4_Pin,(Local_u8_segmentPattern >> 3) & 0x01 );
+ 20c:	6f 81       	ldd	r22, Y+7	; 0x07
+ 20e:	03 fb       	bst	r16, 3
+ 210:	44 27       	eor	r20, r20
+ 212:	40 f9       	bld	r20, 0
+ 214:	8e 81       	ldd	r24, Y+6	; 0x06
+ 216:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED5_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED5_Pin,(Local_u8_segmentPattern >> 4) & 0x01 );
+ 21a:	69 85       	ldd	r22, Y+9	; 0x09
+ 21c:	04 fb       	bst	r16, 4
+ 21e:	44 27       	eor	r20, r20
+ 220:	40 f9       	bld	r20, 0
+ 222:	88 85       	ldd	r24, Y+8	; 0x08
+ 224:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED6_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED6_Pin,(Local_u8_segmentPattern >> 5) & 0x01 );
+ 228:	6b 85       	ldd	r22, Y+11	; 0x0b
+ 22a:	05 fb       	bst	r16, 5
+ 22c:	44 27       	eor	r20, r20
+ 22e:	40 f9       	bld	r20, 0
+ 230:	8a 85       	ldd	r24, Y+10	; 0x0a
+ 232:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED7_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].LED7_Pin,(Local_u8_segmentPattern >> 6) & 0x01 );
+ 236:	6d 85       	ldd	r22, Y+13	; 0x0d
+ 238:	06 fb       	bst	r16, 6
+ 23a:	44 27       	eor	r20, r20
+ 23c:	40 f9       	bld	r20, 0
+ 23e:	8c 85       	ldd	r24, Y+12	; 0x0c
+ 240:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].DOT_Port , HSEVENSEG_enuArrHEVENSEGCongf[Copy_enuSevenSegNum].DOT_Pin,(Local_u8_segmentPattern >> 7) & 0x01 );
+ 244:	6f 85       	ldd	r22, Y+15	; 0x0f
+ 246:	40 2f       	mov	r20, r16
+ 248:	44 1f       	adc	r20, r20
+ 24a:	44 27       	eor	r20, r20
+ 24c:	44 1f       	adc	r20, r20
+ 24e:	8e 85       	ldd	r24, Y+14	; 0x0e
+ 250:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MDIO_enuSetPinValue>
+ 254:	03 c0       	rjmp	.+6      	; 0x25c <HSEVENSEG_vSetValue+0x112>
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_vSetValue(u8 Copy_enuSevenSegNum , u8 Copy_u8Value)
+{
+	HSEVENSEG_enuErrorStatus_t Ret_enuError = HSEVENSEG_enuNOK;
+	if(IS_INVALID_SEVENSEG_NAME(Copy_enuSevenSegNum) )
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGNAME;
+ 256:	15 e0       	ldi	r17, 0x05	; 5
+ 258:	01 c0       	rjmp	.+2      	; 0x25c <HSEVENSEG_vSetValue+0x112>
+
+		
+	}
+	else if(IS_INVALID_SEVENSEG_VALUE(Copy_u8Value))
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGVALUE ;
+ 25a:	16 e0       	ldi	r17, 0x06	; 6
+		
+	}
+	
+	return Ret_enuError;
+
+}
+ 25c:	81 2f       	mov	r24, r17
+ 25e:	df 91       	pop	r29
+ 260:	cf 91       	pop	r28
+ 262:	1f 91       	pop	r17
+ 264:	0f 91       	pop	r16
+ 266:	08 95       	ret
+
+00000268 <HSEVENSEG_enuSetMultiDigitValue>:
+#define MAX_DIGITS 4  // Assuming the maximum number of digits is 4
+
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_enuSetMultiDigitValue(u16 Copy_u16Value)
+{
+ 268:	8f 92       	push	r8
+ 26a:	9f 92       	push	r9
+ 26c:	af 92       	push	r10
+ 26e:	bf 92       	push	r11
+ 270:	cf 92       	push	r12
+ 272:	df 92       	push	r13
+ 274:	ef 92       	push	r14
+ 276:	ff 92       	push	r15
+ 278:	0f 93       	push	r16
+ 27a:	1f 93       	push	r17
+ 27c:	cf 93       	push	r28
+ 27e:	df 93       	push	r29
+ 280:	cd b7       	in	r28, 0x3d	; 61
+ 282:	de b7       	in	r29, 0x3e	; 62
+ 284:	ac 01       	movw	r20, r24
+			HSEVENSEG_vSetValue(Local_u8_i, Local_u8_digits[Local_u8_count - 1 - Local_u8_i]);
+		}
+	}
+
+	return Ret_enuError;
+}
+ 286:	cd b6       	in	r12, 0x3d	; 61
+ 288:	de b6       	in	r13, 0x3e	; 62
+
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_enuSetMultiDigitValue(u16 Copy_u16Value)
+{
+	u8 Local_u8_count = 0;
+	HSEVENSEG_enuErrorStatus_t Ret_enuError = HSEVENSEG_enuNOK;
+	u16 Local_u16_value = Copy_u16Value;  // Store the original value for later use
+ 28a:	9c 01       	movw	r18, r24
+}
+#define MAX_DIGITS 4  // Assuming the maximum number of digits is 4
+
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_enuSetMultiDigitValue(u16 Copy_u16Value)
+{
+	u8 Local_u8_count = 0;
+ 28c:	10 e0       	ldi	r17, 0x00	; 0
+	HSEVENSEG_enuErrorStatus_t Ret_enuError = HSEVENSEG_enuNOK;
+	u16 Local_u16_value = Copy_u16Value;  // Store the original value for later use
+
+	// Count the digits
+	while (Local_u16_value > 0) 
+ 28e:	0c c0       	rjmp	.+24     	; 0x2a8 <HSEVENSEG_enuSetMultiDigitValue+0x40>
+	{
+		Local_u8_count++;
+ 290:	1f 5f       	subi	r17, 0xFF	; 255
+		Local_u16_value /= 10;
+ 292:	ad ec       	ldi	r26, 0xCD	; 205
+ 294:	bc ec       	ldi	r27, 0xCC	; 204
+ 296:	0e 94 63 02 	call	0x4c6	; 0x4c6 <__umulhisi3>
+ 29a:	9c 01       	movw	r18, r24
+ 29c:	36 95       	lsr	r19
+ 29e:	27 95       	ror	r18
+ 2a0:	36 95       	lsr	r19
+ 2a2:	27 95       	ror	r18
+ 2a4:	36 95       	lsr	r19
+ 2a6:	27 95       	ror	r18
+	u8 Local_u8_count = 0;
+	HSEVENSEG_enuErrorStatus_t Ret_enuError = HSEVENSEG_enuNOK;
+	u16 Local_u16_value = Copy_u16Value;  // Store the original value for later use
+
+	// Count the digits
+	while (Local_u16_value > 0) 
+ 2a8:	21 15       	cp	r18, r1
+ 2aa:	31 05       	cpc	r19, r1
+ 2ac:	89 f7       	brne	.-30     	; 0x290 <HSEVENSEG_enuSetMultiDigitValue+0x28>
+	{
+		Local_u8_count++;
+		Local_u16_value /= 10;
+	}
+
+	if (IS_INVALID_SEVENSEG_NAME(Local_u8_count)) 
+ 2ae:	13 30       	cpi	r17, 0x03	; 3
+ 2b0:	08 f0       	brcs	.+2      	; 0x2b4 <HSEVENSEG_enuSetMultiDigitValue+0x4c>
+ 2b2:	58 c0       	rjmp	.+176    	; 0x364 <HSEVENSEG_enuSetMultiDigitValue+0xfc>
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGNUMS;
+	} 
+	else 
+	{
+ 2b4:	8d b6       	in	r8, 0x3d	; 61
+ 2b6:	9e b6       	in	r9, 0x3e	; 62
+		Ret_enuError = HSEVENSEG_enuOK;
+
+		u8 Local_u8_digits[Local_u8_count];  
+ 2b8:	81 2f       	mov	r24, r17
+ 2ba:	90 e0       	ldi	r25, 0x00	; 0
+ 2bc:	5c 01       	movw	r10, r24
+ 2be:	21 e0       	ldi	r18, 0x01	; 1
+ 2c0:	a2 1a       	sub	r10, r18
+ 2c2:	b1 08       	sbc	r11, r1
+ 2c4:	2d b7       	in	r18, 0x3d	; 61
+ 2c6:	3e b7       	in	r19, 0x3e	; 62
+ 2c8:	28 1b       	sub	r18, r24
+ 2ca:	39 0b       	sbc	r19, r25
+ 2cc:	0f b6       	in	r0, 0x3f	; 63
+ 2ce:	f8 94       	cli
+ 2d0:	3e bf       	out	0x3e, r19	; 62
+ 2d2:	0f be       	out	0x3f, r0	; 63
+ 2d4:	2d bf       	out	0x3d, r18	; 61
+ 2d6:	8d b7       	in	r24, 0x3d	; 61
+ 2d8:	9e b7       	in	r25, 0x3e	; 62
+ 2da:	01 96       	adiw	r24, 0x01	; 1
+ 2dc:	7c 01       	movw	r14, r24
+
+		// Reuse the original value to extract digits and store them in reverse order
+		for (u8 Local_u8_i = 0; Local_u8_i < Local_u8_count; Local_u8_i++) 
+ 2de:	e0 e0       	ldi	r30, 0x00	; 0
+ 2e0:	2a c0       	rjmp	.+84     	; 0x336 <HSEVENSEG_enuSetMultiDigitValue+0xce>
+		{
+			Local_u8_digits[Local_u8_i] = Copy_u16Value % 10;
+ 2e2:	9a 01       	movw	r18, r20
+ 2e4:	ad ec       	ldi	r26, 0xCD	; 205
+ 2e6:	bc ec       	ldi	r27, 0xCC	; 204
+ 2e8:	0e 94 63 02 	call	0x4c6	; 0x4c6 <__umulhisi3>
+ 2ec:	96 95       	lsr	r25
+ 2ee:	87 95       	ror	r24
+ 2f0:	96 95       	lsr	r25
+ 2f2:	87 95       	ror	r24
+ 2f4:	96 95       	lsr	r25
+ 2f6:	87 95       	ror	r24
+ 2f8:	9c 01       	movw	r18, r24
+ 2fa:	22 0f       	add	r18, r18
+ 2fc:	33 1f       	adc	r19, r19
+ 2fe:	88 0f       	add	r24, r24
+ 300:	99 1f       	adc	r25, r25
+ 302:	88 0f       	add	r24, r24
+ 304:	99 1f       	adc	r25, r25
+ 306:	88 0f       	add	r24, r24
+ 308:	99 1f       	adc	r25, r25
+ 30a:	82 0f       	add	r24, r18
+ 30c:	93 1f       	adc	r25, r19
+ 30e:	9a 01       	movw	r18, r20
+ 310:	28 1b       	sub	r18, r24
+ 312:	39 0b       	sbc	r19, r25
+ 314:	d7 01       	movw	r26, r14
+ 316:	ae 0f       	add	r26, r30
+ 318:	b1 1d       	adc	r27, r1
+ 31a:	2c 93       	st	X, r18
+			Copy_u16Value /= 10;
+ 31c:	9a 01       	movw	r18, r20
+ 31e:	ad ec       	ldi	r26, 0xCD	; 205
+ 320:	bc ec       	ldi	r27, 0xCC	; 204
+ 322:	0e 94 63 02 	call	0x4c6	; 0x4c6 <__umulhisi3>
+ 326:	ac 01       	movw	r20, r24
+ 328:	56 95       	lsr	r21
+ 32a:	47 95       	ror	r20
+ 32c:	56 95       	lsr	r21
+ 32e:	47 95       	ror	r20
+ 330:	56 95       	lsr	r21
+ 332:	47 95       	ror	r20
+		Ret_enuError = HSEVENSEG_enuOK;
+
+		u8 Local_u8_digits[Local_u8_count];  
+
+		// Reuse the original value to extract digits and store them in reverse order
+		for (u8 Local_u8_i = 0; Local_u8_i < Local_u8_count; Local_u8_i++) 
+ 334:	ef 5f       	subi	r30, 0xFF	; 255
+ 336:	e1 17       	cp	r30, r17
+ 338:	a0 f2       	brcs	.-88     	; 0x2e2 <HSEVENSEG_enuSetMultiDigitValue+0x7a>
+ 33a:	00 e0       	ldi	r16, 0x00	; 0
+ 33c:	0a c0       	rjmp	.+20     	; 0x352 <HSEVENSEG_enuSetMultiDigitValue+0xea>
+		}
+
+		// Now display digits in reverse order (most significant to least significant)
+		for (u8 Local_u8_i = 0; Local_u8_i < Local_u8_count; Local_u8_i++) 
+		{
+			HSEVENSEG_vSetValue(Local_u8_i, Local_u8_digits[Local_u8_count - 1 - Local_u8_i]);
+ 33e:	f5 01       	movw	r30, r10
+ 340:	e0 1b       	sub	r30, r16
+ 342:	f1 09       	sbc	r31, r1
+ 344:	ee 0d       	add	r30, r14
+ 346:	ff 1d       	adc	r31, r15
+ 348:	60 81       	ld	r22, Z
+ 34a:	80 2f       	mov	r24, r16
+ 34c:	0e 94 a5 00 	call	0x14a	; 0x14a <HSEVENSEG_vSetValue>
+			Local_u8_digits[Local_u8_i] = Copy_u16Value % 10;
+			Copy_u16Value /= 10;
+		}
+
+		// Now display digits in reverse order (most significant to least significant)
+		for (u8 Local_u8_i = 0; Local_u8_i < Local_u8_count; Local_u8_i++) 
+ 350:	0f 5f       	subi	r16, 0xFF	; 255
+ 352:	01 17       	cp	r16, r17
+ 354:	a0 f3       	brcs	.-24     	; 0x33e <HSEVENSEG_enuSetMultiDigitValue+0xd6>
+ 356:	0f b6       	in	r0, 0x3f	; 63
+ 358:	f8 94       	cli
+ 35a:	9e be       	out	0x3e, r9	; 62
+ 35c:	0f be       	out	0x3f, r0	; 63
+ 35e:	8d be       	out	0x3d, r8	; 61
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGNUMS;
+	} 
+	else 
+	{
+		Ret_enuError = HSEVENSEG_enuOK;
+ 360:	80 e0       	ldi	r24, 0x00	; 0
+ 362:	01 c0       	rjmp	.+2      	; 0x366 <HSEVENSEG_enuSetMultiDigitValue+0xfe>
+		Local_u16_value /= 10;
+	}
+
+	if (IS_INVALID_SEVENSEG_NAME(Local_u8_count)) 
+	{
+		Ret_enuError = HSEVENSEG_enuINVALID_SEGNUMS;
+ 364:	87 e0       	ldi	r24, 0x07	; 7
+			HSEVENSEG_vSetValue(Local_u8_i, Local_u8_digits[Local_u8_count - 1 - Local_u8_i]);
+		}
+	}
+
+	return Ret_enuError;
+}
+ 366:	0f b6       	in	r0, 0x3f	; 63
+ 368:	f8 94       	cli
+ 36a:	de be       	out	0x3e, r13	; 62
+ 36c:	0f be       	out	0x3f, r0	; 63
+ 36e:	cd be       	out	0x3d, r12	; 61
+ 370:	df 91       	pop	r29
+ 372:	cf 91       	pop	r28
+ 374:	1f 91       	pop	r17
+ 376:	0f 91       	pop	r16
+ 378:	ff 90       	pop	r15
+ 37a:	ef 90       	pop	r14
+ 37c:	df 90       	pop	r13
+ 37e:	cf 90       	pop	r12
+ 380:	bf 90       	pop	r11
+ 382:	af 90       	pop	r10
+ 384:	9f 90       	pop	r9
+ 386:	8f 90       	pop	r8
+ 388:	08 95       	ret
+
+0000038a <main>:
+#include "STD_TYPES.h"
+
+
+int main(void)
+{
+	HSEVENSEG_vInit();
+ 38a:	0e 94 41 00 	call	0x82	; 0x82 <HSEVENSEG_vInit>
+    
+    while (1) 
+    {
+	
+		
+		for(u8 i =0 ; i< 10 ; i++)
+ 38e:	c0 e0       	ldi	r28, 0x00	; 0
+ 390:	12 c0       	rjmp	.+36     	; 0x3b6 <main+0x2c>
+		{
+			HSEVENSEG_vSetValue(SEVENSEG1 , i);
+ 392:	6c 2f       	mov	r22, r28
+ 394:	80 e0       	ldi	r24, 0x00	; 0
+ 396:	0e 94 a5 00 	call	0x14a	; 0x14a <HSEVENSEG_vSetValue>
+			HSEVENSEG_vSetValue(SEVENSEG2 , i);
+ 39a:	6c 2f       	mov	r22, r28
+ 39c:	81 e0       	ldi	r24, 0x01	; 1
+ 39e:	0e 94 a5 00 	call	0x14a	; 0x14a <HSEVENSEG_vSetValue>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3a2:	2f ef       	ldi	r18, 0xFF	; 255
+ 3a4:	89 e6       	ldi	r24, 0x69	; 105
+ 3a6:	98 e1       	ldi	r25, 0x18	; 24
+ 3a8:	21 50       	subi	r18, 0x01	; 1
+ 3aa:	80 40       	sbci	r24, 0x00	; 0
+ 3ac:	90 40       	sbci	r25, 0x00	; 0
+ 3ae:	e1 f7       	brne	.-8      	; 0x3a8 <main+0x1e>
+ 3b0:	00 c0       	rjmp	.+0      	; 0x3b2 <main+0x28>
+ 3b2:	00 00       	nop
+    
+    while (1) 
+    {
+	
+		
+		for(u8 i =0 ; i< 10 ; i++)
+ 3b4:	cf 5f       	subi	r28, 0xFF	; 255
+ 3b6:	ca 30       	cpi	r28, 0x0A	; 10
+ 3b8:	60 f3       	brcs	.-40     	; 0x392 <main+0x8>
+		{
+			HSEVENSEG_vSetValue(SEVENSEG1 , i);
+			HSEVENSEG_vSetValue(SEVENSEG2 , i);
+			_delay_ms(1000);
+		}
+		HSEVENSEG_enuSetMultiDigitValue(56) ;
+ 3ba:	88 e3       	ldi	r24, 0x38	; 56
+ 3bc:	90 e0       	ldi	r25, 0x00	; 0
+ 3be:	0e 94 34 01 	call	0x268	; 0x268 <HSEVENSEG_enuSetMultiDigitValue>
+ 3c2:	2f ef       	ldi	r18, 0xFF	; 255
+ 3c4:	89 e6       	ldi	r24, 0x69	; 105
+ 3c6:	98 e1       	ldi	r25, 0x18	; 24
+ 3c8:	21 50       	subi	r18, 0x01	; 1
+ 3ca:	80 40       	sbci	r24, 0x00	; 0
+ 3cc:	90 40       	sbci	r25, 0x00	; 0
+ 3ce:	e1 f7       	brne	.-8      	; 0x3c8 <main+0x3e>
+ 3d0:	00 c0       	rjmp	.+0      	; 0x3d2 <main+0x48>
+ 3d2:	00 00       	nop
+ 3d4:	dc cf       	rjmp	.-72     	; 0x38e <main+0x4>
+
+000003d6 <MDIO_enuSetPinValue>:
+{
+	
+	MDIO_enuErrorStatus_t Ret_enuError = MDIO_enuNOK;
+	
+	 // Validate input parameters
+	if (IS_INVALID_PORT_NUM(Copy_enuPortNum))
+ 3d6:	85 30       	cpi	r24, 0x05	; 5
+ 3d8:	60 f5       	brcc	.+88     	; 0x432 <__EEPROM_REGION_LENGTH__+0x32>
+	{
+		Ret_enuError = MDIO_enuINVALID_PortNum;
+		
+	}
+	else if (IS_INVALID_PIN_NUM(Copy_enuPinNum))
+ 3da:	69 30       	cpi	r22, 0x09	; 9
+ 3dc:	60 f5       	brcc	.+88     	; 0x436 <__EEPROM_REGION_LENGTH__+0x36>
+	{
+		Ret_enuError = MDIO_enuINVALID_PinNum;
+	}
+	else if (IS_INVALID_PIN_STATE(Copy_enuState))
+ 3de:	42 30       	cpi	r20, 0x02	; 2
+ 3e0:	60 f5       	brcc	.+88     	; 0x43a <__EEPROM_REGION_LENGTH__+0x3a>
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+		// Get the address of the port registers
+		MDIO_strPortRegElement_t* Local_strPtrCurrPort =(((MDIO_PORT_REG_BASE_ADD) - (((u8)Copy_enuPortNum) * 3)));
+ 3e2:	90 e0       	ldi	r25, 0x00	; 0
+ 3e4:	fc 01       	movw	r30, r24
+ 3e6:	ee 0f       	add	r30, r30
+ 3e8:	ff 1f       	adc	r31, r31
+ 3ea:	8e 0f       	add	r24, r30
+ 3ec:	9f 1f       	adc	r25, r31
+ 3ee:	ee 27       	eor	r30, r30
+ 3f0:	ff 27       	eor	r31, r31
+ 3f2:	e8 1b       	sub	r30, r24
+ 3f4:	f9 0b       	sbc	r31, r25
+ 3f6:	f9 96       	adiw	r30, 0x39	; 57
+		// Set the pin value (HIGH or LOW)
+		if(Copy_enuState == MDIO_enuLOW) // Set pin to LOW
+ 3f8:	41 11       	cpse	r20, r1
+ 3fa:	0d c0       	rjmp	.+26     	; 0x416 <__EEPROM_REGION_LENGTH__+0x16>
+		{
+				CLR_BIT(Local_strPtrCurrPort->PORT,Copy_enuPinNum);
+ 3fc:	22 81       	ldd	r18, Z+2	; 0x02
+ 3fe:	81 e0       	ldi	r24, 0x01	; 1
+ 400:	90 e0       	ldi	r25, 0x00	; 0
+ 402:	02 c0       	rjmp	.+4      	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
+ 404:	88 0f       	add	r24, r24
+ 406:	99 1f       	adc	r25, r25
+ 408:	6a 95       	dec	r22
+ 40a:	e2 f7       	brpl	.-8      	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+ 40c:	80 95       	com	r24
+ 40e:	82 23       	and	r24, r18
+ 410:	82 83       	std	Z+2, r24	; 0x02
+	{
+		Ret_enuError = MDIO_enuINVALID_PinStatus;
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+ 412:	80 e0       	ldi	r24, 0x00	; 0
+ 414:	08 95       	ret
+		// Set the pin value (HIGH or LOW)
+		if(Copy_enuState == MDIO_enuLOW) // Set pin to LOW
+		{
+				CLR_BIT(Local_strPtrCurrPort->PORT,Copy_enuPinNum);
+		}
+		else if(Copy_enuState == MDIO_enuHIGH)// Set pin to HIGH
+ 416:	41 30       	cpi	r20, 0x01	; 1
+ 418:	91 f4       	brne	.+36     	; 0x43e <__EEPROM_REGION_LENGTH__+0x3e>
+		{
+				
+				SET_BIT(Local_strPtrCurrPort->PORT,Copy_enuPinNum);
+ 41a:	22 81       	ldd	r18, Z+2	; 0x02
+ 41c:	81 e0       	ldi	r24, 0x01	; 1
+ 41e:	90 e0       	ldi	r25, 0x00	; 0
+ 420:	02 c0       	rjmp	.+4      	; 0x426 <__EEPROM_REGION_LENGTH__+0x26>
+ 422:	88 0f       	add	r24, r24
+ 424:	99 1f       	adc	r25, r25
+ 426:	6a 95       	dec	r22
+ 428:	e2 f7       	brpl	.-8      	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+ 42a:	82 2b       	or	r24, r18
+ 42c:	82 83       	std	Z+2, r24	; 0x02
+	{
+		Ret_enuError = MDIO_enuINVALID_PinStatus;
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+ 42e:	80 e0       	ldi	r24, 0x00	; 0
+ 430:	08 95       	ret
+	MDIO_enuErrorStatus_t Ret_enuError = MDIO_enuNOK;
+	
+	 // Validate input parameters
+	if (IS_INVALID_PORT_NUM(Copy_enuPortNum))
+	{
+		Ret_enuError = MDIO_enuINVALID_PortNum;
+ 432:	82 e0       	ldi	r24, 0x02	; 2
+ 434:	08 95       	ret
+		
+	}
+	else if (IS_INVALID_PIN_NUM(Copy_enuPinNum))
+	{
+		Ret_enuError = MDIO_enuINVALID_PinNum;
+ 436:	83 e0       	ldi	r24, 0x03	; 3
+ 438:	08 95       	ret
+	}
+	else if (IS_INVALID_PIN_STATE(Copy_enuState))
+	{
+		Ret_enuError = MDIO_enuINVALID_PinStatus;
+ 43a:	84 e0       	ldi	r24, 0x04	; 4
+ 43c:	08 95       	ret
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+ 43e:	80 e0       	ldi	r24, 0x00	; 0
+		}
+
+	}
+	return Ret_enuError;
+	
+}
+ 440:	08 95       	ret
+
+00000442 <MPORT_enuSetPinDirection>:
+// Function: MPORT_enuSetPinDirection
+// Sets the direction of any pin after the initialization.
+MPORT_enuErrorStatus_t MPORT_enuSetPinDirection( MPORT_enuPinNums_t Copy_enuPinNum  ,  MPORT_enuPinDirection_t  Copy_enuPinDirection  )
+{
+	MPORT_enuErrorStatus_t Ret_enuError= MPORT_enuOK;
+	u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+ 442:	28 2f       	mov	r18, r24
+ 444:	22 95       	swap	r18
+ 446:	2f 70       	andi	r18, 0x0F	; 15
+	u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+ 448:	8f 70       	andi	r24, 0x0F	; 15
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+ 44a:	24 30       	cpi	r18, 0x04	; 4
+ 44c:	a0 f5       	brcc	.+104    	; 0x4b6 <MPORT_enuSetPinDirection+0x74>
+	{
+		Ret_enuError = MPORT_enuINVALID_PortNum;
+		
+	}
+	else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+ 44e:	88 30       	cpi	r24, 0x08	; 8
+ 450:	a0 f5       	brcc	.+104    	; 0x4ba <MPORT_enuSetPinDirection+0x78>
+	{
+		Ret_enuError = MPORT_enuINVALID_PinNum;
+	}
+	else if (IS_INVALID_PIN_Direction(Copy_enuPinDirection))
+ 452:	62 30       	cpi	r22, 0x02	; 2
+ 454:	a0 f5       	brcc	.+104    	; 0x4be <MPORT_enuSetPinDirection+0x7c>
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+		// Get the address of the port registers
+		MPORT_strPortRegElement_t* Local_strPtrCurrPort =(((MPORT_PORT_REG_BASE_ADD) - (((u8)LOC_u8portNumber) * 3)));
+ 456:	30 e0       	ldi	r19, 0x00	; 0
+ 458:	f9 01       	movw	r30, r18
+ 45a:	ee 0f       	add	r30, r30
+ 45c:	ff 1f       	adc	r31, r31
+ 45e:	2e 0f       	add	r18, r30
+ 460:	3f 1f       	adc	r19, r31
+ 462:	ee 27       	eor	r30, r30
+ 464:	ff 27       	eor	r31, r31
+ 466:	e2 1b       	sub	r30, r18
+ 468:	f3 0b       	sbc	r31, r19
+ 46a:	f9 96       	adiw	r30, 0x39	; 57
+		// Configure pin direction and state based on the requested configuration
+		if(Copy_enuPinDirection == MPORT_enuPINOUTPUT)// Output 
+ 46c:	61 11       	cpse	r22, r1
+ 46e:	0e c0       	rjmp	.+28     	; 0x48c <MPORT_enuSetPinDirection+0x4a>
+		{
+			SET_BIT(Local_strPtrCurrPort->DDR,LOC_u8pinNumber);
+ 470:	41 81       	ldd	r20, Z+1	; 0x01
+ 472:	21 e0       	ldi	r18, 0x01	; 1
+ 474:	30 e0       	ldi	r19, 0x00	; 0
+ 476:	b9 01       	movw	r22, r18
+ 478:	02 c0       	rjmp	.+4      	; 0x47e <MPORT_enuSetPinDirection+0x3c>
+ 47a:	66 0f       	add	r22, r22
+ 47c:	77 1f       	adc	r23, r23
+ 47e:	8a 95       	dec	r24
+ 480:	e2 f7       	brpl	.-8      	; 0x47a <MPORT_enuSetPinDirection+0x38>
+ 482:	cb 01       	movw	r24, r22
+ 484:	84 2b       	or	r24, r20
+ 486:	81 83       	std	Z+1, r24	; 0x01
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 488:	80 e0       	ldi	r24, 0x00	; 0
+ 48a:	08 95       	ret
+		// Configure pin direction and state based on the requested configuration
+		if(Copy_enuPinDirection == MPORT_enuPINOUTPUT)// Output 
+		{
+			SET_BIT(Local_strPtrCurrPort->DDR,LOC_u8pinNumber);
+		}
+		else if(Copy_enuPinDirection == MPORT_enuPININPUT) // Input 
+ 48c:	61 30       	cpi	r22, 0x01	; 1
+ 48e:	c9 f4       	brne	.+50     	; 0x4c2 <MPORT_enuSetPinDirection+0x80>
+		{
+			CLR_BIT(Local_strPtrCurrPort->DDR ,LOC_u8pinNumber );
+ 490:	41 81       	ldd	r20, Z+1	; 0x01
+ 492:	21 e0       	ldi	r18, 0x01	; 1
+ 494:	30 e0       	ldi	r19, 0x00	; 0
+ 496:	b9 01       	movw	r22, r18
+ 498:	02 c0       	rjmp	.+4      	; 0x49e <MPORT_enuSetPinDirection+0x5c>
+ 49a:	66 0f       	add	r22, r22
+ 49c:	77 1f       	adc	r23, r23
+ 49e:	8a 95       	dec	r24
+ 4a0:	e2 f7       	brpl	.-8      	; 0x49a <MPORT_enuSetPinDirection+0x58>
+ 4a2:	cb 01       	movw	r24, r22
+ 4a4:	80 95       	com	r24
+ 4a6:	94 2f       	mov	r25, r20
+ 4a8:	98 23       	and	r25, r24
+ 4aa:	91 83       	std	Z+1, r25	; 0x01
+			CLR_BIT(Local_strPtrCurrPort->PORT,LOC_u8pinNumber);
+ 4ac:	92 81       	ldd	r25, Z+2	; 0x02
+ 4ae:	89 23       	and	r24, r25
+ 4b0:	82 83       	std	Z+2, r24	; 0x02
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 4b2:	80 e0       	ldi	r24, 0x00	; 0
+ 4b4:	08 95       	ret
+	u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+	u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+	{
+		Ret_enuError = MPORT_enuINVALID_PortNum;
+ 4b6:	82 e0       	ldi	r24, 0x02	; 2
+ 4b8:	08 95       	ret
+		
+	}
+	else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+	{
+		Ret_enuError = MPORT_enuINVALID_PinNum;
+ 4ba:	83 e0       	ldi	r24, 0x03	; 3
+ 4bc:	08 95       	ret
+	}
+	else if (IS_INVALID_PIN_Direction(Copy_enuPinDirection))
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+ 4be:	84 e0       	ldi	r24, 0x04	; 4
+ 4c0:	08 95       	ret
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 4c2:	80 e0       	ldi	r24, 0x00	; 0
+	
+	}
+	return Ret_enuError;
+		
+		
+}
+ 4c4:	08 95       	ret
+
+000004c6 <__umulhisi3>:
+ 4c6:	a2 9f       	mul	r26, r18
+ 4c8:	b0 01       	movw	r22, r0
+ 4ca:	b3 9f       	mul	r27, r19
+ 4cc:	c0 01       	movw	r24, r0
+ 4ce:	a3 9f       	mul	r26, r19
+ 4d0:	70 0d       	add	r23, r0
+ 4d2:	81 1d       	adc	r24, r1
+ 4d4:	11 24       	eor	r1, r1
+ 4d6:	91 1d       	adc	r25, r1
+ 4d8:	b2 9f       	mul	r27, r18
+ 4da:	70 0d       	add	r23, r0
+ 4dc:	81 1d       	adc	r24, r1
+ 4de:	11 24       	eor	r1, r1
+ 4e0:	91 1d       	adc	r25, r1
+ 4e2:	08 95       	ret
+
+000004e4 <_exit>:
+ 4e4:	f8 94       	cli
+
+000004e6 <__stop_program>:
+ 4e6:	ff cf       	rjmp	.-2      	; 0x4e6 <__stop_program>
