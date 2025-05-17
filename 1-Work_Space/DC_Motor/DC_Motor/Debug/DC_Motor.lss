@@ -1,0 +1,927 @@
+
+DC_Motor.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000040e  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  0000040e  00000482  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000048c  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004bc  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000108  00000000  00000000  000004f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000015f1  00000000  00000000  00000600  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000aef  00000000  00000000  00001bf1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000806  00000000  00000000  000026e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000170  00000000  00000000  00002ee8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000fb7  00000000  00000000  00003058  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000009fa  00000000  00000000  0000400f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000e8  00000000  00000000  00004a09  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e0       	ldi	r30, 0x0E	; 14
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	aa 36       	cpi	r26, 0x6A	; 106
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 01 01 	call	0x202	; 0x202 <main>
+  8a:	0c 94 05 02 	jmp	0x40a	; 0x40a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <HMOTOR_vMotor_init>:
+#include "HDCMOTOR_Confg.h"
+
+extern HMOTOR_strMotorConfig_t HMOTOR_enuArrMotorConfig[Num_of_Motors];
+
+void HMOTOR_vMotor_init(void)
+{
+  92:	1f 93       	push	r17
+  94:	cf 93       	push	r28
+  96:	df 93       	push	r29
+	u8 i;
+	for (i = 0; i < Num_of_Motors; i++)
+  98:	10 e0       	ldi	r17, 0x00	; 0
+  9a:	1b c0       	rjmp	.+54     	; 0xd2 <HMOTOR_vMotor_init+0x40>
+	{
+		// Set motor pins as output
+		MPORT_enuSetPinDirection((HMOTOR_enuArrMotorConfig[i].PORT_A << 4) + HMOTOR_enuArrMotorConfig[i].PIN_A, MPORT_enuPINOUTPUT);
+  9c:	c1 2f       	mov	r28, r17
+  9e:	d0 e0       	ldi	r29, 0x00	; 0
+  a0:	cc 0f       	add	r28, r28
+  a2:	dd 1f       	adc	r29, r29
+  a4:	cc 0f       	add	r28, r28
+  a6:	dd 1f       	adc	r29, r29
+  a8:	c0 5a       	subi	r28, 0xA0	; 160
+  aa:	df 4f       	sbci	r29, 0xFF	; 255
+  ac:	98 81       	ld	r25, Y
+  ae:	89 81       	ldd	r24, Y+1	; 0x01
+  b0:	60 e0       	ldi	r22, 0x00	; 0
+  b2:	20 e1       	ldi	r18, 0x10	; 16
+  b4:	92 9f       	mul	r25, r18
+  b6:	80 0d       	add	r24, r0
+  b8:	11 24       	eor	r1, r1
+  ba:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <MPORT_enuSetPinDirection>
+		MPORT_enuSetPinDirection((HMOTOR_enuArrMotorConfig[i].PORT_B << 4) + HMOTOR_enuArrMotorConfig[i].PIN_B, MPORT_enuPINOUTPUT);
+  be:	9a 81       	ldd	r25, Y+2	; 0x02
+  c0:	8b 81       	ldd	r24, Y+3	; 0x03
+  c2:	60 e0       	ldi	r22, 0x00	; 0
+  c4:	20 e1       	ldi	r18, 0x10	; 16
+  c6:	92 9f       	mul	r25, r18
+  c8:	80 0d       	add	r24, r0
+  ca:	11 24       	eor	r1, r1
+  cc:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <MPORT_enuSetPinDirection>
+extern HMOTOR_strMotorConfig_t HMOTOR_enuArrMotorConfig[Num_of_Motors];
+
+void HMOTOR_vMotor_init(void)
+{
+	u8 i;
+	for (i = 0; i < Num_of_Motors; i++)
+  d0:	1f 5f       	subi	r17, 0xFF	; 255
+  d2:	11 23       	and	r17, r17
+  d4:	19 f3       	breq	.-58     	; 0x9c <HMOTOR_vMotor_init+0xa>
+	{
+		// Set motor pins as output
+		MPORT_enuSetPinDirection((HMOTOR_enuArrMotorConfig[i].PORT_A << 4) + HMOTOR_enuArrMotorConfig[i].PIN_A, MPORT_enuPINOUTPUT);
+		MPORT_enuSetPinDirection((HMOTOR_enuArrMotorConfig[i].PORT_B << 4) + HMOTOR_enuArrMotorConfig[i].PIN_B, MPORT_enuPINOUTPUT);
+	}
+}
+  d6:	df 91       	pop	r29
+  d8:	cf 91       	pop	r28
+  da:	1f 91       	pop	r17
+  dc:	08 95       	ret
+
+000000de <HMOTOR_enuSetMotorState>:
+
+HMOTOR_enuState_t HMOTOR_enuSetMotorState(u8 Copy_u8MotorName, HMOTOR_enuState_t Copy_enuState)
+{
+  de:	1f 93       	push	r17
+  e0:	cf 93       	push	r28
+  e2:	df 93       	push	r29
+	if (Copy_u8MotorName >= Num_of_Motors)
+  e4:	81 11       	cpse	r24, r1
+  e6:	42 c0       	rjmp	.+132    	; 0x16c <HMOTOR_enuSetMotorState+0x8e>
+  e8:	16 2f       	mov	r17, r22
+	return HMOTOR_enuSTOP; // Invalid motor name
+
+	switch (Copy_enuState)
+  ea:	61 30       	cpi	r22, 0x01	; 1
+  ec:	19 f0       	breq	.+6      	; 0xf4 <HMOTOR_enuSetMotorState+0x16>
+  ee:	62 30       	cpi	r22, 0x02	; 2
+  f0:	a9 f0       	breq	.+42     	; 0x11c <HMOTOR_enuSetMotorState+0x3e>
+  f2:	28 c0       	rjmp	.+80     	; 0x144 <HMOTOR_enuSetMotorState+0x66>
+	{
+		case HMOTOR_enuFORWARD:
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuHIGH);
+  f4:	c8 2f       	mov	r28, r24
+  f6:	d0 e0       	ldi	r29, 0x00	; 0
+  f8:	cc 0f       	add	r28, r28
+  fa:	dd 1f       	adc	r29, r29
+  fc:	cc 0f       	add	r28, r28
+  fe:	dd 1f       	adc	r29, r29
+ 100:	c0 5a       	subi	r28, 0xA0	; 160
+ 102:	df 4f       	sbci	r29, 0xFF	; 255
+ 104:	69 81       	ldd	r22, Y+1	; 0x01
+ 106:	41 e0       	ldi	r20, 0x01	; 1
+ 108:	88 81       	ld	r24, Y
+ 10a:	0e 94 23 01 	call	0x246	; 0x246 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuLOW);
+ 10e:	6b 81       	ldd	r22, Y+3	; 0x03
+ 110:	40 e0       	ldi	r20, 0x00	; 0
+ 112:	8a 81       	ldd	r24, Y+2	; 0x02
+ 114:	0e 94 23 01 	call	0x246	; 0x246 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuLOW);
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuLOW);
+		break;
+	}
+	
+	return Copy_enuState;
+ 118:	81 2f       	mov	r24, r17
+	switch (Copy_enuState)
+	{
+		case HMOTOR_enuFORWARD:
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuHIGH);
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuLOW);
+		break;
+ 11a:	29 c0       	rjmp	.+82     	; 0x16e <HMOTOR_enuSetMotorState+0x90>
+		
+		case HMOTOR_enuREVERSE:
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuLOW);
+ 11c:	c8 2f       	mov	r28, r24
+ 11e:	d0 e0       	ldi	r29, 0x00	; 0
+ 120:	cc 0f       	add	r28, r28
+ 122:	dd 1f       	adc	r29, r29
+ 124:	cc 0f       	add	r28, r28
+ 126:	dd 1f       	adc	r29, r29
+ 128:	c0 5a       	subi	r28, 0xA0	; 160
+ 12a:	df 4f       	sbci	r29, 0xFF	; 255
+ 12c:	69 81       	ldd	r22, Y+1	; 0x01
+ 12e:	40 e0       	ldi	r20, 0x00	; 0
+ 130:	88 81       	ld	r24, Y
+ 132:	0e 94 23 01 	call	0x246	; 0x246 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuHIGH);
+ 136:	6b 81       	ldd	r22, Y+3	; 0x03
+ 138:	41 e0       	ldi	r20, 0x01	; 1
+ 13a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 13c:	0e 94 23 01 	call	0x246	; 0x246 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuLOW);
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuLOW);
+		break;
+	}
+	
+	return Copy_enuState;
+ 140:	81 2f       	mov	r24, r17
+		break;
+		
+		case HMOTOR_enuREVERSE:
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuLOW);
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuHIGH);
+		break;
+ 142:	15 c0       	rjmp	.+42     	; 0x16e <HMOTOR_enuSetMotorState+0x90>
+
+		case HMOTOR_enuSTOP:
+		default:
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuLOW);
+ 144:	c8 2f       	mov	r28, r24
+ 146:	d0 e0       	ldi	r29, 0x00	; 0
+ 148:	cc 0f       	add	r28, r28
+ 14a:	dd 1f       	adc	r29, r29
+ 14c:	cc 0f       	add	r28, r28
+ 14e:	dd 1f       	adc	r29, r29
+ 150:	c0 5a       	subi	r28, 0xA0	; 160
+ 152:	df 4f       	sbci	r29, 0xFF	; 255
+ 154:	69 81       	ldd	r22, Y+1	; 0x01
+ 156:	40 e0       	ldi	r20, 0x00	; 0
+ 158:	88 81       	ld	r24, Y
+ 15a:	0e 94 23 01 	call	0x246	; 0x246 <MDIO_enuSetPinValue>
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuLOW);
+ 15e:	6b 81       	ldd	r22, Y+3	; 0x03
+ 160:	40 e0       	ldi	r20, 0x00	; 0
+ 162:	8a 81       	ldd	r24, Y+2	; 0x02
+ 164:	0e 94 23 01 	call	0x246	; 0x246 <MDIO_enuSetPinValue>
+		break;
+	}
+	
+	return Copy_enuState;
+ 168:	81 2f       	mov	r24, r17
+
+		case HMOTOR_enuSTOP:
+		default:
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_A, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_A, MDIO_enuLOW);
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuLOW);
+		break;
+ 16a:	01 c0       	rjmp	.+2      	; 0x16e <HMOTOR_enuSetMotorState+0x90>
+}
+
+HMOTOR_enuState_t HMOTOR_enuSetMotorState(u8 Copy_u8MotorName, HMOTOR_enuState_t Copy_enuState)
+{
+	if (Copy_u8MotorName >= Num_of_Motors)
+	return HMOTOR_enuSTOP; // Invalid motor name
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
+		MDIO_enuSetPinValue(HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PORT_B, HMOTOR_enuArrMotorConfig[Copy_u8MotorName].PIN_B, MDIO_enuLOW);
+		break;
+	}
+	
+	return Copy_enuState;
+}
+ 16e:	df 91       	pop	r29
+ 170:	cf 91       	pop	r28
+ 172:	1f 91       	pop	r17
+ 174:	08 95       	ret
+
+00000176 <HSWITCH_vSWITCH_init>:
+
+extern HSWITCH_strSWITCHCONFG_t HSWITCH_enuArrSwitchCongf[Num_of_SWITCH];
+
+
+void HSWITCH_vSWITCH_init(void)
+{
+ 176:	0f 93       	push	r16
+ 178:	1f 93       	push	r17
+ 17a:	cf 93       	push	r28
+ 17c:	df 93       	push	r29
+	HSWITCH_enuErrorStatus_t Ret_enuError = HSWITCH_enuNOK;
+	u8 Local_u8_currentPinPort=0;
+	u8 Local_u8_i=0;
+	for(Local_u8_i =0 ; Local_u8_i < Num_of_SWITCH ; Local_u8_i++)
+ 17e:	10 e0       	ldi	r17, 0x00	; 0
+ 180:	22 c0       	rjmp	.+68     	; 0x1c6 <HSWITCH_vSWITCH_init+0x50>
+	{
+		Local_u8_currentPinPort = ((HSWITCH_enuArrSwitchCongf[Local_u8_i].PORT<<4) + HSWITCH_enuArrSwitchCongf[Local_u8_i].PIN);
+ 182:	c1 2f       	mov	r28, r17
+ 184:	d0 e0       	ldi	r29, 0x00	; 0
+ 186:	ce 01       	movw	r24, r28
+ 188:	88 0f       	add	r24, r24
+ 18a:	99 1f       	adc	r25, r25
+ 18c:	c8 0f       	add	r28, r24
+ 18e:	d9 1f       	adc	r29, r25
+ 190:	cc 59       	subi	r28, 0x9C	; 156
+ 192:	df 4f       	sbci	r29, 0xFF	; 255
+ 194:	88 81       	ld	r24, Y
+ 196:	09 81       	ldd	r16, Y+1	; 0x01
+ 198:	90 e1       	ldi	r25, 0x10	; 16
+ 19a:	89 9f       	mul	r24, r25
+ 19c:	00 0d       	add	r16, r0
+ 19e:	11 24       	eor	r1, r1
+		MPORT_enuSetPinDirection(Local_u8_currentPinPort , MPORT_enuPININPUT);
+ 1a0:	61 e0       	ldi	r22, 0x01	; 1
+ 1a2:	80 2f       	mov	r24, r16
+ 1a4:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <MPORT_enuSetPinDirection>
+		if(HSWITCH_enuArrSwitchCongf[Local_u8_i].CONNECTION == HSWITCH_enuPullUP)
+ 1a8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1aa:	81 11       	cpse	r24, r1
+ 1ac:	05 c0       	rjmp	.+10     	; 0x1b8 <HSWITCH_vSWITCH_init+0x42>
+		{
+			 Ret_enuError = MPORT_enuSetPinMode(Local_u8_currentPinPort ,MPORT_enuINPUT_PULL_UP);
+ 1ae:	60 e0       	ldi	r22, 0x00	; 0
+ 1b0:	80 2f       	mov	r24, r16
+ 1b2:	0e 94 be 01 	call	0x37c	; 0x37c <MPORT_enuSetPinMode>
+ 1b6:	06 c0       	rjmp	.+12     	; 0x1c4 <HSWITCH_vSWITCH_init+0x4e>
+		}
+		else if(HSWITCH_enuArrSwitchCongf[Local_u8_i].CONNECTION == HSWITCH_enuPullDown)
+ 1b8:	81 30       	cpi	r24, 0x01	; 1
+ 1ba:	21 f4       	brne	.+8      	; 0x1c4 <HSWITCH_vSWITCH_init+0x4e>
+		{
+			 Ret_enuError = MPORT_enuSetPinMode(Local_u8_currentPinPort ,MPORT_enuINPUT_PULL_DOWN);
+ 1bc:	61 e0       	ldi	r22, 0x01	; 1
+ 1be:	80 2f       	mov	r24, r16
+ 1c0:	0e 94 be 01 	call	0x37c	; 0x37c <MPORT_enuSetPinMode>
+void HSWITCH_vSWITCH_init(void)
+{
+	HSWITCH_enuErrorStatus_t Ret_enuError = HSWITCH_enuNOK;
+	u8 Local_u8_currentPinPort=0;
+	u8 Local_u8_i=0;
+	for(Local_u8_i =0 ; Local_u8_i < Num_of_SWITCH ; Local_u8_i++)
+ 1c4:	1f 5f       	subi	r17, 0xFF	; 255
+ 1c6:	12 30       	cpi	r17, 0x02	; 2
+ 1c8:	e0 f2       	brcs	.-72     	; 0x182 <HSWITCH_vSWITCH_init+0xc>
+			Ret_enuError = HSWITCH_enuINVALID_SWITCHConnection;
+		}
+		
+		
+	}
+}
+ 1ca:	df 91       	pop	r29
+ 1cc:	cf 91       	pop	r28
+ 1ce:	1f 91       	pop	r17
+ 1d0:	0f 91       	pop	r16
+ 1d2:	08 95       	ret
+
+000001d4 <HSWITCH_enuGetSwitchState>:
+HSWITCH_enuErrorStatus_t HSWITCH_enuGetSwitchState(u8 Copy_u8SwitchName, u8* Add_pu8State)
+{
+	HSWITCH_enuErrorStatus_t Ret_enuError = HSWITCH_enuNOK;
+	
+	// Validate input parameters
+	if (IS_INVALID_SWITCH_NAME(Copy_u8SwitchName))
+ 1d4:	83 30       	cpi	r24, 0x03	; 3
+ 1d6:	88 f4       	brcc	.+34     	; 0x1fa <HSWITCH_enuGetSwitchState+0x26>
+	{
+		Ret_enuError = HSWITCH_enuINVALID_SwitchName;
+		
+	}
+	else if (IS_INVALID_PTR(Add_pu8State))
+ 1d8:	61 15       	cp	r22, r1
+ 1da:	71 05       	cpc	r23, r1
+ 1dc:	81 f0       	breq	.+32     	; 0x1fe <HSWITCH_enuGetSwitchState+0x2a>
+ 1de:	ab 01       	movw	r20, r22
+		Ret_enuError = HSWITCH_enuNULL_PTR;
+	}
+	else
+	{
+		Ret_enuError = HSWITCH_enuOK;
+		Ret_enuError =MDIO_enuGetPinValue(HSWITCH_enuArrSwitchCongf[Copy_u8SwitchName].PORT,HSWITCH_enuArrSwitchCongf[Copy_u8SwitchName].PIN,Add_pu8State);
+ 1e0:	90 e0       	ldi	r25, 0x00	; 0
+ 1e2:	fc 01       	movw	r30, r24
+ 1e4:	ee 0f       	add	r30, r30
+ 1e6:	ff 1f       	adc	r31, r31
+ 1e8:	e8 0f       	add	r30, r24
+ 1ea:	f9 1f       	adc	r31, r25
+ 1ec:	ec 59       	subi	r30, 0x9C	; 156
+ 1ee:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1f0:	61 81       	ldd	r22, Z+1	; 0x01
+ 1f2:	80 81       	ld	r24, Z
+ 1f4:	0e 94 59 01 	call	0x2b2	; 0x2b2 <MDIO_enuGetPinValue>
+ 1f8:	08 95       	ret
+	HSWITCH_enuErrorStatus_t Ret_enuError = HSWITCH_enuNOK;
+	
+	// Validate input parameters
+	if (IS_INVALID_SWITCH_NAME(Copy_u8SwitchName))
+	{
+		Ret_enuError = HSWITCH_enuINVALID_SwitchName;
+ 1fa:	85 e0       	ldi	r24, 0x05	; 5
+ 1fc:	08 95       	ret
+		
+	}
+	else if (IS_INVALID_PTR(Add_pu8State))
+	{
+		Ret_enuError = HSWITCH_enuNULL_PTR;
+ 1fe:	86 e0       	ldi	r24, 0x06	; 6
+		Ret_enuError =MDIO_enuGetPinValue(HSWITCH_enuArrSwitchCongf[Copy_u8SwitchName].PORT,HSWITCH_enuArrSwitchCongf[Copy_u8SwitchName].PIN,Add_pu8State);
+
+	}
+	return Ret_enuError;
+	
+ 200:	08 95       	ret
+
+00000202 <main>:
+
+#include "HSWITCH.h"
+#include "HDCMOTOR.h"
+#include "STD_TYPES.h"
+int main(void)
+{
+ 202:	cf 93       	push	r28
+ 204:	df 93       	push	r29
+ 206:	00 d0       	rcall	.+0      	; 0x208 <main+0x6>
+ 208:	cd b7       	in	r28, 0x3d	; 61
+ 20a:	de b7       	in	r29, 0x3e	; 62
+	HSWITCH_vSWITCH_init();
+ 20c:	0e 94 bb 00 	call	0x176	; 0x176 <HSWITCH_vSWITCH_init>
+	HMOTOR_vMotor_init();  
+ 210:	0e 94 49 00 	call	0x92	; 0x92 <HMOTOR_vMotor_init>
+	
+	u8 state1, state2;
+	
+	while (1)
+	{
+		HSWITCH_enuGetSwitchState(SWITCH1, &state1);
+ 214:	be 01       	movw	r22, r28
+ 216:	6f 5f       	subi	r22, 0xFF	; 255
+ 218:	7f 4f       	sbci	r23, 0xFF	; 255
+ 21a:	80 e0       	ldi	r24, 0x00	; 0
+ 21c:	0e 94 ea 00 	call	0x1d4	; 0x1d4 <HSWITCH_enuGetSwitchState>
+		HSWITCH_enuGetSwitchState(SWITCH2, &state2);
+ 220:	be 01       	movw	r22, r28
+ 222:	6e 5f       	subi	r22, 0xFE	; 254
+ 224:	7f 4f       	sbci	r23, 0xFF	; 255
+ 226:	81 e0       	ldi	r24, 0x01	; 1
+ 228:	0e 94 ea 00 	call	0x1d4	; 0x1d4 <HSWITCH_enuGetSwitchState>
+		
+		if (state1 == 0) 
+ 22c:	89 81       	ldd	r24, Y+1	; 0x01
+ 22e:	81 11       	cpse	r24, r1
+ 230:	03 c0       	rjmp	.+6      	; 0x238 <main+0x36>
+		{
+			HMOTOR_enuSetMotorState(Motor1, HMOTOR_enuFORWARD);
+ 232:	61 e0       	ldi	r22, 0x01	; 1
+ 234:	0e 94 6f 00 	call	0xde	; 0xde <HMOTOR_enuSetMotorState>
+		}
+	    if (state2 == 0) 
+ 238:	8a 81       	ldd	r24, Y+2	; 0x02
+ 23a:	81 11       	cpse	r24, r1
+ 23c:	eb cf       	rjmp	.-42     	; 0x214 <main+0x12>
+		{
+			HMOTOR_enuSetMotorState(Motor1, HMOTOR_enuREVERSE);
+ 23e:	62 e0       	ldi	r22, 0x02	; 2
+ 240:	0e 94 6f 00 	call	0xde	; 0xde <HMOTOR_enuSetMotorState>
+ 244:	e7 cf       	rjmp	.-50     	; 0x214 <main+0x12>
+
+00000246 <MDIO_enuSetPinValue>:
+		Local_strPtrCurrPort->PORT = (u8)Copy_enuPortState;
+	
+	}
+	return Ret_enuError;
+	
+}
+ 246:	85 30       	cpi	r24, 0x05	; 5
+ 248:	60 f5       	brcc	.+88     	; 0x2a2 <MDIO_enuSetPinValue+0x5c>
+ 24a:	69 30       	cpi	r22, 0x09	; 9
+ 24c:	60 f5       	brcc	.+88     	; 0x2a6 <MDIO_enuSetPinValue+0x60>
+ 24e:	42 30       	cpi	r20, 0x02	; 2
+ 250:	60 f5       	brcc	.+88     	; 0x2aa <MDIO_enuSetPinValue+0x64>
+ 252:	90 e0       	ldi	r25, 0x00	; 0
+ 254:	fc 01       	movw	r30, r24
+ 256:	ee 0f       	add	r30, r30
+ 258:	ff 1f       	adc	r31, r31
+ 25a:	8e 0f       	add	r24, r30
+ 25c:	9f 1f       	adc	r25, r31
+ 25e:	ee 27       	eor	r30, r30
+ 260:	ff 27       	eor	r31, r31
+ 262:	e8 1b       	sub	r30, r24
+ 264:	f9 0b       	sbc	r31, r25
+ 266:	f9 96       	adiw	r30, 0x39	; 57
+ 268:	41 11       	cpse	r20, r1
+ 26a:	0d c0       	rjmp	.+26     	; 0x286 <MDIO_enuSetPinValue+0x40>
+ 26c:	22 81       	ldd	r18, Z+2	; 0x02
+ 26e:	81 e0       	ldi	r24, 0x01	; 1
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	02 c0       	rjmp	.+4      	; 0x278 <MDIO_enuSetPinValue+0x32>
+ 274:	88 0f       	add	r24, r24
+ 276:	99 1f       	adc	r25, r25
+ 278:	6a 95       	dec	r22
+ 27a:	e2 f7       	brpl	.-8      	; 0x274 <MDIO_enuSetPinValue+0x2e>
+ 27c:	80 95       	com	r24
+ 27e:	82 23       	and	r24, r18
+ 280:	82 83       	std	Z+2, r24	; 0x02
+ 282:	80 e0       	ldi	r24, 0x00	; 0
+ 284:	08 95       	ret
+ 286:	41 30       	cpi	r20, 0x01	; 1
+ 288:	91 f4       	brne	.+36     	; 0x2ae <MDIO_enuSetPinValue+0x68>
+ 28a:	22 81       	ldd	r18, Z+2	; 0x02
+ 28c:	81 e0       	ldi	r24, 0x01	; 1
+ 28e:	90 e0       	ldi	r25, 0x00	; 0
+ 290:	02 c0       	rjmp	.+4      	; 0x296 <MDIO_enuSetPinValue+0x50>
+ 292:	88 0f       	add	r24, r24
+ 294:	99 1f       	adc	r25, r25
+ 296:	6a 95       	dec	r22
+ 298:	e2 f7       	brpl	.-8      	; 0x292 <MDIO_enuSetPinValue+0x4c>
+ 29a:	82 2b       	or	r24, r18
+ 29c:	82 83       	std	Z+2, r24	; 0x02
+ 29e:	80 e0       	ldi	r24, 0x00	; 0
+ 2a0:	08 95       	ret
+ 2a2:	82 e0       	ldi	r24, 0x02	; 2
+ 2a4:	08 95       	ret
+ 2a6:	83 e0       	ldi	r24, 0x03	; 3
+ 2a8:	08 95       	ret
+ 2aa:	84 e0       	ldi	r24, 0x04	; 4
+ 2ac:	08 95       	ret
+ 2ae:	80 e0       	ldi	r24, 0x00	; 0
+ 2b0:	08 95       	ret
+
+000002b2 <MDIO_enuGetPinValue>:
+{
+	
+	MDIO_enuErrorStatus_t Ret_enuError = MDIO_enuNOK;
+	
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(Copy_enuPortNum))
+ 2b2:	85 30       	cpi	r24, 0x05	; 5
+ 2b4:	d8 f4       	brcc	.+54     	; 0x2ec <MDIO_enuGetPinValue+0x3a>
+	{
+		Ret_enuError = MDIO_enuINVALID_PortNum;
+		
+	}
+	else if (IS_INVALID_PIN_NUM(Copy_enuPinNum))
+ 2b6:	69 30       	cpi	r22, 0x09	; 9
+ 2b8:	d8 f4       	brcc	.+54     	; 0x2f0 <MDIO_enuGetPinValue+0x3e>
+	{
+		Ret_enuError = MDIO_enuINVALID_PinNum;
+	}
+	else if (IS_INVALID_PTR(Add_pu8PinValue))
+ 2ba:	41 15       	cp	r20, r1
+ 2bc:	51 05       	cpc	r21, r1
+ 2be:	d1 f0       	breq	.+52     	; 0x2f4 <MDIO_enuGetPinValue+0x42>
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+		// Get the address of the port registers
+		MDIO_strPortRegElement_t* Local_strPtrCurrPort =(((MDIO_PORT_REG_BASE_ADD) - (((u8)Copy_enuPortNum) * 3)));
+ 2c0:	90 e0       	ldi	r25, 0x00	; 0
+ 2c2:	fc 01       	movw	r30, r24
+ 2c4:	ee 0f       	add	r30, r30
+ 2c6:	ff 1f       	adc	r31, r31
+ 2c8:	8e 0f       	add	r24, r30
+ 2ca:	9f 1f       	adc	r25, r31
+ 2cc:	ee 27       	eor	r30, r30
+ 2ce:	ff 27       	eor	r31, r31
+ 2d0:	e8 1b       	sub	r30, r24
+ 2d2:	f9 0b       	sbc	r31, r25
+		// Read the pin value and store it in the provided pointer
+		*Add_pu8PinValue = GET_BIT(Local_strPtrCurrPort->PIN, Copy_enuPinNum);
+ 2d4:	81 ad       	ldd	r24, Z+57	; 0x39
+ 2d6:	90 e0       	ldi	r25, 0x00	; 0
+ 2d8:	02 c0       	rjmp	.+4      	; 0x2de <MDIO_enuGetPinValue+0x2c>
+ 2da:	95 95       	asr	r25
+ 2dc:	87 95       	ror	r24
+ 2de:	6a 95       	dec	r22
+ 2e0:	e2 f7       	brpl	.-8      	; 0x2da <MDIO_enuGetPinValue+0x28>
+ 2e2:	81 70       	andi	r24, 0x01	; 1
+ 2e4:	fa 01       	movw	r30, r20
+ 2e6:	80 83       	st	Z, r24
+	{
+		Ret_enuError = MDIO_enuNULL_PTR;
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+ 2e8:	80 e0       	ldi	r24, 0x00	; 0
+ 2ea:	08 95       	ret
+	MDIO_enuErrorStatus_t Ret_enuError = MDIO_enuNOK;
+	
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(Copy_enuPortNum))
+	{
+		Ret_enuError = MDIO_enuINVALID_PortNum;
+ 2ec:	82 e0       	ldi	r24, 0x02	; 2
+ 2ee:	08 95       	ret
+		
+	}
+	else if (IS_INVALID_PIN_NUM(Copy_enuPinNum))
+	{
+		Ret_enuError = MDIO_enuINVALID_PinNum;
+ 2f0:	83 e0       	ldi	r24, 0x03	; 3
+ 2f2:	08 95       	ret
+	}
+	else if (IS_INVALID_PTR(Add_pu8PinValue))
+	{
+		Ret_enuError = MDIO_enuNULL_PTR;
+ 2f4:	86 e0       	ldi	r24, 0x06	; 6
+		*Add_pu8PinValue = GET_BIT(Local_strPtrCurrPort->PIN, Copy_enuPinNum);
+
+	}
+	return Ret_enuError;
+	
+}
+ 2f6:	08 95       	ret
+
+000002f8 <MPORT_enuSetPinDirection>:
+// Function: MPORT_enuSetPinDirection
+// Sets the direction of any pin after the initialization.
+MPORT_enuErrorStatus_t MPORT_enuSetPinDirection( MPORT_enuPinNums_t Copy_enuPinNum  ,  MPORT_enuPinDirection_t  Copy_enuPinDirection  )
+{
+	MPORT_enuErrorStatus_t Ret_enuError= MPORT_enuOK;
+	u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+ 2f8:	28 2f       	mov	r18, r24
+ 2fa:	22 95       	swap	r18
+ 2fc:	2f 70       	andi	r18, 0x0F	; 15
+	u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+ 2fe:	8f 70       	andi	r24, 0x0F	; 15
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+ 300:	24 30       	cpi	r18, 0x04	; 4
+ 302:	a0 f5       	brcc	.+104    	; 0x36c <MPORT_enuSetPinDirection+0x74>
+	{
+		Ret_enuError = MPORT_enuINVALID_PortNum;
+		
+	}
+	else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+ 304:	88 30       	cpi	r24, 0x08	; 8
+ 306:	a0 f5       	brcc	.+104    	; 0x370 <MPORT_enuSetPinDirection+0x78>
+	{
+		Ret_enuError = MPORT_enuINVALID_PinNum;
+	}
+	else if (IS_INVALID_PIN_Direction(Copy_enuPinDirection))
+ 308:	62 30       	cpi	r22, 0x02	; 2
+ 30a:	a0 f5       	brcc	.+104    	; 0x374 <MPORT_enuSetPinDirection+0x7c>
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+		// Get the address of the port registers
+		MPORT_strPortRegElement_t* Local_strPtrCurrPort =(((MPORT_PORT_REG_BASE_ADD) - (((u8)LOC_u8portNumber) * 3)));
+ 30c:	30 e0       	ldi	r19, 0x00	; 0
+ 30e:	f9 01       	movw	r30, r18
+ 310:	ee 0f       	add	r30, r30
+ 312:	ff 1f       	adc	r31, r31
+ 314:	2e 0f       	add	r18, r30
+ 316:	3f 1f       	adc	r19, r31
+ 318:	ee 27       	eor	r30, r30
+ 31a:	ff 27       	eor	r31, r31
+ 31c:	e2 1b       	sub	r30, r18
+ 31e:	f3 0b       	sbc	r31, r19
+ 320:	f9 96       	adiw	r30, 0x39	; 57
+		// Configure pin direction and state based on the requested configuration
+		if(Copy_enuPinDirection == MPORT_enuPINOUTPUT)// Output 
+ 322:	61 11       	cpse	r22, r1
+ 324:	0e c0       	rjmp	.+28     	; 0x342 <MPORT_enuSetPinDirection+0x4a>
+		{
+			SET_BIT(Local_strPtrCurrPort->DDR,LOC_u8pinNumber);
+ 326:	41 81       	ldd	r20, Z+1	; 0x01
+ 328:	21 e0       	ldi	r18, 0x01	; 1
+ 32a:	30 e0       	ldi	r19, 0x00	; 0
+ 32c:	b9 01       	movw	r22, r18
+ 32e:	02 c0       	rjmp	.+4      	; 0x334 <MPORT_enuSetPinDirection+0x3c>
+ 330:	66 0f       	add	r22, r22
+ 332:	77 1f       	adc	r23, r23
+ 334:	8a 95       	dec	r24
+ 336:	e2 f7       	brpl	.-8      	; 0x330 <MPORT_enuSetPinDirection+0x38>
+ 338:	cb 01       	movw	r24, r22
+ 33a:	84 2b       	or	r24, r20
+ 33c:	81 83       	std	Z+1, r24	; 0x01
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 33e:	80 e0       	ldi	r24, 0x00	; 0
+ 340:	08 95       	ret
+		// Configure pin direction and state based on the requested configuration
+		if(Copy_enuPinDirection == MPORT_enuPINOUTPUT)// Output 
+		{
+			SET_BIT(Local_strPtrCurrPort->DDR,LOC_u8pinNumber);
+		}
+		else if(Copy_enuPinDirection == MPORT_enuPININPUT) // Input 
+ 342:	61 30       	cpi	r22, 0x01	; 1
+ 344:	c9 f4       	brne	.+50     	; 0x378 <MPORT_enuSetPinDirection+0x80>
+		{
+			CLR_BIT(Local_strPtrCurrPort->DDR ,LOC_u8pinNumber );
+ 346:	41 81       	ldd	r20, Z+1	; 0x01
+ 348:	21 e0       	ldi	r18, 0x01	; 1
+ 34a:	30 e0       	ldi	r19, 0x00	; 0
+ 34c:	b9 01       	movw	r22, r18
+ 34e:	02 c0       	rjmp	.+4      	; 0x354 <MPORT_enuSetPinDirection+0x5c>
+ 350:	66 0f       	add	r22, r22
+ 352:	77 1f       	adc	r23, r23
+ 354:	8a 95       	dec	r24
+ 356:	e2 f7       	brpl	.-8      	; 0x350 <MPORT_enuSetPinDirection+0x58>
+ 358:	cb 01       	movw	r24, r22
+ 35a:	80 95       	com	r24
+ 35c:	94 2f       	mov	r25, r20
+ 35e:	98 23       	and	r25, r24
+ 360:	91 83       	std	Z+1, r25	; 0x01
+			CLR_BIT(Local_strPtrCurrPort->PORT,LOC_u8pinNumber);
+ 362:	92 81       	ldd	r25, Z+2	; 0x02
+ 364:	89 23       	and	r24, r25
+ 366:	82 83       	std	Z+2, r24	; 0x02
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 368:	80 e0       	ldi	r24, 0x00	; 0
+ 36a:	08 95       	ret
+	u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+	u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+	{
+		Ret_enuError = MPORT_enuINVALID_PortNum;
+ 36c:	82 e0       	ldi	r24, 0x02	; 2
+ 36e:	08 95       	ret
+		
+	}
+	else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+	{
+		Ret_enuError = MPORT_enuINVALID_PinNum;
+ 370:	83 e0       	ldi	r24, 0x03	; 3
+ 372:	08 95       	ret
+	}
+	else if (IS_INVALID_PIN_Direction(Copy_enuPinDirection))
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+ 374:	84 e0       	ldi	r24, 0x04	; 4
+ 376:	08 95       	ret
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 378:	80 e0       	ldi	r24, 0x00	; 0
+	
+	}
+	return Ret_enuError;
+		
+		
+}
+ 37a:	08 95       	ret
+
+0000037c <MPORT_enuSetPinMode>:
+// Function: MPORT_enuSetPinMode
+// set alternative mode to the pin.
+MPORT_enuErrorStatus_t MPORT_enuSetPinMode( MPORT_enuPinNums_t Copy_enuPinNum  ,  MPORT_enuPinMode_t Copy_enuPinMode )
+{
+		MPORT_enuErrorStatus_t Ret_enuError= MPORT_enuOK;
+		u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+ 37c:	28 2f       	mov	r18, r24
+ 37e:	22 95       	swap	r18
+ 380:	2f 70       	andi	r18, 0x0F	; 15
+		u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+ 382:	8f 70       	andi	r24, 0x0F	; 15
+		// Validate input parameters
+		if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+ 384:	24 30       	cpi	r18, 0x04	; 4
+ 386:	c8 f5       	brcc	.+114    	; 0x3fa <MPORT_enuSetPinMode+0x7e>
+		{
+			Ret_enuError = MPORT_enuINVALID_PortNum;
+			
+		}
+		else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+ 388:	88 30       	cpi	r24, 0x08	; 8
+ 38a:	c8 f5       	brcc	.+114    	; 0x3fe <MPORT_enuSetPinMode+0x82>
+		{
+			Ret_enuError = MPORT_enuINVALID_PinNum;
+		}
+		else if (IS_INVALID_PIN_MODE(Copy_enuPinMode))
+ 38c:	63 30       	cpi	r22, 0x03	; 3
+ 38e:	c8 f5       	brcc	.+114    	; 0x402 <__EEPROM_REGION_LENGTH__+0x2>
+		}
+		else
+		{
+			Ret_enuError = MPORT_enuOK;
+			// Get the address of the port registers
+			MPORT_strPortRegElement_t* Local_strPtrCurrPort =(((MPORT_PORT_REG_BASE_ADD) - (((u8)LOC_u8portNumber) * 3)));
+ 390:	30 e0       	ldi	r19, 0x00	; 0
+ 392:	f9 01       	movw	r30, r18
+ 394:	ee 0f       	add	r30, r30
+ 396:	ff 1f       	adc	r31, r31
+ 398:	2e 0f       	add	r18, r30
+ 39a:	3f 1f       	adc	r19, r31
+ 39c:	ee 27       	eor	r30, r30
+ 39e:	ff 27       	eor	r31, r31
+ 3a0:	e2 1b       	sub	r30, r18
+ 3a2:	f3 0b       	sbc	r31, r19
+ 3a4:	f9 96       	adiw	r30, 0x39	; 57
+			// Configure pin direction and state based on the requested configuration
+			if(Copy_enuPinMode == MPORT_enuINPUT_PULL_UP)// pull up
+ 3a6:	61 11       	cpse	r22, r1
+ 3a8:	13 c0       	rjmp	.+38     	; 0x3d0 <MPORT_enuSetPinMode+0x54>
+			{
+			    CLR_BIT(Local_strPtrCurrPort->DDR ,LOC_u8pinNumber );
+ 3aa:	41 81       	ldd	r20, Z+1	; 0x01
+ 3ac:	21 e0       	ldi	r18, 0x01	; 1
+ 3ae:	30 e0       	ldi	r19, 0x00	; 0
+ 3b0:	b9 01       	movw	r22, r18
+ 3b2:	02 c0       	rjmp	.+4      	; 0x3b8 <MPORT_enuSetPinMode+0x3c>
+ 3b4:	66 0f       	add	r22, r22
+ 3b6:	77 1f       	adc	r23, r23
+ 3b8:	8a 95       	dec	r24
+ 3ba:	e2 f7       	brpl	.-8      	; 0x3b4 <MPORT_enuSetPinMode+0x38>
+ 3bc:	cb 01       	movw	r24, r22
+ 3be:	96 2f       	mov	r25, r22
+ 3c0:	90 95       	com	r25
+ 3c2:	94 23       	and	r25, r20
+ 3c4:	91 83       	std	Z+1, r25	; 0x01
+				SET_BIT(Local_strPtrCurrPort->PORT,LOC_u8pinNumber);
+ 3c6:	92 81       	ldd	r25, Z+2	; 0x02
+ 3c8:	89 2b       	or	r24, r25
+ 3ca:	82 83       	std	Z+2, r24	; 0x02
+		{
+			Ret_enuError = MPORT_enuINVALID_PinMode;
+		}
+		else
+		{
+			Ret_enuError = MPORT_enuOK;
+ 3cc:	80 e0       	ldi	r24, 0x00	; 0
+ 3ce:	08 95       	ret
+			if(Copy_enuPinMode == MPORT_enuINPUT_PULL_UP)// pull up
+			{
+			    CLR_BIT(Local_strPtrCurrPort->DDR ,LOC_u8pinNumber );
+				SET_BIT(Local_strPtrCurrPort->PORT,LOC_u8pinNumber);
+			}
+			else if(Copy_enuPinMode == MPORT_enuINPUT_PULL_DOWN) // Input with pull-down
+ 3d0:	61 30       	cpi	r22, 0x01	; 1
+ 3d2:	c9 f4       	brne	.+50     	; 0x406 <__EEPROM_REGION_LENGTH__+0x6>
+			{
+				CLR_BIT(Local_strPtrCurrPort->DDR ,LOC_u8pinNumber );
+ 3d4:	41 81       	ldd	r20, Z+1	; 0x01
+ 3d6:	21 e0       	ldi	r18, 0x01	; 1
+ 3d8:	30 e0       	ldi	r19, 0x00	; 0
+ 3da:	b9 01       	movw	r22, r18
+ 3dc:	02 c0       	rjmp	.+4      	; 0x3e2 <MPORT_enuSetPinMode+0x66>
+ 3de:	66 0f       	add	r22, r22
+ 3e0:	77 1f       	adc	r23, r23
+ 3e2:	8a 95       	dec	r24
+ 3e4:	e2 f7       	brpl	.-8      	; 0x3de <MPORT_enuSetPinMode+0x62>
+ 3e6:	cb 01       	movw	r24, r22
+ 3e8:	80 95       	com	r24
+ 3ea:	94 2f       	mov	r25, r20
+ 3ec:	98 23       	and	r25, r24
+ 3ee:	91 83       	std	Z+1, r25	; 0x01
+				CLR_BIT(Local_strPtrCurrPort->PORT,LOC_u8pinNumber);
+ 3f0:	92 81       	ldd	r25, Z+2	; 0x02
+ 3f2:	89 23       	and	r24, r25
+ 3f4:	82 83       	std	Z+2, r24	; 0x02
+		{
+			Ret_enuError = MPORT_enuINVALID_PinMode;
+		}
+		else
+		{
+			Ret_enuError = MPORT_enuOK;
+ 3f6:	80 e0       	ldi	r24, 0x00	; 0
+ 3f8:	08 95       	ret
+		u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+		u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+		// Validate input parameters
+		if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+		{
+			Ret_enuError = MPORT_enuINVALID_PortNum;
+ 3fa:	82 e0       	ldi	r24, 0x02	; 2
+ 3fc:	08 95       	ret
+			
+		}
+		else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+		{
+			Ret_enuError = MPORT_enuINVALID_PinNum;
+ 3fe:	83 e0       	ldi	r24, 0x03	; 3
+ 400:	08 95       	ret
+		}
+		else if (IS_INVALID_PIN_MODE(Copy_enuPinMode))
+		{
+			Ret_enuError = MPORT_enuINVALID_PinMode;
+ 402:	85 e0       	ldi	r24, 0x05	; 5
+ 404:	08 95       	ret
+		}
+		else
+		{
+			Ret_enuError = MPORT_enuOK;
+ 406:	80 e0       	ldi	r24, 0x00	; 0
+			}
+			
+		}
+		return Ret_enuError;
+	
+}
+ 408:	08 95       	ret
+
+0000040a <_exit>:
+ 40a:	f8 94       	cli
+
+0000040c <__stop_program>:
+ 40c:	ff cf       	rjmp	.-2      	; 0x40c <__stop_program>

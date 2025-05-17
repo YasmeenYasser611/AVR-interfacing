@@ -1,0 +1,1129 @@
+
+Stepper_Motor_Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000616  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000010  00800060  00000616  0000068a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000069a  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006cc  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000d0  00000000  00000000  00000708  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000145a  00000000  00000000  000007d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000a65  00000000  00000000  00001c32  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000008e7  00000000  00000000  00002697  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000174  00000000  00000000  00002f80  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000d7f  00000000  00000000  000030f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000b7a  00000000  00000000  00003e73  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000138  00000000  00000000  000049ed  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 e1       	ldi	r30, 0x16	; 22
+  68:	f6 e0       	ldi	r31, 0x06	; 6
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 37       	cpi	r26, 0x70	; 112
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a0 e7       	ldi	r26, 0x70	; 112
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 37       	cpi	r26, 0x70	; 112
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 35 01 	call	0x26a	; 0x26a <main>
+  8a:	0c 94 09 03 	jmp	0x612	; 0x612 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <HSTEPPER_vStepper_init>:
+#define STEP_ANGLE 0.17578f  // 2048 steps for a full rotation (360/2048)
+
+extern HSTEPPER_strStepperElement_t HSTEPPER_enuArrStepperConfig[Num_of_Stepper];
+
+void HSTEPPER_vStepper_init(void)
+{
+  92:	0f 93       	push	r16
+  94:	1f 93       	push	r17
+  96:	cf 93       	push	r28
+  98:	df 93       	push	r29
+	u8 Local_u8_currentPinPort = 0;
+	for (u8 i = 0; i < Num_of_Stepper; i++)
+  9a:	00 e0       	ldi	r16, 0x00	; 0
+  9c:	20 c0       	rjmp	.+64     	; 0xde <HSTEPPER_vStepper_init+0x4c>
+	{
+		for (u8 phase = 0; phase < HSTEPPER_PHASES; phase++)
+		{
+			Local_u8_currentPinPort = ((HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PORT << 4) +HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PIN);
+  9e:	c0 2f       	mov	r28, r16
+  a0:	d0 e0       	ldi	r29, 0x00	; 0
+  a2:	cc 0f       	add	r28, r28
+  a4:	dd 1f       	adc	r29, r29
+  a6:	cc 0f       	add	r28, r28
+  a8:	dd 1f       	adc	r29, r29
+  aa:	c1 0f       	add	r28, r17
+  ac:	d1 1d       	adc	r29, r1
+  ae:	cc 0f       	add	r28, r28
+  b0:	dd 1f       	adc	r29, r29
+  b2:	c0 5a       	subi	r28, 0xA0	; 160
+  b4:	df 4f       	sbci	r29, 0xFF	; 255
+  b6:	98 81       	ld	r25, Y
+  b8:	89 81       	ldd	r24, Y+1	; 0x01
+			MPORT_enuSetPinDirection(Local_u8_currentPinPort, MPORT_enuPINOUTPUT);
+  ba:	60 e0       	ldi	r22, 0x00	; 0
+  bc:	20 e1       	ldi	r18, 0x10	; 16
+  be:	92 9f       	mul	r25, r18
+  c0:	80 0d       	add	r24, r0
+  c2:	11 24       	eor	r1, r1
+  c4:	0e 94 98 01 	call	0x330	; 0x330 <MPORT_enuSetPinDirection>
+			MDIO_enuSetPinValue(HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PORT , HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PIN , MDIO_enuHIGH );
+  c8:	69 81       	ldd	r22, Y+1	; 0x01
+  ca:	41 e0       	ldi	r20, 0x01	; 1
+  cc:	88 81       	ld	r24, Y
+  ce:	0e 94 62 01 	call	0x2c4	; 0x2c4 <MDIO_enuSetPinValue>
+void HSTEPPER_vStepper_init(void)
+{
+	u8 Local_u8_currentPinPort = 0;
+	for (u8 i = 0; i < Num_of_Stepper; i++)
+	{
+		for (u8 phase = 0; phase < HSTEPPER_PHASES; phase++)
+  d2:	1f 5f       	subi	r17, 0xFF	; 255
+  d4:	01 c0       	rjmp	.+2      	; 0xd8 <HSTEPPER_vStepper_init+0x46>
+  d6:	10 e0       	ldi	r17, 0x00	; 0
+  d8:	14 30       	cpi	r17, 0x04	; 4
+  da:	08 f3       	brcs	.-62     	; 0x9e <HSTEPPER_vStepper_init+0xc>
+extern HSTEPPER_strStepperElement_t HSTEPPER_enuArrStepperConfig[Num_of_Stepper];
+
+void HSTEPPER_vStepper_init(void)
+{
+	u8 Local_u8_currentPinPort = 0;
+	for (u8 i = 0; i < Num_of_Stepper; i++)
+  dc:	0f 5f       	subi	r16, 0xFF	; 255
+  de:	00 23       	and	r16, r16
+  e0:	d1 f3       	breq	.-12     	; 0xd6 <HSTEPPER_vStepper_init+0x44>
+			Local_u8_currentPinPort = ((HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PORT << 4) +HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PIN);
+			MPORT_enuSetPinDirection(Local_u8_currentPinPort, MPORT_enuPINOUTPUT);
+			MDIO_enuSetPinValue(HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PORT , HSTEPPER_enuArrStepperConfig[i].Phases[phase].STEPPER_PIN , MDIO_enuHIGH );
+		}
+	}
+}
+  e2:	df 91       	pop	r29
+  e4:	cf 91       	pop	r28
+  e6:	1f 91       	pop	r17
+  e8:	0f 91       	pop	r16
+  ea:	08 95       	ret
+
+000000ec <HSTEPPER_enuRotate>:
+
+HSTEPPER_enuErrorStatus_t HSTEPPER_enuRotate(u8 Copy_u8MotorName, HSTEPPER_enuDirection_t Copy_enuDirection, u16 Copy_u16Angle)
+{
+  ec:	6f 92       	push	r6
+  ee:	7f 92       	push	r7
+  f0:	8f 92       	push	r8
+  f2:	9f 92       	push	r9
+  f4:	af 92       	push	r10
+  f6:	bf 92       	push	r11
+  f8:	cf 92       	push	r12
+  fa:	df 92       	push	r13
+  fc:	ef 92       	push	r14
+  fe:	ff 92       	push	r15
+ 100:	0f 93       	push	r16
+ 102:	1f 93       	push	r17
+ 104:	cf 93       	push	r28
+ 106:	df 93       	push	r29
+ 108:	cd b7       	in	r28, 0x3d	; 61
+ 10a:	de b7       	in	r29, 0x3e	; 62
+ 10c:	28 97       	sbiw	r28, 0x08	; 8
+ 10e:	0f b6       	in	r0, 0x3f	; 63
+ 110:	f8 94       	cli
+ 112:	de bf       	out	0x3e, r29	; 62
+ 114:	0f be       	out	0x3f, r0	; 63
+ 116:	cd bf       	out	0x3d, r28	; 61
+	HSTEPPER_enuErrorStatus_t Ret_enuError = HSTEPPER_enuOK;
+
+	if (Copy_u8MotorName >= Num_of_Stepper)
+ 118:	81 11       	cpse	r24, r1
+ 11a:	6e c0       	rjmp	.+220    	; 0x1f8 <HSTEPPER_enuRotate+0x10c>
+	{
+		Ret_enuError = HSTEPPER_enuINVALID_Motor; 
+	}
+	else if (Copy_enuDirection > HSTEPPER_enuCOUNTERCLOCKWISE)
+ 11c:	62 30       	cpi	r22, 0x02	; 2
+ 11e:	08 f0       	brcs	.+2      	; 0x122 <HSTEPPER_enuRotate+0x36>
+ 120:	6d c0       	rjmp	.+218    	; 0x1fc <HSTEPPER_enuRotate+0x110>
+ 122:	66 2e       	mov	r6, r22
+ 124:	78 2e       	mov	r7, r24
+	{
+		Ret_enuError = HSTEPPER_enuINVALID_Direction;
+	}
+	else
+	{
+		u32 steps = (u32)((f32)Copy_u16Angle / STEP_ANGLE);
+ 126:	ba 01       	movw	r22, r20
+ 128:	80 e0       	ldi	r24, 0x00	; 0
+ 12a:	90 e0       	ldi	r25, 0x00	; 0
+ 12c:	0e 94 7b 02 	call	0x4f6	; 0x4f6 <__floatunsisf>
+ 130:	2c ea       	ldi	r18, 0xAC	; 172
+ 132:	3f ef       	ldi	r19, 0xFF	; 255
+ 134:	43 e3       	ldi	r20, 0x33	; 51
+ 136:	5e e3       	ldi	r21, 0x3E	; 62
+ 138:	0e 94 da 01 	call	0x3b4	; 0x3b4 <__divsf3>
+ 13c:	0e 94 4c 02 	call	0x498	; 0x498 <__fixunssfsi>
+ 140:	4b 01       	movw	r8, r22
+ 142:	5c 01       	movw	r10, r24
+
+		u8 PhaseSequence[2][HSTEPPER_PHASES] = {
+ 144:	88 e0       	ldi	r24, 0x08	; 8
+ 146:	e8 e6       	ldi	r30, 0x68	; 104
+ 148:	f0 e0       	ldi	r31, 0x00	; 0
+ 14a:	de 01       	movw	r26, r28
+ 14c:	11 96       	adiw	r26, 0x01	; 1
+ 14e:	01 90       	ld	r0, Z+
+ 150:	0d 92       	st	X+, r0
+ 152:	8a 95       	dec	r24
+ 154:	e1 f7       	brne	.-8      	; 0x14e <HSTEPPER_enuRotate+0x62>
+			 {0b1110, 0b1101, 0b1011, 0b0111}, // Clockwise
+			 {0b0111, 0b1011, 0b0100, 0b1110}  // Counterclockwise
+		};
+		
+
+		for (u32 step = 0; step < steps / 4; step++)
+ 156:	c1 2c       	mov	r12, r1
+ 158:	d1 2c       	mov	r13, r1
+ 15a:	76 01       	movw	r14, r12
+ 15c:	3c c0       	rjmp	.+120    	; 0x1d6 <HSTEPPER_enuRotate+0xea>
+		{
+			for (u8 phase = 0; phase < HSTEPPER_PHASES; phase++)
+			{
+				for (u8 pin = 0; pin < HSTEPPER_PHASES; pin++)
+				{
+					MDIO_enuSetPinValue(HSTEPPER_enuArrStepperConfig[Copy_u8MotorName].Phases[pin].STEPPER_PORT,HSTEPPER_enuArrStepperConfig[Copy_u8MotorName].Phases[pin].STEPPER_PIN,(PhaseSequence[Copy_enuDirection][phase] >> pin) & 1);
+ 15e:	e6 2d       	mov	r30, r6
+ 160:	f0 e0       	ldi	r31, 0x00	; 0
+ 162:	ee 0f       	add	r30, r30
+ 164:	ff 1f       	adc	r31, r31
+ 166:	ee 0f       	add	r30, r30
+ 168:	ff 1f       	adc	r31, r31
+ 16a:	81 e0       	ldi	r24, 0x01	; 1
+ 16c:	90 e0       	ldi	r25, 0x00	; 0
+ 16e:	8c 0f       	add	r24, r28
+ 170:	9d 1f       	adc	r25, r29
+ 172:	e8 0f       	add	r30, r24
+ 174:	f9 1f       	adc	r31, r25
+ 176:	e0 0f       	add	r30, r16
+ 178:	f1 1d       	adc	r31, r1
+ 17a:	40 81       	ld	r20, Z
+ 17c:	50 e0       	ldi	r21, 0x00	; 0
+ 17e:	01 2e       	mov	r0, r17
+ 180:	02 c0       	rjmp	.+4      	; 0x186 <HSTEPPER_enuRotate+0x9a>
+ 182:	55 95       	asr	r21
+ 184:	47 95       	ror	r20
+ 186:	0a 94       	dec	r0
+ 188:	e2 f7       	brpl	.-8      	; 0x182 <HSTEPPER_enuRotate+0x96>
+ 18a:	e7 2d       	mov	r30, r7
+ 18c:	f0 e0       	ldi	r31, 0x00	; 0
+ 18e:	ee 0f       	add	r30, r30
+ 190:	ff 1f       	adc	r31, r31
+ 192:	ee 0f       	add	r30, r30
+ 194:	ff 1f       	adc	r31, r31
+ 196:	e1 0f       	add	r30, r17
+ 198:	f1 1d       	adc	r31, r1
+ 19a:	ee 0f       	add	r30, r30
+ 19c:	ff 1f       	adc	r31, r31
+ 19e:	e0 5a       	subi	r30, 0xA0	; 160
+ 1a0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1a2:	61 81       	ldd	r22, Z+1	; 0x01
+ 1a4:	41 70       	andi	r20, 0x01	; 1
+ 1a6:	80 81       	ld	r24, Z
+ 1a8:	0e 94 62 01 	call	0x2c4	; 0x2c4 <MDIO_enuSetPinValue>
+
+		for (u32 step = 0; step < steps / 4; step++)
+		{
+			for (u8 phase = 0; phase < HSTEPPER_PHASES; phase++)
+			{
+				for (u8 pin = 0; pin < HSTEPPER_PHASES; pin++)
+ 1ac:	1f 5f       	subi	r17, 0xFF	; 255
+ 1ae:	01 c0       	rjmp	.+2      	; 0x1b2 <HSTEPPER_enuRotate+0xc6>
+ 1b0:	10 e0       	ldi	r17, 0x00	; 0
+ 1b2:	14 30       	cpi	r17, 0x04	; 4
+ 1b4:	a0 f2       	brcs	.-88     	; 0x15e <HSTEPPER_enuRotate+0x72>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1b6:	8f e1       	ldi	r24, 0x1F	; 31
+ 1b8:	9e e4       	ldi	r25, 0x4E	; 78
+ 1ba:	01 97       	sbiw	r24, 0x01	; 1
+ 1bc:	f1 f7       	brne	.-4      	; 0x1ba <HSTEPPER_enuRotate+0xce>
+ 1be:	00 c0       	rjmp	.+0      	; 0x1c0 <HSTEPPER_enuRotate+0xd4>
+ 1c0:	00 00       	nop
+		};
+		
+
+		for (u32 step = 0; step < steps / 4; step++)
+		{
+			for (u8 phase = 0; phase < HSTEPPER_PHASES; phase++)
+ 1c2:	0f 5f       	subi	r16, 0xFF	; 255
+ 1c4:	01 c0       	rjmp	.+2      	; 0x1c8 <HSTEPPER_enuRotate+0xdc>
+ 1c6:	00 e0       	ldi	r16, 0x00	; 0
+ 1c8:	04 30       	cpi	r16, 0x04	; 4
+ 1ca:	90 f3       	brcs	.-28     	; 0x1b0 <HSTEPPER_enuRotate+0xc4>
+			 {0b1110, 0b1101, 0b1011, 0b0111}, // Clockwise
+			 {0b0111, 0b1011, 0b0100, 0b1110}  // Counterclockwise
+		};
+		
+
+		for (u32 step = 0; step < steps / 4; step++)
+ 1cc:	9f ef       	ldi	r25, 0xFF	; 255
+ 1ce:	c9 1a       	sub	r12, r25
+ 1d0:	d9 0a       	sbc	r13, r25
+ 1d2:	e9 0a       	sbc	r14, r25
+ 1d4:	f9 0a       	sbc	r15, r25
+ 1d6:	d5 01       	movw	r26, r10
+ 1d8:	c4 01       	movw	r24, r8
+ 1da:	b6 95       	lsr	r27
+ 1dc:	a7 95       	ror	r26
+ 1de:	97 95       	ror	r25
+ 1e0:	87 95       	ror	r24
+ 1e2:	b6 95       	lsr	r27
+ 1e4:	a7 95       	ror	r26
+ 1e6:	97 95       	ror	r25
+ 1e8:	87 95       	ror	r24
+ 1ea:	c8 16       	cp	r12, r24
+ 1ec:	d9 06       	cpc	r13, r25
+ 1ee:	ea 06       	cpc	r14, r26
+ 1f0:	fb 06       	cpc	r15, r27
+ 1f2:	48 f3       	brcs	.-46     	; 0x1c6 <HSTEPPER_enuRotate+0xda>
+	}
+}
+
+HSTEPPER_enuErrorStatus_t HSTEPPER_enuRotate(u8 Copy_u8MotorName, HSTEPPER_enuDirection_t Copy_enuDirection, u16 Copy_u16Angle)
+{
+	HSTEPPER_enuErrorStatus_t Ret_enuError = HSTEPPER_enuOK;
+ 1f4:	80 e0       	ldi	r24, 0x00	; 0
+ 1f6:	03 c0       	rjmp	.+6      	; 0x1fe <HSTEPPER_enuRotate+0x112>
+
+	if (Copy_u8MotorName >= Num_of_Stepper)
+	{
+		Ret_enuError = HSTEPPER_enuINVALID_Motor; 
+ 1f8:	82 e0       	ldi	r24, 0x02	; 2
+ 1fa:	01 c0       	rjmp	.+2      	; 0x1fe <HSTEPPER_enuRotate+0x112>
+	}
+	else if (Copy_enuDirection > HSTEPPER_enuCOUNTERCLOCKWISE)
+	{
+		Ret_enuError = HSTEPPER_enuINVALID_Direction;
+ 1fc:	83 e0       	ldi	r24, 0x03	; 3
+			}
+		}
+	}
+
+	return Ret_enuError; 
+}
+ 1fe:	28 96       	adiw	r28, 0x08	; 8
+ 200:	0f b6       	in	r0, 0x3f	; 63
+ 202:	f8 94       	cli
+ 204:	de bf       	out	0x3e, r29	; 62
+ 206:	0f be       	out	0x3f, r0	; 63
+ 208:	cd bf       	out	0x3d, r28	; 61
+ 20a:	df 91       	pop	r29
+ 20c:	cf 91       	pop	r28
+ 20e:	1f 91       	pop	r17
+ 210:	0f 91       	pop	r16
+ 212:	ff 90       	pop	r15
+ 214:	ef 90       	pop	r14
+ 216:	df 90       	pop	r13
+ 218:	cf 90       	pop	r12
+ 21a:	bf 90       	pop	r11
+ 21c:	af 90       	pop	r10
+ 21e:	9f 90       	pop	r9
+ 220:	8f 90       	pop	r8
+ 222:	7f 90       	pop	r7
+ 224:	6f 90       	pop	r6
+ 226:	08 95       	ret
+
+00000228 <HSTEPPER_enuStop>:
+
+HSTEPPER_enuErrorStatus_t HSTEPPER_enuStop(u8 Copy_u8MotorName)
+{
+ 228:	cf 93       	push	r28
+ 22a:	df 93       	push	r29
+	HSTEPPER_enuErrorStatus_t Ret_enuError = HSTEPPER_enuOK;
+
+	
+	if (Copy_u8MotorName >= Num_of_Stepper)
+ 22c:	81 11       	cpse	r24, r1
+ 22e:	19 c0       	rjmp	.+50     	; 0x262 <HSTEPPER_enuStop+0x3a>
+ 230:	d8 2f       	mov	r29, r24
+ 232:	c0 e0       	ldi	r28, 0x00	; 0
+ 234:	12 c0       	rjmp	.+36     	; 0x25a <HSTEPPER_enuStop+0x32>
+	}
+	else
+	{
+		for (u8 pin = 0; pin < HSTEPPER_PHASES; pin++)
+		{
+			MDIO_enuSetPinValue(HSTEPPER_enuArrStepperConfig[Copy_u8MotorName].Phases[pin].STEPPER_PORT,HSTEPPER_enuArrStepperConfig[Copy_u8MotorName].Phases[pin].STEPPER_PIN,MDIO_enuHIGH);
+ 236:	ed 2f       	mov	r30, r29
+ 238:	f0 e0       	ldi	r31, 0x00	; 0
+ 23a:	ee 0f       	add	r30, r30
+ 23c:	ff 1f       	adc	r31, r31
+ 23e:	ee 0f       	add	r30, r30
+ 240:	ff 1f       	adc	r31, r31
+ 242:	ec 0f       	add	r30, r28
+ 244:	f1 1d       	adc	r31, r1
+ 246:	ee 0f       	add	r30, r30
+ 248:	ff 1f       	adc	r31, r31
+ 24a:	e0 5a       	subi	r30, 0xA0	; 160
+ 24c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 24e:	61 81       	ldd	r22, Z+1	; 0x01
+ 250:	41 e0       	ldi	r20, 0x01	; 1
+ 252:	80 81       	ld	r24, Z
+ 254:	0e 94 62 01 	call	0x2c4	; 0x2c4 <MDIO_enuSetPinValue>
+	{
+		Ret_enuError = HSTEPPER_enuINVALID_Motor; 
+	}
+	else
+	{
+		for (u8 pin = 0; pin < HSTEPPER_PHASES; pin++)
+ 258:	cf 5f       	subi	r28, 0xFF	; 255
+ 25a:	c4 30       	cpi	r28, 0x04	; 4
+ 25c:	60 f3       	brcs	.-40     	; 0x236 <HSTEPPER_enuStop+0xe>
+	return Ret_enuError; 
+}
+
+HSTEPPER_enuErrorStatus_t HSTEPPER_enuStop(u8 Copy_u8MotorName)
+{
+	HSTEPPER_enuErrorStatus_t Ret_enuError = HSTEPPER_enuOK;
+ 25e:	80 e0       	ldi	r24, 0x00	; 0
+ 260:	01 c0       	rjmp	.+2      	; 0x264 <HSTEPPER_enuStop+0x3c>
+
+	
+	if (Copy_u8MotorName >= Num_of_Stepper)
+	{
+		Ret_enuError = HSTEPPER_enuINVALID_Motor; 
+ 262:	82 e0       	ldi	r24, 0x02	; 2
+			MDIO_enuSetPinValue(HSTEPPER_enuArrStepperConfig[Copy_u8MotorName].Phases[pin].STEPPER_PORT,HSTEPPER_enuArrStepperConfig[Copy_u8MotorName].Phases[pin].STEPPER_PIN,MDIO_enuHIGH);
+		}
+	}
+
+	return Ret_enuError; 
+}
+ 264:	df 91       	pop	r29
+ 266:	cf 91       	pop	r28
+ 268:	08 95       	ret
+
+0000026a <main>:
+#define F_CPU (8000000UL)
+
+int main(void)
+{
+	
+	HSTEPPER_vStepper_init(); // Initialize stepper motors
+ 26a:	0e 94 49 00 	call	0x92	; 0x92 <HSTEPPER_vStepper_init>
+
+
+	while (1)
+	{
+		// Rotate Stepper Motor 0 Clockwise by 90 degrees
+		HSTEPPER_enuRotate(Stepper1, HSTEPPER_enuCLOCKWISE, 180);
+ 26e:	44 eb       	ldi	r20, 0xB4	; 180
+ 270:	50 e0       	ldi	r21, 0x00	; 0
+ 272:	60 e0       	ldi	r22, 0x00	; 0
+ 274:	80 e0       	ldi	r24, 0x00	; 0
+ 276:	0e 94 76 00 	call	0xec	; 0xec <HSTEPPER_enuRotate>
+ 27a:	2f e7       	ldi	r18, 0x7F	; 127
+ 27c:	8a e1       	ldi	r24, 0x1A	; 26
+ 27e:	96 e0       	ldi	r25, 0x06	; 6
+ 280:	21 50       	subi	r18, 0x01	; 1
+ 282:	80 40       	sbci	r24, 0x00	; 0
+ 284:	90 40       	sbci	r25, 0x00	; 0
+ 286:	e1 f7       	brne	.-8      	; 0x280 <main+0x16>
+ 288:	00 c0       	rjmp	.+0      	; 0x28a <main+0x20>
+ 28a:	00 00       	nop
+		_delay_ms(2000); // Wait for 1 second
+
+		// Rotate Stepper Motor 0 Counterclockwise by 90 degrees
+		HSTEPPER_enuRotate(Stepper1, HSTEPPER_enuCOUNTERCLOCKWISE, 90);
+ 28c:	4a e5       	ldi	r20, 0x5A	; 90
+ 28e:	50 e0       	ldi	r21, 0x00	; 0
+ 290:	61 e0       	ldi	r22, 0x01	; 1
+ 292:	80 e0       	ldi	r24, 0x00	; 0
+ 294:	0e 94 76 00 	call	0xec	; 0xec <HSTEPPER_enuRotate>
+ 298:	2f e7       	ldi	r18, 0x7F	; 127
+ 29a:	8a e1       	ldi	r24, 0x1A	; 26
+ 29c:	96 e0       	ldi	r25, 0x06	; 6
+ 29e:	21 50       	subi	r18, 0x01	; 1
+ 2a0:	80 40       	sbci	r24, 0x00	; 0
+ 2a2:	90 40       	sbci	r25, 0x00	; 0
+ 2a4:	e1 f7       	brne	.-8      	; 0x29e <main+0x34>
+ 2a6:	00 c0       	rjmp	.+0      	; 0x2a8 <main+0x3e>
+ 2a8:	00 00       	nop
+		_delay_ms(2000); // Wait for 1 second
+
+		// Stop the motor
+		HSTEPPER_enuStop(Stepper1);
+ 2aa:	80 e0       	ldi	r24, 0x00	; 0
+ 2ac:	0e 94 14 01 	call	0x228	; 0x228 <HSTEPPER_enuStop>
+ 2b0:	2f e7       	ldi	r18, 0x7F	; 127
+ 2b2:	8a e1       	ldi	r24, 0x1A	; 26
+ 2b4:	96 e0       	ldi	r25, 0x06	; 6
+ 2b6:	21 50       	subi	r18, 0x01	; 1
+ 2b8:	80 40       	sbci	r24, 0x00	; 0
+ 2ba:	90 40       	sbci	r25, 0x00	; 0
+ 2bc:	e1 f7       	brne	.-8      	; 0x2b6 <main+0x4c>
+ 2be:	00 c0       	rjmp	.+0      	; 0x2c0 <main+0x56>
+ 2c0:	00 00       	nop
+ 2c2:	d5 cf       	rjmp	.-86     	; 0x26e <main+0x4>
+
+000002c4 <MDIO_enuSetPinValue>:
+{
+	
+	MDIO_enuErrorStatus_t Ret_enuError = MDIO_enuNOK;
+	
+	 // Validate input parameters
+	if (IS_INVALID_PORT_NUM(Copy_enuPortNum))
+ 2c4:	85 30       	cpi	r24, 0x05	; 5
+ 2c6:	60 f5       	brcc	.+88     	; 0x320 <MDIO_enuSetPinValue+0x5c>
+	{
+		Ret_enuError = MDIO_enuINVALID_PortNum;
+		
+	}
+	else if (IS_INVALID_PIN_NUM(Copy_enuPinNum))
+ 2c8:	69 30       	cpi	r22, 0x09	; 9
+ 2ca:	60 f5       	brcc	.+88     	; 0x324 <MDIO_enuSetPinValue+0x60>
+	{
+		Ret_enuError = MDIO_enuINVALID_PinNum;
+	}
+	else if (IS_INVALID_PIN_STATE(Copy_enuState))
+ 2cc:	42 30       	cpi	r20, 0x02	; 2
+ 2ce:	60 f5       	brcc	.+88     	; 0x328 <MDIO_enuSetPinValue+0x64>
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+		// Get the address of the port registers
+		MDIO_strPortRegElement_t* Local_strPtrCurrPort =(((MDIO_PORT_REG_BASE_ADD) - (((u8)Copy_enuPortNum) * 3)));
+ 2d0:	90 e0       	ldi	r25, 0x00	; 0
+ 2d2:	fc 01       	movw	r30, r24
+ 2d4:	ee 0f       	add	r30, r30
+ 2d6:	ff 1f       	adc	r31, r31
+ 2d8:	8e 0f       	add	r24, r30
+ 2da:	9f 1f       	adc	r25, r31
+ 2dc:	ee 27       	eor	r30, r30
+ 2de:	ff 27       	eor	r31, r31
+ 2e0:	e8 1b       	sub	r30, r24
+ 2e2:	f9 0b       	sbc	r31, r25
+ 2e4:	f9 96       	adiw	r30, 0x39	; 57
+		// Set the pin value (HIGH or LOW)
+		if(Copy_enuState == MDIO_enuLOW) // Set pin to LOW
+ 2e6:	41 11       	cpse	r20, r1
+ 2e8:	0d c0       	rjmp	.+26     	; 0x304 <MDIO_enuSetPinValue+0x40>
+		{
+				CLR_BIT(Local_strPtrCurrPort->PORT,Copy_enuPinNum);
+ 2ea:	22 81       	ldd	r18, Z+2	; 0x02
+ 2ec:	81 e0       	ldi	r24, 0x01	; 1
+ 2ee:	90 e0       	ldi	r25, 0x00	; 0
+ 2f0:	02 c0       	rjmp	.+4      	; 0x2f6 <MDIO_enuSetPinValue+0x32>
+ 2f2:	88 0f       	add	r24, r24
+ 2f4:	99 1f       	adc	r25, r25
+ 2f6:	6a 95       	dec	r22
+ 2f8:	e2 f7       	brpl	.-8      	; 0x2f2 <MDIO_enuSetPinValue+0x2e>
+ 2fa:	80 95       	com	r24
+ 2fc:	82 23       	and	r24, r18
+ 2fe:	82 83       	std	Z+2, r24	; 0x02
+	{
+		Ret_enuError = MDIO_enuINVALID_PinStatus;
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+ 300:	80 e0       	ldi	r24, 0x00	; 0
+ 302:	08 95       	ret
+		// Set the pin value (HIGH or LOW)
+		if(Copy_enuState == MDIO_enuLOW) // Set pin to LOW
+		{
+				CLR_BIT(Local_strPtrCurrPort->PORT,Copy_enuPinNum);
+		}
+		else if(Copy_enuState == MDIO_enuHIGH)// Set pin to HIGH
+ 304:	41 30       	cpi	r20, 0x01	; 1
+ 306:	91 f4       	brne	.+36     	; 0x32c <MDIO_enuSetPinValue+0x68>
+		{
+				
+				SET_BIT(Local_strPtrCurrPort->PORT,Copy_enuPinNum);
+ 308:	22 81       	ldd	r18, Z+2	; 0x02
+ 30a:	81 e0       	ldi	r24, 0x01	; 1
+ 30c:	90 e0       	ldi	r25, 0x00	; 0
+ 30e:	02 c0       	rjmp	.+4      	; 0x314 <MDIO_enuSetPinValue+0x50>
+ 310:	88 0f       	add	r24, r24
+ 312:	99 1f       	adc	r25, r25
+ 314:	6a 95       	dec	r22
+ 316:	e2 f7       	brpl	.-8      	; 0x310 <MDIO_enuSetPinValue+0x4c>
+ 318:	82 2b       	or	r24, r18
+ 31a:	82 83       	std	Z+2, r24	; 0x02
+	{
+		Ret_enuError = MDIO_enuINVALID_PinStatus;
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+ 31c:	80 e0       	ldi	r24, 0x00	; 0
+ 31e:	08 95       	ret
+	MDIO_enuErrorStatus_t Ret_enuError = MDIO_enuNOK;
+	
+	 // Validate input parameters
+	if (IS_INVALID_PORT_NUM(Copy_enuPortNum))
+	{
+		Ret_enuError = MDIO_enuINVALID_PortNum;
+ 320:	82 e0       	ldi	r24, 0x02	; 2
+ 322:	08 95       	ret
+		
+	}
+	else if (IS_INVALID_PIN_NUM(Copy_enuPinNum))
+	{
+		Ret_enuError = MDIO_enuINVALID_PinNum;
+ 324:	83 e0       	ldi	r24, 0x03	; 3
+ 326:	08 95       	ret
+	}
+	else if (IS_INVALID_PIN_STATE(Copy_enuState))
+	{
+		Ret_enuError = MDIO_enuINVALID_PinStatus;
+ 328:	84 e0       	ldi	r24, 0x04	; 4
+ 32a:	08 95       	ret
+	}
+	else
+	{
+		Ret_enuError = MDIO_enuOK;
+ 32c:	80 e0       	ldi	r24, 0x00	; 0
+		}
+
+	}
+	return Ret_enuError;
+	
+}
+ 32e:	08 95       	ret
+
+00000330 <MPORT_enuSetPinDirection>:
+// Function: MPORT_enuSetPinDirection
+// Sets the direction of any pin after the initialization.
+MPORT_enuErrorStatus_t MPORT_enuSetPinDirection( MPORT_enuPinNums_t Copy_enuPinNum  ,  MPORT_enuPinDirection_t  Copy_enuPinDirection  )
+{
+	MPORT_enuErrorStatus_t Ret_enuError= MPORT_enuOK;
+	u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+ 330:	28 2f       	mov	r18, r24
+ 332:	22 95       	swap	r18
+ 334:	2f 70       	andi	r18, 0x0F	; 15
+	u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+ 336:	8f 70       	andi	r24, 0x0F	; 15
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+ 338:	24 30       	cpi	r18, 0x04	; 4
+ 33a:	a0 f5       	brcc	.+104    	; 0x3a4 <MPORT_enuSetPinDirection+0x74>
+	{
+		Ret_enuError = MPORT_enuINVALID_PortNum;
+		
+	}
+	else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+ 33c:	88 30       	cpi	r24, 0x08	; 8
+ 33e:	a0 f5       	brcc	.+104    	; 0x3a8 <MPORT_enuSetPinDirection+0x78>
+	{
+		Ret_enuError = MPORT_enuINVALID_PinNum;
+	}
+	else if (IS_INVALID_PIN_Direction(Copy_enuPinDirection))
+ 340:	62 30       	cpi	r22, 0x02	; 2
+ 342:	a0 f5       	brcc	.+104    	; 0x3ac <MPORT_enuSetPinDirection+0x7c>
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+		// Get the address of the port registers
+		MPORT_strPortRegElement_t* Local_strPtrCurrPort =(((MPORT_PORT_REG_BASE_ADD) - (((u8)LOC_u8portNumber) * 3)));
+ 344:	30 e0       	ldi	r19, 0x00	; 0
+ 346:	f9 01       	movw	r30, r18
+ 348:	ee 0f       	add	r30, r30
+ 34a:	ff 1f       	adc	r31, r31
+ 34c:	2e 0f       	add	r18, r30
+ 34e:	3f 1f       	adc	r19, r31
+ 350:	ee 27       	eor	r30, r30
+ 352:	ff 27       	eor	r31, r31
+ 354:	e2 1b       	sub	r30, r18
+ 356:	f3 0b       	sbc	r31, r19
+ 358:	f9 96       	adiw	r30, 0x39	; 57
+		// Configure pin direction and state based on the requested configuration
+		if(Copy_enuPinDirection == MPORT_enuPINOUTPUT)// Output 
+ 35a:	61 11       	cpse	r22, r1
+ 35c:	0e c0       	rjmp	.+28     	; 0x37a <MPORT_enuSetPinDirection+0x4a>
+		{
+			SET_BIT(Local_strPtrCurrPort->DDR,LOC_u8pinNumber);
+ 35e:	41 81       	ldd	r20, Z+1	; 0x01
+ 360:	21 e0       	ldi	r18, 0x01	; 1
+ 362:	30 e0       	ldi	r19, 0x00	; 0
+ 364:	b9 01       	movw	r22, r18
+ 366:	02 c0       	rjmp	.+4      	; 0x36c <MPORT_enuSetPinDirection+0x3c>
+ 368:	66 0f       	add	r22, r22
+ 36a:	77 1f       	adc	r23, r23
+ 36c:	8a 95       	dec	r24
+ 36e:	e2 f7       	brpl	.-8      	; 0x368 <MPORT_enuSetPinDirection+0x38>
+ 370:	cb 01       	movw	r24, r22
+ 372:	84 2b       	or	r24, r20
+ 374:	81 83       	std	Z+1, r24	; 0x01
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 376:	80 e0       	ldi	r24, 0x00	; 0
+ 378:	08 95       	ret
+		// Configure pin direction and state based on the requested configuration
+		if(Copy_enuPinDirection == MPORT_enuPINOUTPUT)// Output 
+		{
+			SET_BIT(Local_strPtrCurrPort->DDR,LOC_u8pinNumber);
+		}
+		else if(Copy_enuPinDirection == MPORT_enuPININPUT) // Input 
+ 37a:	61 30       	cpi	r22, 0x01	; 1
+ 37c:	c9 f4       	brne	.+50     	; 0x3b0 <MPORT_enuSetPinDirection+0x80>
+		{
+			CLR_BIT(Local_strPtrCurrPort->DDR ,LOC_u8pinNumber );
+ 37e:	41 81       	ldd	r20, Z+1	; 0x01
+ 380:	21 e0       	ldi	r18, 0x01	; 1
+ 382:	30 e0       	ldi	r19, 0x00	; 0
+ 384:	b9 01       	movw	r22, r18
+ 386:	02 c0       	rjmp	.+4      	; 0x38c <MPORT_enuSetPinDirection+0x5c>
+ 388:	66 0f       	add	r22, r22
+ 38a:	77 1f       	adc	r23, r23
+ 38c:	8a 95       	dec	r24
+ 38e:	e2 f7       	brpl	.-8      	; 0x388 <MPORT_enuSetPinDirection+0x58>
+ 390:	cb 01       	movw	r24, r22
+ 392:	80 95       	com	r24
+ 394:	94 2f       	mov	r25, r20
+ 396:	98 23       	and	r25, r24
+ 398:	91 83       	std	Z+1, r25	; 0x01
+			CLR_BIT(Local_strPtrCurrPort->PORT,LOC_u8pinNumber);
+ 39a:	92 81       	ldd	r25, Z+2	; 0x02
+ 39c:	89 23       	and	r24, r25
+ 39e:	82 83       	std	Z+2, r24	; 0x02
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 3a0:	80 e0       	ldi	r24, 0x00	; 0
+ 3a2:	08 95       	ret
+	u8 LOC_u8portNumber = (Copy_enuPinNum >> 4) & 0x0F;
+	u8 LOC_u8pinNumber = Copy_enuPinNum & 0x0F;
+	// Validate input parameters
+	if (IS_INVALID_PORT_NUM(LOC_u8portNumber))
+	{
+		Ret_enuError = MPORT_enuINVALID_PortNum;
+ 3a4:	82 e0       	ldi	r24, 0x02	; 2
+ 3a6:	08 95       	ret
+		
+	}
+	else if (IS_INVALID_PIN_NUM(LOC_u8pinNumber))
+	{
+		Ret_enuError = MPORT_enuINVALID_PinNum;
+ 3a8:	83 e0       	ldi	r24, 0x03	; 3
+ 3aa:	08 95       	ret
+	}
+	else if (IS_INVALID_PIN_Direction(Copy_enuPinDirection))
+	{
+		Ret_enuError = MPORT_enuINVALID_PinDirection;
+ 3ac:	84 e0       	ldi	r24, 0x04	; 4
+ 3ae:	08 95       	ret
+	}
+	else
+	{
+		Ret_enuError = MPORT_enuOK;
+ 3b0:	80 e0       	ldi	r24, 0x00	; 0
+	
+	}
+	return Ret_enuError;
+		
+		
+}
+ 3b2:	08 95       	ret
+
+000003b4 <__divsf3>:
+ 3b4:	0e 94 ee 01 	call	0x3dc	; 0x3dc <__divsf3x>
+ 3b8:	0c 94 cf 02 	jmp	0x59e	; 0x59e <__fp_round>
+ 3bc:	0e 94 c8 02 	call	0x590	; 0x590 <__fp_pscB>
+ 3c0:	58 f0       	brcs	.+22     	; 0x3d8 <__divsf3+0x24>
+ 3c2:	0e 94 c1 02 	call	0x582	; 0x582 <__fp_pscA>
+ 3c6:	40 f0       	brcs	.+16     	; 0x3d8 <__divsf3+0x24>
+ 3c8:	29 f4       	brne	.+10     	; 0x3d4 <__divsf3+0x20>
+ 3ca:	5f 3f       	cpi	r21, 0xFF	; 255
+ 3cc:	29 f0       	breq	.+10     	; 0x3d8 <__divsf3+0x24>
+ 3ce:	0c 94 b8 02 	jmp	0x570	; 0x570 <__fp_inf>
+ 3d2:	51 11       	cpse	r21, r1
+ 3d4:	0c 94 03 03 	jmp	0x606	; 0x606 <__fp_szero>
+ 3d8:	0c 94 be 02 	jmp	0x57c	; 0x57c <__fp_nan>
+
+000003dc <__divsf3x>:
+ 3dc:	0e 94 e0 02 	call	0x5c0	; 0x5c0 <__fp_split3>
+ 3e0:	68 f3       	brcs	.-38     	; 0x3bc <__divsf3+0x8>
+
+000003e2 <__divsf3_pse>:
+ 3e2:	99 23       	and	r25, r25
+ 3e4:	b1 f3       	breq	.-20     	; 0x3d2 <__divsf3+0x1e>
+ 3e6:	55 23       	and	r21, r21
+ 3e8:	91 f3       	breq	.-28     	; 0x3ce <__divsf3+0x1a>
+ 3ea:	95 1b       	sub	r25, r21
+ 3ec:	55 0b       	sbc	r21, r21
+ 3ee:	bb 27       	eor	r27, r27
+ 3f0:	aa 27       	eor	r26, r26
+ 3f2:	62 17       	cp	r22, r18
+ 3f4:	73 07       	cpc	r23, r19
+ 3f6:	84 07       	cpc	r24, r20
+ 3f8:	38 f0       	brcs	.+14     	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
+ 3fa:	9f 5f       	subi	r25, 0xFF	; 255
+ 3fc:	5f 4f       	sbci	r21, 0xFF	; 255
+ 3fe:	22 0f       	add	r18, r18
+ 400:	33 1f       	adc	r19, r19
+ 402:	44 1f       	adc	r20, r20
+ 404:	aa 1f       	adc	r26, r26
+ 406:	a9 f3       	breq	.-22     	; 0x3f2 <__divsf3_pse+0x10>
+ 408:	35 d0       	rcall	.+106    	; 0x474 <__EEPROM_REGION_LENGTH__+0x74>
+ 40a:	0e 2e       	mov	r0, r30
+ 40c:	3a f0       	brmi	.+14     	; 0x41c <__EEPROM_REGION_LENGTH__+0x1c>
+ 40e:	e0 e8       	ldi	r30, 0x80	; 128
+ 410:	32 d0       	rcall	.+100    	; 0x476 <__EEPROM_REGION_LENGTH__+0x76>
+ 412:	91 50       	subi	r25, 0x01	; 1
+ 414:	50 40       	sbci	r21, 0x00	; 0
+ 416:	e6 95       	lsr	r30
+ 418:	00 1c       	adc	r0, r0
+ 41a:	ca f7       	brpl	.-14     	; 0x40e <__EEPROM_REGION_LENGTH__+0xe>
+ 41c:	2b d0       	rcall	.+86     	; 0x474 <__EEPROM_REGION_LENGTH__+0x74>
+ 41e:	fe 2f       	mov	r31, r30
+ 420:	29 d0       	rcall	.+82     	; 0x474 <__EEPROM_REGION_LENGTH__+0x74>
+ 422:	66 0f       	add	r22, r22
+ 424:	77 1f       	adc	r23, r23
+ 426:	88 1f       	adc	r24, r24
+ 428:	bb 1f       	adc	r27, r27
+ 42a:	26 17       	cp	r18, r22
+ 42c:	37 07       	cpc	r19, r23
+ 42e:	48 07       	cpc	r20, r24
+ 430:	ab 07       	cpc	r26, r27
+ 432:	b0 e8       	ldi	r27, 0x80	; 128
+ 434:	09 f0       	breq	.+2      	; 0x438 <__EEPROM_REGION_LENGTH__+0x38>
+ 436:	bb 0b       	sbc	r27, r27
+ 438:	80 2d       	mov	r24, r0
+ 43a:	bf 01       	movw	r22, r30
+ 43c:	ff 27       	eor	r31, r31
+ 43e:	93 58       	subi	r25, 0x83	; 131
+ 440:	5f 4f       	sbci	r21, 0xFF	; 255
+ 442:	3a f0       	brmi	.+14     	; 0x452 <__EEPROM_REGION_LENGTH__+0x52>
+ 444:	9e 3f       	cpi	r25, 0xFE	; 254
+ 446:	51 05       	cpc	r21, r1
+ 448:	78 f0       	brcs	.+30     	; 0x468 <__EEPROM_REGION_LENGTH__+0x68>
+ 44a:	0c 94 b8 02 	jmp	0x570	; 0x570 <__fp_inf>
+ 44e:	0c 94 03 03 	jmp	0x606	; 0x606 <__fp_szero>
+ 452:	5f 3f       	cpi	r21, 0xFF	; 255
+ 454:	e4 f3       	brlt	.-8      	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
+ 456:	98 3e       	cpi	r25, 0xE8	; 232
+ 458:	d4 f3       	brlt	.-12     	; 0x44e <__EEPROM_REGION_LENGTH__+0x4e>
+ 45a:	86 95       	lsr	r24
+ 45c:	77 95       	ror	r23
+ 45e:	67 95       	ror	r22
+ 460:	b7 95       	ror	r27
+ 462:	f7 95       	ror	r31
+ 464:	9f 5f       	subi	r25, 0xFF	; 255
+ 466:	c9 f7       	brne	.-14     	; 0x45a <__EEPROM_REGION_LENGTH__+0x5a>
+ 468:	88 0f       	add	r24, r24
+ 46a:	91 1d       	adc	r25, r1
+ 46c:	96 95       	lsr	r25
+ 46e:	87 95       	ror	r24
+ 470:	97 f9       	bld	r25, 7
+ 472:	08 95       	ret
+ 474:	e1 e0       	ldi	r30, 0x01	; 1
+ 476:	66 0f       	add	r22, r22
+ 478:	77 1f       	adc	r23, r23
+ 47a:	88 1f       	adc	r24, r24
+ 47c:	bb 1f       	adc	r27, r27
+ 47e:	62 17       	cp	r22, r18
+ 480:	73 07       	cpc	r23, r19
+ 482:	84 07       	cpc	r24, r20
+ 484:	ba 07       	cpc	r27, r26
+ 486:	20 f0       	brcs	.+8      	; 0x490 <__EEPROM_REGION_LENGTH__+0x90>
+ 488:	62 1b       	sub	r22, r18
+ 48a:	73 0b       	sbc	r23, r19
+ 48c:	84 0b       	sbc	r24, r20
+ 48e:	ba 0b       	sbc	r27, r26
+ 490:	ee 1f       	adc	r30, r30
+ 492:	88 f7       	brcc	.-30     	; 0x476 <__EEPROM_REGION_LENGTH__+0x76>
+ 494:	e0 95       	com	r30
+ 496:	08 95       	ret
+
+00000498 <__fixunssfsi>:
+ 498:	0e 94 e8 02 	call	0x5d0	; 0x5d0 <__fp_splitA>
+ 49c:	88 f0       	brcs	.+34     	; 0x4c0 <__fixunssfsi+0x28>
+ 49e:	9f 57       	subi	r25, 0x7F	; 127
+ 4a0:	98 f0       	brcs	.+38     	; 0x4c8 <__fixunssfsi+0x30>
+ 4a2:	b9 2f       	mov	r27, r25
+ 4a4:	99 27       	eor	r25, r25
+ 4a6:	b7 51       	subi	r27, 0x17	; 23
+ 4a8:	b0 f0       	brcs	.+44     	; 0x4d6 <__fixunssfsi+0x3e>
+ 4aa:	e1 f0       	breq	.+56     	; 0x4e4 <__fixunssfsi+0x4c>
+ 4ac:	66 0f       	add	r22, r22
+ 4ae:	77 1f       	adc	r23, r23
+ 4b0:	88 1f       	adc	r24, r24
+ 4b2:	99 1f       	adc	r25, r25
+ 4b4:	1a f0       	brmi	.+6      	; 0x4bc <__fixunssfsi+0x24>
+ 4b6:	ba 95       	dec	r27
+ 4b8:	c9 f7       	brne	.-14     	; 0x4ac <__fixunssfsi+0x14>
+ 4ba:	14 c0       	rjmp	.+40     	; 0x4e4 <__fixunssfsi+0x4c>
+ 4bc:	b1 30       	cpi	r27, 0x01	; 1
+ 4be:	91 f0       	breq	.+36     	; 0x4e4 <__fixunssfsi+0x4c>
+ 4c0:	0e 94 02 03 	call	0x604	; 0x604 <__fp_zero>
+ 4c4:	b1 e0       	ldi	r27, 0x01	; 1
+ 4c6:	08 95       	ret
+ 4c8:	0c 94 02 03 	jmp	0x604	; 0x604 <__fp_zero>
+ 4cc:	67 2f       	mov	r22, r23
+ 4ce:	78 2f       	mov	r23, r24
+ 4d0:	88 27       	eor	r24, r24
+ 4d2:	b8 5f       	subi	r27, 0xF8	; 248
+ 4d4:	39 f0       	breq	.+14     	; 0x4e4 <__fixunssfsi+0x4c>
+ 4d6:	b9 3f       	cpi	r27, 0xF9	; 249
+ 4d8:	cc f3       	brlt	.-14     	; 0x4cc <__fixunssfsi+0x34>
+ 4da:	86 95       	lsr	r24
+ 4dc:	77 95       	ror	r23
+ 4de:	67 95       	ror	r22
+ 4e0:	b3 95       	inc	r27
+ 4e2:	d9 f7       	brne	.-10     	; 0x4da <__fixunssfsi+0x42>
+ 4e4:	3e f4       	brtc	.+14     	; 0x4f4 <__fixunssfsi+0x5c>
+ 4e6:	90 95       	com	r25
+ 4e8:	80 95       	com	r24
+ 4ea:	70 95       	com	r23
+ 4ec:	61 95       	neg	r22
+ 4ee:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4f0:	8f 4f       	sbci	r24, 0xFF	; 255
+ 4f2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 4f4:	08 95       	ret
+
+000004f6 <__floatunsisf>:
+ 4f6:	e8 94       	clt
+ 4f8:	09 c0       	rjmp	.+18     	; 0x50c <__floatsisf+0x12>
+
+000004fa <__floatsisf>:
+ 4fa:	97 fb       	bst	r25, 7
+ 4fc:	3e f4       	brtc	.+14     	; 0x50c <__floatsisf+0x12>
+ 4fe:	90 95       	com	r25
+ 500:	80 95       	com	r24
+ 502:	70 95       	com	r23
+ 504:	61 95       	neg	r22
+ 506:	7f 4f       	sbci	r23, 0xFF	; 255
+ 508:	8f 4f       	sbci	r24, 0xFF	; 255
+ 50a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 50c:	99 23       	and	r25, r25
+ 50e:	a9 f0       	breq	.+42     	; 0x53a <__floatsisf+0x40>
+ 510:	f9 2f       	mov	r31, r25
+ 512:	96 e9       	ldi	r25, 0x96	; 150
+ 514:	bb 27       	eor	r27, r27
+ 516:	93 95       	inc	r25
+ 518:	f6 95       	lsr	r31
+ 51a:	87 95       	ror	r24
+ 51c:	77 95       	ror	r23
+ 51e:	67 95       	ror	r22
+ 520:	b7 95       	ror	r27
+ 522:	f1 11       	cpse	r31, r1
+ 524:	f8 cf       	rjmp	.-16     	; 0x516 <__floatsisf+0x1c>
+ 526:	fa f4       	brpl	.+62     	; 0x566 <__floatsisf+0x6c>
+ 528:	bb 0f       	add	r27, r27
+ 52a:	11 f4       	brne	.+4      	; 0x530 <__floatsisf+0x36>
+ 52c:	60 ff       	sbrs	r22, 0
+ 52e:	1b c0       	rjmp	.+54     	; 0x566 <__floatsisf+0x6c>
+ 530:	6f 5f       	subi	r22, 0xFF	; 255
+ 532:	7f 4f       	sbci	r23, 0xFF	; 255
+ 534:	8f 4f       	sbci	r24, 0xFF	; 255
+ 536:	9f 4f       	sbci	r25, 0xFF	; 255
+ 538:	16 c0       	rjmp	.+44     	; 0x566 <__floatsisf+0x6c>
+ 53a:	88 23       	and	r24, r24
+ 53c:	11 f0       	breq	.+4      	; 0x542 <__floatsisf+0x48>
+ 53e:	96 e9       	ldi	r25, 0x96	; 150
+ 540:	11 c0       	rjmp	.+34     	; 0x564 <__floatsisf+0x6a>
+ 542:	77 23       	and	r23, r23
+ 544:	21 f0       	breq	.+8      	; 0x54e <__floatsisf+0x54>
+ 546:	9e e8       	ldi	r25, 0x8E	; 142
+ 548:	87 2f       	mov	r24, r23
+ 54a:	76 2f       	mov	r23, r22
+ 54c:	05 c0       	rjmp	.+10     	; 0x558 <__floatsisf+0x5e>
+ 54e:	66 23       	and	r22, r22
+ 550:	71 f0       	breq	.+28     	; 0x56e <__floatsisf+0x74>
+ 552:	96 e8       	ldi	r25, 0x86	; 134
+ 554:	86 2f       	mov	r24, r22
+ 556:	70 e0       	ldi	r23, 0x00	; 0
+ 558:	60 e0       	ldi	r22, 0x00	; 0
+ 55a:	2a f0       	brmi	.+10     	; 0x566 <__floatsisf+0x6c>
+ 55c:	9a 95       	dec	r25
+ 55e:	66 0f       	add	r22, r22
+ 560:	77 1f       	adc	r23, r23
+ 562:	88 1f       	adc	r24, r24
+ 564:	da f7       	brpl	.-10     	; 0x55c <__floatsisf+0x62>
+ 566:	88 0f       	add	r24, r24
+ 568:	96 95       	lsr	r25
+ 56a:	87 95       	ror	r24
+ 56c:	97 f9       	bld	r25, 7
+ 56e:	08 95       	ret
+
+00000570 <__fp_inf>:
+ 570:	97 f9       	bld	r25, 7
+ 572:	9f 67       	ori	r25, 0x7F	; 127
+ 574:	80 e8       	ldi	r24, 0x80	; 128
+ 576:	70 e0       	ldi	r23, 0x00	; 0
+ 578:	60 e0       	ldi	r22, 0x00	; 0
+ 57a:	08 95       	ret
+
+0000057c <__fp_nan>:
+ 57c:	9f ef       	ldi	r25, 0xFF	; 255
+ 57e:	80 ec       	ldi	r24, 0xC0	; 192
+ 580:	08 95       	ret
+
+00000582 <__fp_pscA>:
+ 582:	00 24       	eor	r0, r0
+ 584:	0a 94       	dec	r0
+ 586:	16 16       	cp	r1, r22
+ 588:	17 06       	cpc	r1, r23
+ 58a:	18 06       	cpc	r1, r24
+ 58c:	09 06       	cpc	r0, r25
+ 58e:	08 95       	ret
+
+00000590 <__fp_pscB>:
+ 590:	00 24       	eor	r0, r0
+ 592:	0a 94       	dec	r0
+ 594:	12 16       	cp	r1, r18
+ 596:	13 06       	cpc	r1, r19
+ 598:	14 06       	cpc	r1, r20
+ 59a:	05 06       	cpc	r0, r21
+ 59c:	08 95       	ret
+
+0000059e <__fp_round>:
+ 59e:	09 2e       	mov	r0, r25
+ 5a0:	03 94       	inc	r0
+ 5a2:	00 0c       	add	r0, r0
+ 5a4:	11 f4       	brne	.+4      	; 0x5aa <__fp_round+0xc>
+ 5a6:	88 23       	and	r24, r24
+ 5a8:	52 f0       	brmi	.+20     	; 0x5be <__fp_round+0x20>
+ 5aa:	bb 0f       	add	r27, r27
+ 5ac:	40 f4       	brcc	.+16     	; 0x5be <__fp_round+0x20>
+ 5ae:	bf 2b       	or	r27, r31
+ 5b0:	11 f4       	brne	.+4      	; 0x5b6 <__fp_round+0x18>
+ 5b2:	60 ff       	sbrs	r22, 0
+ 5b4:	04 c0       	rjmp	.+8      	; 0x5be <__fp_round+0x20>
+ 5b6:	6f 5f       	subi	r22, 0xFF	; 255
+ 5b8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 5ba:	8f 4f       	sbci	r24, 0xFF	; 255
+ 5bc:	9f 4f       	sbci	r25, 0xFF	; 255
+ 5be:	08 95       	ret
+
+000005c0 <__fp_split3>:
+ 5c0:	57 fd       	sbrc	r21, 7
+ 5c2:	90 58       	subi	r25, 0x80	; 128
+ 5c4:	44 0f       	add	r20, r20
+ 5c6:	55 1f       	adc	r21, r21
+ 5c8:	59 f0       	breq	.+22     	; 0x5e0 <__fp_splitA+0x10>
+ 5ca:	5f 3f       	cpi	r21, 0xFF	; 255
+ 5cc:	71 f0       	breq	.+28     	; 0x5ea <__fp_splitA+0x1a>
+ 5ce:	47 95       	ror	r20
+
+000005d0 <__fp_splitA>:
+ 5d0:	88 0f       	add	r24, r24
+ 5d2:	97 fb       	bst	r25, 7
+ 5d4:	99 1f       	adc	r25, r25
+ 5d6:	61 f0       	breq	.+24     	; 0x5f0 <__fp_splitA+0x20>
+ 5d8:	9f 3f       	cpi	r25, 0xFF	; 255
+ 5da:	79 f0       	breq	.+30     	; 0x5fa <__fp_splitA+0x2a>
+ 5dc:	87 95       	ror	r24
+ 5de:	08 95       	ret
+ 5e0:	12 16       	cp	r1, r18
+ 5e2:	13 06       	cpc	r1, r19
+ 5e4:	14 06       	cpc	r1, r20
+ 5e6:	55 1f       	adc	r21, r21
+ 5e8:	f2 cf       	rjmp	.-28     	; 0x5ce <__fp_split3+0xe>
+ 5ea:	46 95       	lsr	r20
+ 5ec:	f1 df       	rcall	.-30     	; 0x5d0 <__fp_splitA>
+ 5ee:	08 c0       	rjmp	.+16     	; 0x600 <__fp_splitA+0x30>
+ 5f0:	16 16       	cp	r1, r22
+ 5f2:	17 06       	cpc	r1, r23
+ 5f4:	18 06       	cpc	r1, r24
+ 5f6:	99 1f       	adc	r25, r25
+ 5f8:	f1 cf       	rjmp	.-30     	; 0x5dc <__fp_splitA+0xc>
+ 5fa:	86 95       	lsr	r24
+ 5fc:	71 05       	cpc	r23, r1
+ 5fe:	61 05       	cpc	r22, r1
+ 600:	08 94       	sec
+ 602:	08 95       	ret
+
+00000604 <__fp_zero>:
+ 604:	e8 94       	clt
+
+00000606 <__fp_szero>:
+ 606:	bb 27       	eor	r27, r27
+ 608:	66 27       	eor	r22, r22
+ 60a:	77 27       	eor	r23, r23
+ 60c:	cb 01       	movw	r24, r22
+ 60e:	97 f9       	bld	r25, 7
+ 610:	08 95       	ret
+
+00000612 <_exit>:
+ 612:	f8 94       	cli
+
+00000614 <__stop_program>:
+ 614:	ff cf       	rjmp	.-2      	; 0x614 <__stop_program>

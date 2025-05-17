@@ -39,7 +39,7 @@ HLCD_strLCDCONFG_8BIT_t HLCD_ArrLCDCongf[Num_of_LCD] =
 		.RW_Port=HLCD_enuPORTB ,
 		.RW_Pin=HLCD_enuPIN1,
 		.E_Port=HLCD_enuPORTB,
-		.E_Pin=HLCD_enuPIN2 
+		.E_Pin=HLCD_enuPIN2
 	},
 	[LCD2] = {
 		.DL = HLCD_enu_4Bits,

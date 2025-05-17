@@ -114,9 +114,9 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
 	}
 	else
 	{
-	 Ret_enuError = HLCD_enuOK;
-	/*1-rw->low for writing*/
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Pin, MDIO_enuLOW);
+		Ret_enuError = HLCD_enuOK;
+		/*1-rw->low for writing*/
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Pin, MDIO_enuLOW);
   a4:	c8 2f       	mov	r28, r24
   a6:	d0 e0       	ldi	r29, 0x00	; 0
   a8:	8e e1       	ldi	r24, 0x1E	; 30
@@ -132,30 +132,30 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
   bc:	40 e0       	ldi	r20, 0x00	; 0
   be:	82 8d       	ldd	r24, Z+26	; 0x1a
   c0:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	/*2-rs-> low for command*/
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Pin, MDIO_enuLOW);
+		/*2-rs-> low for command*/
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Pin, MDIO_enuLOW);
   c4:	f8 01       	movw	r30, r16
   c6:	61 8d       	ldd	r22, Z+25	; 0x19
   c8:	40 e0       	ldi	r20, 0x00	; 0
   ca:	80 8d       	ldd	r24, Z+24	; 0x18
   cc:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	 if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_8Bits)
+		if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_8Bits)
   d0:	f8 01       	movw	r30, r16
   d2:	80 81       	ld	r24, Z
   d4:	81 30       	cpi	r24, 0x01	; 1
   d6:	09 f0       	breq	.+2      	; 0xda <HLCD_enuLCD_WriteCommand+0x48>
   d8:	41 c0       	rjmp	.+130    	; 0x15c <HLCD_enuLCD_WriteCommand+0xca>
-	 {
+		{
 
-	/*3-send command*/
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Pin,(Copy_u8Command >> 0) & 0x01 );
+			/*3-send command*/
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Pin,(Copy_u8Command >> 0) & 0x01 );
   da:	8f 01       	movw	r16, r30
   dc:	61 85       	ldd	r22, Z+9	; 0x09
   de:	4f 2d       	mov	r20, r15
   e0:	41 70       	andi	r20, 0x01	; 1
   e2:	80 85       	ldd	r24, Z+8	; 0x08
   e4:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Pin,(Copy_u8Command >> 1) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Pin,(Copy_u8Command >> 1) & 0x01 );
   e8:	f8 01       	movw	r30, r16
   ea:	63 85       	ldd	r22, Z+11	; 0x0b
   ec:	f1 fa       	bst	r15, 1
@@ -163,7 +163,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
   f0:	40 f9       	bld	r20, 0
   f2:	82 85       	ldd	r24, Z+10	; 0x0a
   f4:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Pin,(Copy_u8Command >> 2) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Pin,(Copy_u8Command >> 2) & 0x01 );
   f8:	f8 01       	movw	r30, r16
   fa:	65 85       	ldd	r22, Z+13	; 0x0d
   fc:	f2 fa       	bst	r15, 2
@@ -171,7 +171,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  100:	40 f9       	bld	r20, 0
  102:	84 85       	ldd	r24, Z+12	; 0x0c
  104:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Pin,(Copy_u8Command >> 3) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Pin,(Copy_u8Command >> 3) & 0x01 );
  108:	f8 01       	movw	r30, r16
  10a:	67 85       	ldd	r22, Z+15	; 0x0f
  10c:	f3 fa       	bst	r15, 3
@@ -179,7 +179,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  110:	40 f9       	bld	r20, 0
  112:	86 85       	ldd	r24, Z+14	; 0x0e
  114:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin,(Copy_u8Command >> 4) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin,(Copy_u8Command >> 4) & 0x01 );
  118:	f8 01       	movw	r30, r16
  11a:	61 89       	ldd	r22, Z+17	; 0x11
  11c:	f4 fa       	bst	r15, 4
@@ -187,7 +187,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  120:	40 f9       	bld	r20, 0
  122:	80 89       	ldd	r24, Z+16	; 0x10
  124:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin,(Copy_u8Command >> 5) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin,(Copy_u8Command >> 5) & 0x01 );
  128:	f8 01       	movw	r30, r16
  12a:	63 89       	ldd	r22, Z+19	; 0x13
  12c:	f5 fa       	bst	r15, 5
@@ -195,7 +195,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  130:	40 f9       	bld	r20, 0
  132:	82 89       	ldd	r24, Z+18	; 0x12
  134:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin,(Copy_u8Command >> 6) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin,(Copy_u8Command >> 6) & 0x01 );
  138:	f8 01       	movw	r30, r16
  13a:	65 89       	ldd	r22, Z+21	; 0x15
  13c:	f6 fa       	bst	r15, 6
@@ -203,7 +203,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  140:	40 f9       	bld	r20, 0
  142:	84 89       	ldd	r24, Z+20	; 0x14
  144:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin,(Copy_u8Command >> 7) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin,(Copy_u8Command >> 7) & 0x01 );
  148:	f8 01       	movw	r30, r16
  14a:	67 89       	ldd	r22, Z+23	; 0x17
  14c:	4f 2d       	mov	r20, r15
@@ -213,15 +213,15 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  154:	86 89       	ldd	r24, Z+22	; 0x16
  156:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
  15a:	5e c0       	rjmp	.+188    	; 0x218 <HLCD_enuLCD_WriteCommand+0x186>
-	}
-	else if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_4Bits)
+		}
+		else if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_4Bits)
  15c:	81 11       	cpse	r24, r1
  15e:	5c c0       	rjmp	.+184    	; 0x218 <HLCD_enuLCD_WriteCommand+0x186>
-	{
-		/*3-send command*/
-		
-	/* 1. Send the higher nibble (bits 7-4) */
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Command >> 4) & 0x01);
+		{
+			/*3-send command*/
+			
+			/* 1. Send the higher nibble (bits 7-4) */
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Command >> 4) & 0x01);
  160:	8e e1       	ldi	r24, 0x1E	; 30
  162:	8c 9f       	mul	r24, r28
  164:	80 01       	movw	r16, r0
@@ -237,7 +237,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  178:	40 f9       	bld	r20, 0
  17a:	80 89       	ldd	r24, Z+16	; 0x10
  17c:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Command >> 5) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Command >> 5) & 0x01);
  180:	f8 01       	movw	r30, r16
  182:	63 89       	ldd	r22, Z+19	; 0x13
  184:	f5 fa       	bst	r15, 5
@@ -245,7 +245,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  188:	40 f9       	bld	r20, 0
  18a:	82 89       	ldd	r24, Z+18	; 0x12
  18c:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Command >> 6) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Command >> 6) & 0x01);
  190:	f8 01       	movw	r30, r16
  192:	65 89       	ldd	r22, Z+21	; 0x15
  194:	f6 fa       	bst	r15, 6
@@ -253,7 +253,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  198:	40 f9       	bld	r20, 0
  19a:	84 89       	ldd	r24, Z+20	; 0x14
  19c:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Command >> 7) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Command >> 7) & 0x01);
  1a0:	f8 01       	movw	r30, r16
  1a2:	67 89       	ldd	r22, Z+23	; 0x17
  1a4:	4f 2d       	mov	r20, r15
@@ -263,8 +263,8 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  1ac:	86 89       	ldd	r24, Z+22	; 0x16
  1ae:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
 
-    /* 2. Enable pulse (to latch the higher nibble) */
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
+			/* 2. Enable pulse (to latch the higher nibble) */
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
  1b2:	f8 01       	movw	r30, r16
  1b4:	65 8d       	ldd	r22, Z+29	; 0x1d
  1b6:	41 e0       	ldi	r20, 0x01	; 1
@@ -280,8 +280,8 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  1c0:	fa 95       	dec	r31
  1c2:	f1 f7       	brne	.-4      	; 0x1c0 <HLCD_enuLCD_WriteCommand+0x12e>
  1c4:	00 c0       	rjmp	.+0      	; 0x1c6 <HLCD_enuLCD_WriteCommand+0x134>
-    _delay_us(1);
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
+			_delay_us(1);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
  1c6:	f8 01       	movw	r30, r16
  1c8:	65 8d       	ldd	r22, Z+29	; 0x1d
  1ca:	40 e0       	ldi	r20, 0x00	; 0
@@ -291,19 +291,19 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  1d4:	fa 95       	dec	r31
  1d6:	f1 f7       	brne	.-4      	; 0x1d4 <HLCD_enuLCD_WriteCommand+0x142>
  1d8:	00 c0       	rjmp	.+0      	; 0x1da <HLCD_enuLCD_WriteCommand+0x148>
-    _delay_us(1);
-	
+			_delay_us(1);
+			
 
 
-    /* 3. Send the lower nibble (bits 3-0) */
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Command >> 0) & 0x01);
+			/* 3. Send the lower nibble (bits 3-0) */
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Command >> 0) & 0x01);
  1da:	f8 01       	movw	r30, r16
  1dc:	61 89       	ldd	r22, Z+17	; 0x11
  1de:	4f 2d       	mov	r20, r15
  1e0:	41 70       	andi	r20, 0x01	; 1
  1e2:	80 89       	ldd	r24, Z+16	; 0x10
  1e4:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Command >> 1) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Command >> 1) & 0x01);
  1e8:	f8 01       	movw	r30, r16
  1ea:	63 89       	ldd	r22, Z+19	; 0x13
  1ec:	f1 fa       	bst	r15, 1
@@ -311,7 +311,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  1f0:	40 f9       	bld	r20, 0
  1f2:	82 89       	ldd	r24, Z+18	; 0x12
  1f4:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Command >> 2) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Command >> 2) & 0x01);
  1f8:	f8 01       	movw	r30, r16
  1fa:	65 89       	ldd	r22, Z+21	; 0x15
  1fc:	f2 fa       	bst	r15, 2
@@ -319,7 +319,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  200:	40 f9       	bld	r20, 0
  202:	84 89       	ldd	r24, Z+20	; 0x14
  204:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-    MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Command >> 3) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Command >> 3) & 0x01);
  208:	f8 01       	movw	r30, r16
  20a:	67 89       	ldd	r22, Z+23	; 0x17
  20c:	f3 fa       	bst	r15, 3
@@ -327,11 +327,11 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  210:	40 f9       	bld	r20, 0
  212:	86 89       	ldd	r24, Z+22	; 0x16
  214:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-		
-		
-	}
-	/*4-enable */
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
+			
+			
+		}
+		/*4-enable */
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
  218:	2e e1       	ldi	r18, 0x1E	; 30
  21a:	2c 9f       	mul	r18, r28
  21c:	c0 01       	movw	r24, r0
@@ -349,8 +349,8 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  236:	fa 95       	dec	r31
  238:	f1 f7       	brne	.-4      	; 0x236 <HLCD_enuLCD_WriteCommand+0x1a4>
  23a:	00 c0       	rjmp	.+0      	; 0x23c <HLCD_enuLCD_WriteCommand+0x1aa>
-	_delay_us(1);
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
+		_delay_us(1);
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
  23c:	6d 8d       	ldd	r22, Y+29	; 0x1d
  23e:	40 e0       	ldi	r20, 0x00	; 0
  240:	8c 8d       	ldd	r24, Y+28	; 0x1c
@@ -359,12 +359,12 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
  248:	8a 95       	dec	r24
  24a:	f1 f7       	brne	.-4      	; 0x248 <HLCD_enuLCD_WriteCommand+0x1b6>
  24c:	00 c0       	rjmp	.+0      	; 0x24e <HLCD_enuLCD_WriteCommand+0x1bc>
-		Ret_enuError =HLCD_enuINVALIDLCDNAME ; 
+		Ret_enuError =HLCD_enuINVALIDLCDNAME ;
 		
 	}
 	else
 	{
-	 Ret_enuError = HLCD_enuOK;
+		Ret_enuError = HLCD_enuOK;
  24e:	81 e0       	ldi	r24, 0x01	; 1
  250:	01 c0       	rjmp	.+2      	; 0x254 <HLCD_enuLCD_WriteCommand+0x1c2>
 HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Command)
@@ -372,13 +372,13 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCommand(u8 Copy_enuLCDNum,u8 Copy_u8Comma
 	HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
 	if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
 	{
-		Ret_enuError =HLCD_enuINVALIDLCDNAME ; 
+		Ret_enuError =HLCD_enuINVALIDLCDNAME ;
  252:	82 e0       	ldi	r24, 0x02	; 2
-	_delay_us(1);
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
-	_delay_us(1);
+		_delay_us(1);
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
+		_delay_us(1);
 	}
-return Ret_enuError ;
+	return Ret_enuError ;
 }
  254:	df 91       	pop	r29
  256:	cf 91       	pop	r28
@@ -388,7 +388,7 @@ return Ret_enuError ;
  25e:	08 95       	ret
 
 00000260 <HLCD_vLCD_ClearDisplay>:
-	 }
+	}
 	
 }
 void HLCD_vLCD_ClearDisplay(u8 Copy_enuLCDNum)
@@ -409,8 +409,8 @@ void HLCD_vLCD_init(void)
  26a:	1f 93       	push	r17
  26c:	cf 93       	push	r28
  26e:	df 93       	push	r29
-     u8 Local_u8_LCd_D0=0 , Local_u8_LCd_D1=0 , Local_u8_LCd_D2=0 , Local_u8_LCd_D3=0 , Local_u8_LCd_D4=0 , Local_u8_LCd_D5=0 , Local_u8_LCd_D6=0 , Local_u8_LCd_D7=0 , Local_u8_LCd_RS=0 , Local_u8_LCd_RW=0 , Local_u8_LCd_E=0;
-	 for (int i = 0; i < Num_of_LCD; i++) 
+	u8 Local_u8_LCd_D0=0 , Local_u8_LCd_D1=0 , Local_u8_LCd_D2=0 , Local_u8_LCd_D3=0 , Local_u8_LCd_D4=0 , Local_u8_LCd_D5=0 , Local_u8_LCd_D6=0 , Local_u8_LCd_D7=0 , Local_u8_LCd_RS=0 , Local_u8_LCd_RW=0 , Local_u8_LCd_E=0;
+	for (int i = 0; i < Num_of_LCD; i++)
  270:	c0 e0       	ldi	r28, 0x00	; 0
  272:	d0 e0       	ldi	r29, 0x00	; 0
  274:	50 c1       	rjmp	.+672    	; 0x516 <__EEPROM_REGION_LENGTH__+0x116>
@@ -429,12 +429,12 @@ void HLCD_vLCD_init(void)
  282:	e1 f7       	brne	.-8      	; 0x27c <HLCD_vLCD_init+0x14>
  284:	00 c0       	rjmp	.+0      	; 0x286 <HLCD_vLCD_init+0x1e>
  286:	00 00       	nop
-		 _delay_ms(35);
-		 u8 functionSetCmd = 0x20; // Base value: 0b00100000
-		 /*2-send function set command*/
+		_delay_ms(35);
+		u8 functionSetCmd = 0x20; // Base value: 0b00100000
+		/*2-send function set command*/
 
-		 // Set DL (Data Length)
-		 if (HLCD_ArrLCDCongf[i].DL == HLCD_enu_8Bits) 
+		// Set DL (Data Length)
+		if (HLCD_ArrLCDCongf[i].DL == HLCD_enu_8Bits)
  288:	8e e1       	ldi	r24, 0x1E	; 30
  28a:	8c 9f       	mul	r24, r28
  28c:	f0 01       	movw	r30, r0
@@ -447,139 +447,139 @@ void HLCD_vLCD_init(void)
  29a:	81 30       	cpi	r24, 0x01	; 1
  29c:	09 f0       	breq	.+2      	; 0x2a0 <HLCD_vLCD_init+0x38>
  29e:	70 c0       	rjmp	.+224    	; 0x380 <HLCD_vLCD_init+0x118>
-		 {
-		 Local_u8_LCd_D0 = ((HLCD_ArrLCDCongf[i].D0_Port<<4) + HLCD_ArrLCDCongf[i].D0_Pin);
+		{
+			Local_u8_LCd_D0 = ((HLCD_ArrLCDCongf[i].D0_Port<<4) + HLCD_ArrLCDCongf[i].D0_Pin);
  2a0:	8f 01       	movw	r16, r30
  2a2:	90 85       	ldd	r25, Z+8	; 0x08
  2a4:	81 85       	ldd	r24, Z+9	; 0x09
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D0 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D0 , MPORT_enuPINOUTPUT);
  2a6:	60 e0       	ldi	r22, 0x00	; 0
  2a8:	f0 e1       	ldi	r31, 0x10	; 16
  2aa:	9f 9f       	mul	r25, r31
  2ac:	80 0d       	add	r24, r0
  2ae:	11 24       	eor	r1, r1
  2b0:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D1 = ((HLCD_ArrLCDCongf[i].D1_Port<<4) + HLCD_ArrLCDCongf[i].D1_Pin);
+			Local_u8_LCd_D1 = ((HLCD_ArrLCDCongf[i].D1_Port<<4) + HLCD_ArrLCDCongf[i].D1_Pin);
  2b4:	f8 01       	movw	r30, r16
  2b6:	92 85       	ldd	r25, Z+10	; 0x0a
  2b8:	83 85       	ldd	r24, Z+11	; 0x0b
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D1 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D1 , MPORT_enuPINOUTPUT);
  2ba:	60 e0       	ldi	r22, 0x00	; 0
  2bc:	f0 e1       	ldi	r31, 0x10	; 16
  2be:	9f 9f       	mul	r25, r31
  2c0:	80 0d       	add	r24, r0
  2c2:	11 24       	eor	r1, r1
  2c4:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D2 = ((HLCD_ArrLCDCongf[i].D2_Port<<4) + HLCD_ArrLCDCongf[i].D2_Pin);
+			Local_u8_LCd_D2 = ((HLCD_ArrLCDCongf[i].D2_Port<<4) + HLCD_ArrLCDCongf[i].D2_Pin);
  2c8:	f8 01       	movw	r30, r16
  2ca:	94 85       	ldd	r25, Z+12	; 0x0c
  2cc:	85 85       	ldd	r24, Z+13	; 0x0d
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D2 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D2 , MPORT_enuPINOUTPUT);
  2ce:	60 e0       	ldi	r22, 0x00	; 0
  2d0:	f0 e1       	ldi	r31, 0x10	; 16
  2d2:	9f 9f       	mul	r25, r31
  2d4:	80 0d       	add	r24, r0
  2d6:	11 24       	eor	r1, r1
  2d8:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D3 = ((HLCD_ArrLCDCongf[i].D3_Port<<4) + HLCD_ArrLCDCongf[i].D3_Pin);
+			Local_u8_LCd_D3 = ((HLCD_ArrLCDCongf[i].D3_Port<<4) + HLCD_ArrLCDCongf[i].D3_Pin);
  2dc:	f8 01       	movw	r30, r16
  2de:	96 85       	ldd	r25, Z+14	; 0x0e
  2e0:	87 85       	ldd	r24, Z+15	; 0x0f
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D3 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D3 , MPORT_enuPINOUTPUT);
  2e2:	60 e0       	ldi	r22, 0x00	; 0
  2e4:	f0 e1       	ldi	r31, 0x10	; 16
  2e6:	9f 9f       	mul	r25, r31
  2e8:	80 0d       	add	r24, r0
  2ea:	11 24       	eor	r1, r1
  2ec:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D4 = ((HLCD_ArrLCDCongf[i].D4_Port<<4) + HLCD_ArrLCDCongf[i].D4_Pin);
+			Local_u8_LCd_D4 = ((HLCD_ArrLCDCongf[i].D4_Port<<4) + HLCD_ArrLCDCongf[i].D4_Pin);
  2f0:	f8 01       	movw	r30, r16
  2f2:	90 89       	ldd	r25, Z+16	; 0x10
  2f4:	81 89       	ldd	r24, Z+17	; 0x11
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D4 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D4 , MPORT_enuPINOUTPUT);
  2f6:	60 e0       	ldi	r22, 0x00	; 0
  2f8:	f0 e1       	ldi	r31, 0x10	; 16
  2fa:	9f 9f       	mul	r25, r31
  2fc:	80 0d       	add	r24, r0
  2fe:	11 24       	eor	r1, r1
  300:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D5 = ((HLCD_ArrLCDCongf[i].D5_Port<<4) + HLCD_ArrLCDCongf[i].D5_Pin);
+			Local_u8_LCd_D5 = ((HLCD_ArrLCDCongf[i].D5_Port<<4) + HLCD_ArrLCDCongf[i].D5_Pin);
  304:	f8 01       	movw	r30, r16
  306:	92 89       	ldd	r25, Z+18	; 0x12
  308:	83 89       	ldd	r24, Z+19	; 0x13
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D5 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D5 , MPORT_enuPINOUTPUT);
  30a:	60 e0       	ldi	r22, 0x00	; 0
  30c:	f0 e1       	ldi	r31, 0x10	; 16
  30e:	9f 9f       	mul	r25, r31
  310:	80 0d       	add	r24, r0
  312:	11 24       	eor	r1, r1
  314:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D6 = ((HLCD_ArrLCDCongf[i].D6_Port<<4) + HLCD_ArrLCDCongf[i].D6_Pin);
+			Local_u8_LCd_D6 = ((HLCD_ArrLCDCongf[i].D6_Port<<4) + HLCD_ArrLCDCongf[i].D6_Pin);
  318:	f8 01       	movw	r30, r16
  31a:	94 89       	ldd	r25, Z+20	; 0x14
  31c:	85 89       	ldd	r24, Z+21	; 0x15
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D6 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D6 , MPORT_enuPINOUTPUT);
  31e:	60 e0       	ldi	r22, 0x00	; 0
  320:	f0 e1       	ldi	r31, 0x10	; 16
  322:	9f 9f       	mul	r25, r31
  324:	80 0d       	add	r24, r0
  326:	11 24       	eor	r1, r1
  328:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D7 = ((HLCD_ArrLCDCongf[i].D7_Port<<4) + HLCD_ArrLCDCongf[i].D7_Pin);
+			Local_u8_LCd_D7 = ((HLCD_ArrLCDCongf[i].D7_Port<<4) + HLCD_ArrLCDCongf[i].D7_Pin);
  32c:	f8 01       	movw	r30, r16
  32e:	96 89       	ldd	r25, Z+22	; 0x16
  330:	87 89       	ldd	r24, Z+23	; 0x17
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D7 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D7 , MPORT_enuPINOUTPUT);
  332:	60 e0       	ldi	r22, 0x00	; 0
  334:	f0 e1       	ldi	r31, 0x10	; 16
  336:	9f 9f       	mul	r25, r31
  338:	80 0d       	add	r24, r0
  33a:	11 24       	eor	r1, r1
  33c:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_RS = ((HLCD_ArrLCDCongf[i].RS_Port<<4) + HLCD_ArrLCDCongf[i].RS_Pin);
+			Local_u8_LCd_RS = ((HLCD_ArrLCDCongf[i].RS_Port<<4) + HLCD_ArrLCDCongf[i].RS_Pin);
  340:	f8 01       	movw	r30, r16
  342:	90 8d       	ldd	r25, Z+24	; 0x18
  344:	81 8d       	ldd	r24, Z+25	; 0x19
-		 MPORT_enuSetPinDirection(Local_u8_LCd_RS , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_RS , MPORT_enuPINOUTPUT);
  346:	60 e0       	ldi	r22, 0x00	; 0
  348:	f0 e1       	ldi	r31, 0x10	; 16
  34a:	9f 9f       	mul	r25, r31
  34c:	80 0d       	add	r24, r0
  34e:	11 24       	eor	r1, r1
  350:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_RW = ((HLCD_ArrLCDCongf[i].RW_Port<<4) + HLCD_ArrLCDCongf[i].RW_Pin);
+			Local_u8_LCd_RW = ((HLCD_ArrLCDCongf[i].RW_Port<<4) + HLCD_ArrLCDCongf[i].RW_Pin);
  354:	f8 01       	movw	r30, r16
  356:	92 8d       	ldd	r25, Z+26	; 0x1a
  358:	83 8d       	ldd	r24, Z+27	; 0x1b
-		 MPORT_enuSetPinDirection(Local_u8_LCd_RW , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_RW , MPORT_enuPINOUTPUT);
  35a:	60 e0       	ldi	r22, 0x00	; 0
  35c:	f0 e1       	ldi	r31, 0x10	; 16
  35e:	9f 9f       	mul	r25, r31
  360:	80 0d       	add	r24, r0
  362:	11 24       	eor	r1, r1
  364:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_E = ((HLCD_ArrLCDCongf[i].E_Port<<4) + HLCD_ArrLCDCongf[i].E_Pin);
+			Local_u8_LCd_E = ((HLCD_ArrLCDCongf[i].E_Port<<4) + HLCD_ArrLCDCongf[i].E_Pin);
  368:	f8 01       	movw	r30, r16
  36a:	94 8d       	ldd	r25, Z+28	; 0x1c
  36c:	85 8d       	ldd	r24, Z+29	; 0x1d
-		 MPORT_enuSetPinDirection(Local_u8_LCd_E , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_E , MPORT_enuPINOUTPUT);
  36e:	60 e0       	ldi	r22, 0x00	; 0
  370:	f0 e1       	ldi	r31, 0x10	; 16
  372:	9f 9f       	mul	r25, r31
  374:	80 0d       	add	r24, r0
  376:	11 24       	eor	r1, r1
  378:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 
-		 functionSetCmd |= 0x10; // Set DL to 1
+			
+			functionSetCmd |= 0x10; // Set DL to 1
  37c:	60 e3       	ldi	r22, 0x30	; 48
  37e:	57 c0       	rjmp	.+174    	; 0x42e <__EEPROM_REGION_LENGTH__+0x2e>
 
-		 }
-		 else if(HLCD_ArrLCDCongf[i].DL == HLCD_enu_4Bits)
+		}
+		else if(HLCD_ArrLCDCongf[i].DL == HLCD_enu_4Bits)
  380:	81 11       	cpse	r24, r1
  382:	54 c0       	rjmp	.+168    	; 0x42c <__EEPROM_REGION_LENGTH__+0x2c>
-		 {
-		 Local_u8_LCd_D4 = ((HLCD_ArrLCDCongf[i].D4_Port<<4) + HLCD_ArrLCDCongf[i].D4_Pin);
+		{
+			Local_u8_LCd_D4 = ((HLCD_ArrLCDCongf[i].D4_Port<<4) + HLCD_ArrLCDCongf[i].D4_Pin);
  384:	8e e1       	ldi	r24, 0x1E	; 30
  386:	8c 9f       	mul	r24, r28
  388:	80 01       	movw	r16, r0
@@ -591,99 +591,99 @@ void HLCD_vLCD_init(void)
  394:	f8 01       	movw	r30, r16
  396:	90 89       	ldd	r25, Z+16	; 0x10
  398:	81 89       	ldd	r24, Z+17	; 0x11
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D4 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D4 , MPORT_enuPINOUTPUT);
  39a:	60 e0       	ldi	r22, 0x00	; 0
  39c:	f0 e1       	ldi	r31, 0x10	; 16
  39e:	9f 9f       	mul	r25, r31
  3a0:	80 0d       	add	r24, r0
  3a2:	11 24       	eor	r1, r1
  3a4:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D5 = ((HLCD_ArrLCDCongf[i].D5_Port<<4) + HLCD_ArrLCDCongf[i].D5_Pin);
+			Local_u8_LCd_D5 = ((HLCD_ArrLCDCongf[i].D5_Port<<4) + HLCD_ArrLCDCongf[i].D5_Pin);
  3a8:	f8 01       	movw	r30, r16
  3aa:	92 89       	ldd	r25, Z+18	; 0x12
  3ac:	83 89       	ldd	r24, Z+19	; 0x13
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D5 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D5 , MPORT_enuPINOUTPUT);
  3ae:	60 e0       	ldi	r22, 0x00	; 0
  3b0:	f0 e1       	ldi	r31, 0x10	; 16
  3b2:	9f 9f       	mul	r25, r31
  3b4:	80 0d       	add	r24, r0
  3b6:	11 24       	eor	r1, r1
  3b8:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D6 = ((HLCD_ArrLCDCongf[i].D6_Port<<4) + HLCD_ArrLCDCongf[i].D6_Pin);
+			Local_u8_LCd_D6 = ((HLCD_ArrLCDCongf[i].D6_Port<<4) + HLCD_ArrLCDCongf[i].D6_Pin);
  3bc:	f8 01       	movw	r30, r16
  3be:	94 89       	ldd	r25, Z+20	; 0x14
  3c0:	85 89       	ldd	r24, Z+21	; 0x15
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D6 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D6 , MPORT_enuPINOUTPUT);
  3c2:	60 e0       	ldi	r22, 0x00	; 0
  3c4:	f0 e1       	ldi	r31, 0x10	; 16
  3c6:	9f 9f       	mul	r25, r31
  3c8:	80 0d       	add	r24, r0
  3ca:	11 24       	eor	r1, r1
  3cc:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_D7 = ((HLCD_ArrLCDCongf[i].D7_Port<<4) + HLCD_ArrLCDCongf[i].D7_Pin);
+			Local_u8_LCd_D7 = ((HLCD_ArrLCDCongf[i].D7_Port<<4) + HLCD_ArrLCDCongf[i].D7_Pin);
  3d0:	f8 01       	movw	r30, r16
  3d2:	96 89       	ldd	r25, Z+22	; 0x16
  3d4:	87 89       	ldd	r24, Z+23	; 0x17
-		 MPORT_enuSetPinDirection(Local_u8_LCd_D7 , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_D7 , MPORT_enuPINOUTPUT);
  3d6:	60 e0       	ldi	r22, 0x00	; 0
  3d8:	f0 e1       	ldi	r31, 0x10	; 16
  3da:	9f 9f       	mul	r25, r31
  3dc:	80 0d       	add	r24, r0
  3de:	11 24       	eor	r1, r1
  3e0:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_RS = ((HLCD_ArrLCDCongf[i].RS_Port<<4) + HLCD_ArrLCDCongf[i].RS_Pin);
+			Local_u8_LCd_RS = ((HLCD_ArrLCDCongf[i].RS_Port<<4) + HLCD_ArrLCDCongf[i].RS_Pin);
  3e4:	f8 01       	movw	r30, r16
  3e6:	90 8d       	ldd	r25, Z+24	; 0x18
  3e8:	81 8d       	ldd	r24, Z+25	; 0x19
-		 MPORT_enuSetPinDirection(Local_u8_LCd_RS , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_RS , MPORT_enuPINOUTPUT);
  3ea:	60 e0       	ldi	r22, 0x00	; 0
  3ec:	f0 e1       	ldi	r31, 0x10	; 16
  3ee:	9f 9f       	mul	r25, r31
  3f0:	80 0d       	add	r24, r0
  3f2:	11 24       	eor	r1, r1
  3f4:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_RW = ((HLCD_ArrLCDCongf[i].RW_Port<<4) + HLCD_ArrLCDCongf[i].RW_Pin);
+			Local_u8_LCd_RW = ((HLCD_ArrLCDCongf[i].RW_Port<<4) + HLCD_ArrLCDCongf[i].RW_Pin);
  3f8:	f8 01       	movw	r30, r16
  3fa:	92 8d       	ldd	r25, Z+26	; 0x1a
  3fc:	83 8d       	ldd	r24, Z+27	; 0x1b
-		 MPORT_enuSetPinDirection(Local_u8_LCd_RW , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_RW , MPORT_enuPINOUTPUT);
  3fe:	60 e0       	ldi	r22, 0x00	; 0
  400:	f0 e1       	ldi	r31, 0x10	; 16
  402:	9f 9f       	mul	r25, r31
  404:	80 0d       	add	r24, r0
  406:	11 24       	eor	r1, r1
  408:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 Local_u8_LCd_E = ((HLCD_ArrLCDCongf[i].E_Port<<4) + HLCD_ArrLCDCongf[i].E_Pin);
+			Local_u8_LCd_E = ((HLCD_ArrLCDCongf[i].E_Port<<4) + HLCD_ArrLCDCongf[i].E_Pin);
  40c:	f8 01       	movw	r30, r16
  40e:	94 8d       	ldd	r25, Z+28	; 0x1c
  410:	85 8d       	ldd	r24, Z+29	; 0x1d
-		 MPORT_enuSetPinDirection(Local_u8_LCd_E , MPORT_enuPINOUTPUT);
+			MPORT_enuSetPinDirection(Local_u8_LCd_E , MPORT_enuPINOUTPUT);
  412:	60 e0       	ldi	r22, 0x00	; 0
  414:	f0 e1       	ldi	r31, 0x10	; 16
  416:	9f 9f       	mul	r25, r31
  418:	80 0d       	add	r24, r0
  41a:	11 24       	eor	r1, r1
  41c:	0e 94 54 05 	call	0xaa8	; 0xaa8 <MPORT_enuSetPinDirection>
-		 
-		  HLCD_enuLCD_WriteCommand(i, 0b00000010 );
+			
+			HLCD_enuLCD_WriteCommand(i, 0b00000010 );
  420:	62 e0       	ldi	r22, 0x02	; 2
  422:	8c 2f       	mov	r24, r28
  424:	0e 94 49 00 	call	0x92	; 0x92 <HLCD_enuLCD_WriteCommand>
-	 {
+	{
 
 		
-		 /*1-Wait for more than 30msafter VDD rises to 4.5V.*/
-		 _delay_ms(35);
-		 u8 functionSetCmd = 0x20; // Base value: 0b00100000
+		/*1-Wait for more than 30msafter VDD rises to 4.5V.*/
+		_delay_ms(35);
+		u8 functionSetCmd = 0x20; // Base value: 0b00100000
  428:	60 e2       	ldi	r22, 0x20	; 32
  42a:	01 c0       	rjmp	.+2      	; 0x42e <__EEPROM_REGION_LENGTH__+0x2e>
  42c:	60 e2       	ldi	r22, 0x20	; 32
-		 MPORT_enuSetPinDirection(Local_u8_LCd_E , MPORT_enuPINOUTPUT);
-		 
-		  HLCD_enuLCD_WriteCommand(i, 0b00000010 );
-		 }
-		 // Set N (Number of Display Lines)
-		 if (HLCD_ArrLCDCongf[i].N == HLCD_enu_2Lines) {
+			MPORT_enuSetPinDirection(Local_u8_LCd_E , MPORT_enuPINOUTPUT);
+			
+			HLCD_enuLCD_WriteCommand(i, 0b00000010 );
+		}
+		// Set N (Number of Display Lines)
+		if (HLCD_ArrLCDCongf[i].N == HLCD_enu_2Lines) {
  42e:	8e e1       	ldi	r24, 0x1E	; 30
  430:	8c 9f       	mul	r24, r28
  432:	f0 01       	movw	r30, r0
@@ -695,11 +695,11 @@ void HLCD_vLCD_init(void)
  43e:	81 81       	ldd	r24, Z+1	; 0x01
  440:	81 30       	cpi	r24, 0x01	; 1
  442:	09 f4       	brne	.+2      	; 0x446 <__EEPROM_REGION_LENGTH__+0x46>
-			 functionSetCmd |= 0x08; // Set N to 1
+			functionSetCmd |= 0x08; // Set N to 1
  444:	68 60       	ori	r22, 0x08	; 8
-		 }
-		 // Set F (Font Type)
-		 if (HLCD_ArrLCDCongf[i].F == HLCD_enu_5x11) {
+		}
+		// Set F (Font Type)
+		if (HLCD_ArrLCDCongf[i].F == HLCD_enu_5x11) {
  446:	8e e1       	ldi	r24, 0x1E	; 30
  448:	8c 9f       	mul	r24, r28
  44a:	f0 01       	movw	r30, r0
@@ -711,10 +711,10 @@ void HLCD_vLCD_init(void)
  456:	82 81       	ldd	r24, Z+2	; 0x02
  458:	81 30       	cpi	r24, 0x01	; 1
  45a:	09 f4       	brne	.+2      	; 0x45e <__EEPROM_REGION_LENGTH__+0x5e>
-			 functionSetCmd |= 0x04; // Set F to 1
+			functionSetCmd |= 0x04; // Set F to 1
  45c:	64 60       	ori	r22, 0x04	; 4
-		 }
-		 HLCD_enuLCD_WriteCommand(i, functionSetCmd );
+		}
+		HLCD_enuLCD_WriteCommand(i, functionSetCmd );
  45e:	1c 2f       	mov	r17, r28
  460:	8c 2f       	mov	r24, r28
  462:	0e 94 49 00 	call	0x92	; 0x92 <HLCD_enuLCD_WriteCommand>
@@ -728,12 +728,12 @@ void HLCD_vLCD_init(void)
  468:	2a 95       	dec	r18
  46a:	f1 f7       	brne	.-4      	; 0x468 <__EEPROM_REGION_LENGTH__+0x68>
  46c:	00 00       	nop
-		 
-		 /*4-display on / off control */
-		 // Display ON/OFF Control Command
-		 u8 displayCtrlCmd = 0x08; // Base value: 0b00001000
-		 // Set D (Display ON/OFF)
-		 if (HLCD_ArrLCDCongf[i].D == HLCD_enu_LCD_on) {
+		
+		/*4-display on / off control */
+		// Display ON/OFF Control Command
+		u8 displayCtrlCmd = 0x08; // Base value: 0b00001000
+		// Set D (Display ON/OFF)
+		if (HLCD_ArrLCDCongf[i].D == HLCD_enu_LCD_on) {
  46e:	8e e1       	ldi	r24, 0x1E	; 30
  470:	8c 9f       	mul	r24, r28
  472:	f0 01       	movw	r30, r0
@@ -745,21 +745,21 @@ void HLCD_vLCD_init(void)
  47e:	83 81       	ldd	r24, Z+3	; 0x03
  480:	81 30       	cpi	r24, 0x01	; 1
  482:	11 f0       	breq	.+4      	; 0x488 <__EEPROM_REGION_LENGTH__+0x88>
-		 _delay_us(50);
-		 
-		 
-		 /*4-display on / off control */
-		 // Display ON/OFF Control Command
-		 u8 displayCtrlCmd = 0x08; // Base value: 0b00001000
+		_delay_us(50);
+		
+		
+		/*4-display on / off control */
+		// Display ON/OFF Control Command
+		u8 displayCtrlCmd = 0x08; // Base value: 0b00001000
  484:	68 e0       	ldi	r22, 0x08	; 8
  486:	01 c0       	rjmp	.+2      	; 0x48a <__EEPROM_REGION_LENGTH__+0x8a>
-		 // Set D (Display ON/OFF)
-		 if (HLCD_ArrLCDCongf[i].D == HLCD_enu_LCD_on) {
-			 displayCtrlCmd |= 0x04; // Set D to 1
+		// Set D (Display ON/OFF)
+		if (HLCD_ArrLCDCongf[i].D == HLCD_enu_LCD_on) {
+			displayCtrlCmd |= 0x04; // Set D to 1
  488:	6c e0       	ldi	r22, 0x0C	; 12
-		 }
-		 // Set C (Cursor ON/OFF)
-		 if (HLCD_ArrLCDCongf[i].C == HLCD_enu_Cursor_on) {
+		}
+		// Set C (Cursor ON/OFF)
+		if (HLCD_ArrLCDCongf[i].C == HLCD_enu_Cursor_on) {
  48a:	8e e1       	ldi	r24, 0x1E	; 30
  48c:	8c 9f       	mul	r24, r28
  48e:	f0 01       	movw	r30, r0
@@ -771,11 +771,11 @@ void HLCD_vLCD_init(void)
  49a:	84 81       	ldd	r24, Z+4	; 0x04
  49c:	81 30       	cpi	r24, 0x01	; 1
  49e:	09 f4       	brne	.+2      	; 0x4a2 <__EEPROM_REGION_LENGTH__+0xa2>
-			 displayCtrlCmd |= 0x02; // Set C to 1
+			displayCtrlCmd |= 0x02; // Set C to 1
  4a0:	62 60       	ori	r22, 0x02	; 2
-		 }
-		 // Set B (Blink ON/OFF)
-		 if (HLCD_ArrLCDCongf[i].B == HLCD_enu_Blink_on) {
+		}
+		// Set B (Blink ON/OFF)
+		if (HLCD_ArrLCDCongf[i].B == HLCD_enu_Blink_on) {
  4a2:	8e e1       	ldi	r24, 0x1E	; 30
  4a4:	8c 9f       	mul	r24, r28
  4a6:	f0 01       	movw	r30, r0
@@ -787,23 +787,23 @@ void HLCD_vLCD_init(void)
  4b2:	85 81       	ldd	r24, Z+5	; 0x05
  4b4:	81 30       	cpi	r24, 0x01	; 1
  4b6:	09 f4       	brne	.+2      	; 0x4ba <__EEPROM_REGION_LENGTH__+0xba>
-			 displayCtrlCmd |= 0x01; // Set B to 1
+			displayCtrlCmd |= 0x01; // Set B to 1
  4b8:	61 60       	ori	r22, 0x01	; 1
-		 }
-		 // Send the Display ON/OFF Control command to the LCD
-		 HLCD_enuLCD_WriteCommand(i, displayCtrlCmd);
+		}
+		// Send the Display ON/OFF Control command to the LCD
+		HLCD_enuLCD_WriteCommand(i, displayCtrlCmd);
  4ba:	81 2f       	mov	r24, r17
  4bc:	0e 94 49 00 	call	0x92	; 0x92 <HLCD_enuLCD_WriteCommand>
  4c0:	85 e8       	ldi	r24, 0x85	; 133
  4c2:	8a 95       	dec	r24
  4c4:	f1 f7       	brne	.-4      	; 0x4c2 <__EEPROM_REGION_LENGTH__+0xc2>
  4c6:	00 00       	nop
-		 
-		 /*5- delay more than 39 us*/
-		 _delay_us(50);
-		 
-		 /*6-display clear*/
-		 HLCD_vLCD_ClearDisplay(i);
+		
+		/*5- delay more than 39 us*/
+		_delay_us(50);
+		
+		/*6-display clear*/
+		HLCD_vLCD_ClearDisplay(i);
  4c8:	81 2f       	mov	r24, r17
  4ca:	0e 94 30 01 	call	0x260	; 0x260 <HLCD_vLCD_ClearDisplay>
 	#else
@@ -818,12 +818,12 @@ void HLCD_vLCD_init(void)
  4d4:	f1 f7       	brne	.-4      	; 0x4d2 <__EEPROM_REGION_LENGTH__+0xd2>
  4d6:	00 c0       	rjmp	.+0      	; 0x4d8 <__EEPROM_REGION_LENGTH__+0xd8>
  4d8:	00 00       	nop
-		 _delay_ms(2);
-		 
-		 /*8-entry mode set*/
-		 u8 entryModeCmd = 0x04; // Base value: 0b00000100
-		 // Set I/D (Increment/Decrement)
-		 if (HLCD_ArrLCDCongf[i].I_D == HLCD_enu_INC) {
+		_delay_ms(2);
+		
+		/*8-entry mode set*/
+		u8 entryModeCmd = 0x04; // Base value: 0b00000100
+		// Set I/D (Increment/Decrement)
+		if (HLCD_ArrLCDCongf[i].I_D == HLCD_enu_INC) {
  4da:	8e e1       	ldi	r24, 0x1E	; 30
  4dc:	8c 9f       	mul	r24, r28
  4de:	f0 01       	movw	r30, r0
@@ -835,21 +835,21 @@ void HLCD_vLCD_init(void)
  4ea:	86 81       	ldd	r24, Z+6	; 0x06
  4ec:	81 30       	cpi	r24, 0x01	; 1
  4ee:	11 f0       	breq	.+4      	; 0x4f4 <__EEPROM_REGION_LENGTH__+0xf4>
-		 
-		 /*7-delay more than 1.53ms*/
-		 _delay_ms(2);
-		 
-		 /*8-entry mode set*/
-		 u8 entryModeCmd = 0x04; // Base value: 0b00000100
+		
+		/*7-delay more than 1.53ms*/
+		_delay_ms(2);
+		
+		/*8-entry mode set*/
+		u8 entryModeCmd = 0x04; // Base value: 0b00000100
  4f0:	64 e0       	ldi	r22, 0x04	; 4
  4f2:	01 c0       	rjmp	.+2      	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
-		 // Set I/D (Increment/Decrement)
-		 if (HLCD_ArrLCDCongf[i].I_D == HLCD_enu_INC) {
-			 entryModeCmd |= 0x02; // Set I/D to 1
+		// Set I/D (Increment/Decrement)
+		if (HLCD_ArrLCDCongf[i].I_D == HLCD_enu_INC) {
+			entryModeCmd |= 0x02; // Set I/D to 1
  4f4:	66 e0       	ldi	r22, 0x06	; 6
-		 }
-		 // Set SH (Shift Entire Display)
-		 if (HLCD_ArrLCDCongf[i].S == HLCD_enu_EnableShift) {
+		}
+		// Set SH (Shift Entire Display)
+		if (HLCD_ArrLCDCongf[i].S == HLCD_enu_EnableShift) {
  4f6:	8e e1       	ldi	r24, 0x1E	; 30
  4f8:	8c 9f       	mul	r24, r28
  4fa:	f0 01       	movw	r30, r0
@@ -861,28 +861,28 @@ void HLCD_vLCD_init(void)
  506:	87 81       	ldd	r24, Z+7	; 0x07
  508:	81 30       	cpi	r24, 0x01	; 1
  50a:	09 f4       	brne	.+2      	; 0x50e <__EEPROM_REGION_LENGTH__+0x10e>
-			 entryModeCmd |= 0x01; // Set SH to 1
+			entryModeCmd |= 0x01; // Set SH to 1
  50c:	61 60       	ori	r22, 0x01	; 1
-		 }
-		 // Send the Entry Mode Set command to the LCD
-		 HLCD_enuLCD_WriteCommand(i, entryModeCmd);
+		}
+		// Send the Entry Mode Set command to the LCD
+		HLCD_enuLCD_WriteCommand(i, entryModeCmd);
  50e:	81 2f       	mov	r24, r17
  510:	0e 94 49 00 	call	0x92	; 0x92 <HLCD_enuLCD_WriteCommand>
 extern  HLCD_strLCDCONFG_8BIT_t HLCD_ArrLCDCongf[Num_of_LCD];
 
 void HLCD_vLCD_init(void)
 {
-     u8 Local_u8_LCd_D0=0 , Local_u8_LCd_D1=0 , Local_u8_LCd_D2=0 , Local_u8_LCd_D3=0 , Local_u8_LCd_D4=0 , Local_u8_LCd_D5=0 , Local_u8_LCd_D6=0 , Local_u8_LCd_D7=0 , Local_u8_LCd_RS=0 , Local_u8_LCd_RW=0 , Local_u8_LCd_E=0;
-	 for (int i = 0; i < Num_of_LCD; i++) 
+	u8 Local_u8_LCd_D0=0 , Local_u8_LCd_D1=0 , Local_u8_LCd_D2=0 , Local_u8_LCd_D3=0 , Local_u8_LCd_D4=0 , Local_u8_LCd_D5=0 , Local_u8_LCd_D6=0 , Local_u8_LCd_D7=0 , Local_u8_LCd_RS=0 , Local_u8_LCd_RW=0 , Local_u8_LCd_E=0;
+	for (int i = 0; i < Num_of_LCD; i++)
  514:	21 96       	adiw	r28, 0x01	; 1
  516:	c2 30       	cpi	r28, 0x02	; 2
  518:	d1 05       	cpc	r29, r1
  51a:	0c f4       	brge	.+2      	; 0x51e <__EEPROM_REGION_LENGTH__+0x11e>
  51c:	ac ce       	rjmp	.-680    	; 0x276 <HLCD_vLCD_init+0xe>
-		 // Send the Entry Mode Set command to the LCD
-		 HLCD_enuLCD_WriteCommand(i, entryModeCmd);
-		 
-	 }
+		// Send the Entry Mode Set command to the LCD
+		HLCD_enuLCD_WriteCommand(i, entryModeCmd);
+		
+	}
 	
 }
  51e:	df 91       	pop	r29
@@ -892,9 +892,9 @@ void HLCD_vLCD_init(void)
  526:	08 95       	ret
 
 00000528 <HLCD_enuLCD_WriteCharacter>:
-	_delay_us(1);
+		_delay_us(1);
 	}
-return Ret_enuError ;
+	return Ret_enuError ;
 }
 HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Data)
 {
@@ -912,9 +912,9 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
 	}
 	else
 	{
-	 Ret_enuError = HLCD_enuOK;
-     /*1-rw->low for writing*/
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Pin, MDIO_enuLOW);
+		Ret_enuError = HLCD_enuOK;
+		/*1-rw->low for writing*/
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RW_Pin, MDIO_enuLOW);
  53a:	c8 2f       	mov	r28, r24
  53c:	d0 e0       	ldi	r29, 0x00	; 0
  53e:	8e e1       	ldi	r24, 0x1E	; 30
@@ -930,29 +930,29 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  552:	40 e0       	ldi	r20, 0x00	; 0
  554:	82 8d       	ldd	r24, Z+26	; 0x1a
  556:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	/*2-rs-> low for data*/
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Pin, MDIO_enuHIGH);
+		/*2-rs-> low for data*/
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].RS_Pin, MDIO_enuHIGH);
  55a:	f8 01       	movw	r30, r16
  55c:	61 8d       	ldd	r22, Z+25	; 0x19
  55e:	41 e0       	ldi	r20, 0x01	; 1
  560:	80 8d       	ldd	r24, Z+24	; 0x18
  562:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	 if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_8Bits)
+		if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_8Bits)
  566:	f8 01       	movw	r30, r16
  568:	80 81       	ld	r24, Z
  56a:	81 30       	cpi	r24, 0x01	; 1
  56c:	09 f0       	breq	.+2      	; 0x570 <HLCD_enuLCD_WriteCharacter+0x48>
  56e:	41 c0       	rjmp	.+130    	; 0x5f2 <HLCD_enuLCD_WriteCharacter+0xca>
-	 {
-	/*3-send data*/
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Pin,(Copy_u8Data >> 0) & 0x01 );
+		{
+			/*3-send data*/
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D0_Pin,(Copy_u8Data >> 0) & 0x01 );
  570:	8f 01       	movw	r16, r30
  572:	61 85       	ldd	r22, Z+9	; 0x09
  574:	4f 2d       	mov	r20, r15
  576:	41 70       	andi	r20, 0x01	; 1
  578:	80 85       	ldd	r24, Z+8	; 0x08
  57a:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Pin,(Copy_u8Data >> 1) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D1_Pin,(Copy_u8Data >> 1) & 0x01 );
  57e:	f8 01       	movw	r30, r16
  580:	63 85       	ldd	r22, Z+11	; 0x0b
  582:	f1 fa       	bst	r15, 1
@@ -960,7 +960,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  586:	40 f9       	bld	r20, 0
  588:	82 85       	ldd	r24, Z+10	; 0x0a
  58a:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Pin,(Copy_u8Data >> 2) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D2_Pin,(Copy_u8Data >> 2) & 0x01 );
  58e:	f8 01       	movw	r30, r16
  590:	65 85       	ldd	r22, Z+13	; 0x0d
  592:	f2 fa       	bst	r15, 2
@@ -968,7 +968,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  596:	40 f9       	bld	r20, 0
  598:	84 85       	ldd	r24, Z+12	; 0x0c
  59a:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Pin,(Copy_u8Data >> 3) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D3_Pin,(Copy_u8Data >> 3) & 0x01 );
  59e:	f8 01       	movw	r30, r16
  5a0:	67 85       	ldd	r22, Z+15	; 0x0f
  5a2:	f3 fa       	bst	r15, 3
@@ -976,7 +976,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  5a6:	40 f9       	bld	r20, 0
  5a8:	86 85       	ldd	r24, Z+14	; 0x0e
  5aa:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin,(Copy_u8Data >> 4) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin,(Copy_u8Data >> 4) & 0x01 );
  5ae:	f8 01       	movw	r30, r16
  5b0:	61 89       	ldd	r22, Z+17	; 0x11
  5b2:	f4 fa       	bst	r15, 4
@@ -984,7 +984,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  5b6:	40 f9       	bld	r20, 0
  5b8:	80 89       	ldd	r24, Z+16	; 0x10
  5ba:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin,(Copy_u8Data >> 5) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin,(Copy_u8Data >> 5) & 0x01 );
  5be:	f8 01       	movw	r30, r16
  5c0:	63 89       	ldd	r22, Z+19	; 0x13
  5c2:	f5 fa       	bst	r15, 5
@@ -992,7 +992,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  5c6:	40 f9       	bld	r20, 0
  5c8:	82 89       	ldd	r24, Z+18	; 0x12
  5ca:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin,(Copy_u8Data >> 6) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin,(Copy_u8Data >> 6) & 0x01 );
  5ce:	f8 01       	movw	r30, r16
  5d0:	65 89       	ldd	r22, Z+21	; 0x15
  5d2:	f6 fa       	bst	r15, 6
@@ -1000,7 +1000,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  5d6:	40 f9       	bld	r20, 0
  5d8:	84 89       	ldd	r24, Z+20	; 0x14
  5da:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin,(Copy_u8Data >> 7) & 0x01 );
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin,(Copy_u8Data >> 7) & 0x01 );
  5de:	f8 01       	movw	r30, r16
  5e0:	67 89       	ldd	r22, Z+23	; 0x17
  5e2:	4f 2d       	mov	r20, r15
@@ -1010,15 +1010,15 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  5ea:	86 89       	ldd	r24, Z+22	; 0x16
  5ec:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
  5f0:	5e c0       	rjmp	.+188    	; 0x6ae <HLCD_enuLCD_WriteCharacter+0x186>
-	 }
-	 else if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_4Bits)
+		}
+		else if(HLCD_ArrLCDCongf[Copy_enuLCDNum].DL == HLCD_enu_4Bits)
  5f2:	81 11       	cpse	r24, r1
  5f4:	5c c0       	rjmp	.+184    	; 0x6ae <HLCD_enuLCD_WriteCharacter+0x186>
-	 {
-		/*3-send command*/
-		
-		/* 1. Send the higher nibble (bits 7-4) */
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Data >> 4) & 0x01);
+		{
+			/*3-send command*/
+			
+			/* 1. Send the higher nibble (bits 7-4) */
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Data >> 4) & 0x01);
  5f6:	8e e1       	ldi	r24, 0x1E	; 30
  5f8:	8c 9f       	mul	r24, r28
  5fa:	80 01       	movw	r16, r0
@@ -1034,7 +1034,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  60e:	40 f9       	bld	r20, 0
  610:	80 89       	ldd	r24, Z+16	; 0x10
  612:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Data >> 5) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Data >> 5) & 0x01);
  616:	f8 01       	movw	r30, r16
  618:	63 89       	ldd	r22, Z+19	; 0x13
  61a:	f5 fa       	bst	r15, 5
@@ -1042,7 +1042,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  61e:	40 f9       	bld	r20, 0
  620:	82 89       	ldd	r24, Z+18	; 0x12
  622:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Data >> 6) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Data >> 6) & 0x01);
  626:	f8 01       	movw	r30, r16
  628:	65 89       	ldd	r22, Z+21	; 0x15
  62a:	f6 fa       	bst	r15, 6
@@ -1050,7 +1050,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  62e:	40 f9       	bld	r20, 0
  630:	84 89       	ldd	r24, Z+20	; 0x14
  632:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Data >> 7) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Data >> 7) & 0x01);
  636:	f8 01       	movw	r30, r16
  638:	67 89       	ldd	r22, Z+23	; 0x17
  63a:	4f 2d       	mov	r20, r15
@@ -1060,8 +1060,8 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  642:	86 89       	ldd	r24, Z+22	; 0x16
  644:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
 
-		/* 2. Enable pulse (to latch the higher nibble) */
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
+			/* 2. Enable pulse (to latch the higher nibble) */
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
  648:	f8 01       	movw	r30, r16
  64a:	65 8d       	ldd	r22, Z+29	; 0x1d
  64c:	41 e0       	ldi	r20, 0x01	; 1
@@ -1077,8 +1077,8 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  656:	fa 95       	dec	r31
  658:	f1 f7       	brne	.-4      	; 0x656 <HLCD_enuLCD_WriteCharacter+0x12e>
  65a:	00 c0       	rjmp	.+0      	; 0x65c <HLCD_enuLCD_WriteCharacter+0x134>
-		_delay_us(1);
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
+			_delay_us(1);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
  65c:	f8 01       	movw	r30, r16
  65e:	65 8d       	ldd	r22, Z+29	; 0x1d
  660:	40 e0       	ldi	r20, 0x00	; 0
@@ -1088,17 +1088,17 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  66a:	fa 95       	dec	r31
  66c:	f1 f7       	brne	.-4      	; 0x66a <HLCD_enuLCD_WriteCharacter+0x142>
  66e:	00 c0       	rjmp	.+0      	; 0x670 <HLCD_enuLCD_WriteCharacter+0x148>
-		_delay_us(1);
+			_delay_us(1);
 
-		/* 3. Send the lower nibble (bits 3-0) */
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Data >> 0) & 0x01);
+			/* 3. Send the lower nibble (bits 3-0) */
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D4_Pin, (Copy_u8Data >> 0) & 0x01);
  670:	f8 01       	movw	r30, r16
  672:	61 89       	ldd	r22, Z+17	; 0x11
  674:	4f 2d       	mov	r20, r15
  676:	41 70       	andi	r20, 0x01	; 1
  678:	80 89       	ldd	r24, Z+16	; 0x10
  67a:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Data >> 1) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D5_Pin, (Copy_u8Data >> 1) & 0x01);
  67e:	f8 01       	movw	r30, r16
  680:	63 89       	ldd	r22, Z+19	; 0x13
  682:	f1 fa       	bst	r15, 1
@@ -1106,7 +1106,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  686:	40 f9       	bld	r20, 0
  688:	82 89       	ldd	r24, Z+18	; 0x12
  68a:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Data >> 2) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D6_Pin, (Copy_u8Data >> 2) & 0x01);
  68e:	f8 01       	movw	r30, r16
  690:	65 89       	ldd	r22, Z+21	; 0x15
  692:	f2 fa       	bst	r15, 2
@@ -1114,7 +1114,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  696:	40 f9       	bld	r20, 0
  698:	84 89       	ldd	r24, Z+20	; 0x14
  69a:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Data >> 3) & 0x01);
+			MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].D7_Pin, (Copy_u8Data >> 3) & 0x01);
  69e:	f8 01       	movw	r30, r16
  6a0:	67 89       	ldd	r22, Z+23	; 0x17
  6a2:	f3 fa       	bst	r15, 3
@@ -1122,9 +1122,9 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  6a6:	40 f9       	bld	r20, 0
  6a8:	86 89       	ldd	r24, Z+22	; 0x16
  6aa:	0e 94 1e 05 	call	0xa3c	; 0xa3c <MDIO_enuSetPinValue>
-	 }
-	/*4-enable */
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
+		}
+		/*4-enable */
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuHIGH);
  6ae:	2e e1       	ldi	r18, 0x1E	; 30
  6b0:	2c 9f       	mul	r18, r28
  6b2:	c0 01       	movw	r24, r0
@@ -1142,8 +1142,8 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  6cc:	fa 95       	dec	r31
  6ce:	f1 f7       	brne	.-4      	; 0x6cc <HLCD_enuLCD_WriteCharacter+0x1a4>
  6d0:	00 c0       	rjmp	.+0      	; 0x6d2 <HLCD_enuLCD_WriteCharacter+0x1aa>
-	_delay_us(1);
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
+		_delay_us(1);
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
  6d2:	6d 8d       	ldd	r22, Y+29	; 0x1d
  6d4:	40 e0       	ldi	r20, 0x00	; 0
  6d6:	8c 8d       	ldd	r24, Y+28	; 0x1c
@@ -1152,12 +1152,12 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
  6de:	8a 95       	dec	r24
  6e0:	f1 f7       	brne	.-4      	; 0x6de <HLCD_enuLCD_WriteCharacter+0x1b6>
  6e2:	00 c0       	rjmp	.+0      	; 0x6e4 <HLCD_enuLCD_WriteCharacter+0x1bc>
-		Ret_enuError =HLCD_enuINVALIDLCDNAME ; 
+		Ret_enuError =HLCD_enuINVALIDLCDNAME ;
 		
 	}
 	else
 	{
-	 Ret_enuError = HLCD_enuOK;
+		Ret_enuError = HLCD_enuOK;
  6e4:	81 e0       	ldi	r24, 0x01	; 1
  6e6:	01 c0       	rjmp	.+2      	; 0x6ea <HLCD_enuLCD_WriteCharacter+0x1c2>
 HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Data)
@@ -1165,12 +1165,12 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteCharacter(u8 Copy_enuLCDNum, u8 Copy_u8Da
 	HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
 	if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
 	{
-		Ret_enuError =HLCD_enuINVALIDLCDNAME ; 
+		Ret_enuError =HLCD_enuINVALIDLCDNAME ;
  6e8:	82 e0       	ldi	r24, 0x02	; 2
-	MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
-	_delay_us(1);
+		MDIO_enuSetPinValue(HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Port , HLCD_ArrLCDCongf[Copy_enuLCDNum].E_Pin, MDIO_enuLOW);
+		_delay_us(1);
 	}
-return Ret_enuError ;
+	return Ret_enuError ;
 	
 }
  6ea:	df 91       	pop	r29
@@ -1189,7 +1189,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_GotoXY(u8 Copy_enuLCDNum,u8 Copy_u8X , u8 Copy
  6f6:	83 30       	cpi	r24, 0x03	; 3
  6f8:	90 f4       	brcc	.+36     	; 0x71e <HLCD_enuLCD_GotoXY+0x28>
 	{
-		Ret_enuError =HLCD_enuINVALIDLCDNAME ; 
+		Ret_enuError =HLCD_enuINVALIDLCDNAME ;
 		
 	}
 	else if(IS_INVALID_LCD_Y(Copy_u8Y))
@@ -1216,20 +1216,20 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_GotoXY(u8 Copy_enuLCDNum,u8 Copy_u8X , u8 Copy
  70c:	00 00       	nop
 	else
 	{
-	 Ret_enuError = HLCD_enuOK;
-	 u8 location=0;
-	 _delay_ms(2);
-	 if(Copy_u8X == 0)
+		Ret_enuError = HLCD_enuOK;
+		u8 location=0;
+		_delay_ms(2);
+		if(Copy_u8X == 0)
  70e:	61 11       	cpse	r22, r1
-	 {
-		 location=Copy_u8Y;
-	 }
-	 else
-	 {
-		 location=Copy_u8Y + 0x40; //the second row
+		{
+			location=Copy_u8Y;
+		}
+		else
+		{
+			location=Copy_u8Y + 0x40; //the second row
  710:	40 5c       	subi	r20, 0xC0	; 192
-	 }
-	 HLCD_enuLCD_WriteCommand(Copy_enuLCDNum , 128+location); /*1xxxxxxx*/
+		}
+		HLCD_enuLCD_WriteCommand(Copy_enuLCDNum , 128+location); /*1xxxxxxx*/
  712:	60 e8       	ldi	r22, 0x80	; 128
  714:	64 0f       	add	r22, r20
  716:	0e 94 49 00 	call	0x92	; 0x92 <HLCD_enuLCD_WriteCommand>
@@ -1238,7 +1238,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_GotoXY(u8 Copy_enuLCDNum,u8 Copy_u8X , u8 Copy
 	}
 	else
 	{
-	 Ret_enuError = HLCD_enuOK;
+		Ret_enuError = HLCD_enuOK;
  71a:	81 e0       	ldi	r24, 0x01	; 1
  71c:	08 95       	ret
 HLCD_enuErrorStatus_t HLCD_enuLCD_GotoXY(u8 Copy_enuLCDNum,u8 Copy_u8X , u8 Copy_u8Y )
@@ -1246,7 +1246,7 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_GotoXY(u8 Copy_enuLCDNum,u8 Copy_u8X , u8 Copy
 	HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
 	if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
 	{
-		Ret_enuError =HLCD_enuINVALIDLCDNAME ; 
+		Ret_enuError =HLCD_enuINVALIDLCDNAME ;
  71e:	82 e0       	ldi	r24, 0x02	; 2
  720:	08 95       	ret
 		
@@ -1262,10 +1262,10 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_GotoXY(u8 Copy_enuLCDNum,u8 Copy_u8X , u8 Copy
 	{
 		Ret_enuError =HLCD_enuINVALIDLCDX;
  726:	83 e0       	ldi	r24, 0x03	; 3
-	 HLCD_enuLCD_WriteCommand(Copy_enuLCDNum , 128+location); /*1xxxxxxx*/
-  
+		HLCD_enuLCD_WriteCommand(Copy_enuLCDNum , 128+location); /*1xxxxxxx*/
+		
 	}
-    return Ret_enuError ;
+	return Ret_enuError ;
 	
 }
  728:	08 95       	ret
@@ -1388,8 +1388,8 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_StoreSpecialChar(u8 Copy_enuLCDNum, u8 Copy_u8
 		// Write the pattern to CGRAM
 		for (u8 i = 0; i < 8; i++)
 		{
-		    // Move to CGRAM location
-		    HLCD_enuLCD_GotoXY_CGRAM(Copy_enuLCDNum, Copy_u8BlockNumber , i );
+			// Move to CGRAM location
+			HLCD_enuLCD_GotoXY_CGRAM(Copy_enuLCDNum, Copy_u8BlockNumber , i );
  77e:	4d 2f       	mov	r20, r29
  780:	61 2f       	mov	r22, r17
  782:	8c 2f       	mov	r24, r28
@@ -1458,102 +1458,102 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteSpecialChar(u8 Copy_enuLCDNum , u8 Copy_u
  7b8:	1f 93       	push	r17
  7ba:	cf 93       	push	r28
  7bc:	df 93       	push	r29
-			HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
-			if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
+	HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
+	if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
  7be:	83 30       	cpi	r24, 0x03	; 3
  7c0:	c8 f4       	brcc	.+50     	; 0x7f4 <HLCD_enuLCD_WriteSpecialChar+0x3e>
-			{
-				Ret_enuError =HLCD_enuINVALIDLCDNAME;
-				
-			}
-			else if(IS_INVALID_LCD_BLOCK(Copy_u8BlockNumber))
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDNAME;
+		
+	}
+	else if(IS_INVALID_LCD_BLOCK(Copy_u8BlockNumber))
  7c2:	69 30       	cpi	r22, 0x09	; 9
  7c4:	c8 f4       	brcc	.+50     	; 0x7f8 <HLCD_enuLCD_WriteSpecialChar+0x42>
-			{
-				Ret_enuError =HLCD_enuINVALIDBLOCK;
-			}
-			else if(IS_INVALID_LCD_PATTERN(pattern))
+	{
+		Ret_enuError =HLCD_enuINVALIDBLOCK;
+	}
+	else if(IS_INVALID_LCD_PATTERN(pattern))
  7c6:	41 15       	cp	r20, r1
  7c8:	51 05       	cpc	r21, r1
  7ca:	c1 f0       	breq	.+48     	; 0x7fc <HLCD_enuLCD_WriteSpecialChar+0x46>
-			{
-				Ret_enuError =HLCD_enuINVALIDPTR;
-			}
-	        else if(IS_INVALID_LCD_Y(Copy_u8Y))
+	{
+		Ret_enuError =HLCD_enuINVALIDPTR;
+	}
+	else if(IS_INVALID_LCD_Y(Copy_u8Y))
  7cc:	00 31       	cpi	r16, 0x10	; 16
  7ce:	c0 f4       	brcc	.+48     	; 0x800 <__DATA_REGION_LENGTH__>
-	        {
-		        Ret_enuError =HLCD_enuINVALIDLCDY;
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDY;
 		
-	        }
-	        else if(IS_INVALID_LCD_X(Copy_u8X))
+	}
+	else if(IS_INVALID_LCD_X(Copy_u8X))
  7d0:	22 30       	cpi	r18, 0x02	; 2
  7d2:	c0 f4       	brcc	.+48     	; 0x804 <__DATA_REGION_LENGTH__+0x4>
  7d4:	12 2f       	mov	r17, r18
  7d6:	d6 2f       	mov	r29, r22
  7d8:	c8 2f       	mov	r28, r24
-		       Ret_enuError =HLCD_enuINVALIDLCDX;
-	        }
-			else
-			{
-				Ret_enuError = HLCD_enuOK;
-	            HLCD_enuLCD_StoreSpecialChar(Copy_enuLCDNum ,Copy_u8BlockNumber , pattern );
+		Ret_enuError =HLCD_enuINVALIDLCDX;
+	}
+	else
+	{
+		Ret_enuError = HLCD_enuOK;
+		HLCD_enuLCD_StoreSpecialChar(Copy_enuLCDNum ,Copy_u8BlockNumber , pattern );
  7da:	0e 94 ae 03 	call	0x75c	; 0x75c <HLCD_enuLCD_StoreSpecialChar>
-	            HLCD_enuLCD_GotoXY(Copy_enuLCDNum , Copy_u8X , Copy_u8Y);
+		HLCD_enuLCD_GotoXY(Copy_enuLCDNum , Copy_u8X , Copy_u8Y);
  7de:	40 2f       	mov	r20, r16
  7e0:	61 2f       	mov	r22, r17
  7e2:	8c 2f       	mov	r24, r28
  7e4:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <HLCD_enuLCD_GotoXY>
-	            HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum , Copy_u8BlockNumber );
+		HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum , Copy_u8BlockNumber );
  7e8:	6d 2f       	mov	r22, r29
  7ea:	8c 2f       	mov	r24, r28
  7ec:	0e 94 94 02 	call	0x528	; 0x528 <HLCD_enuLCD_WriteCharacter>
-	        {
-		       Ret_enuError =HLCD_enuINVALIDLCDX;
-	        }
-			else
-			{
-				Ret_enuError = HLCD_enuOK;
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDX;
+	}
+	else
+	{
+		Ret_enuError = HLCD_enuOK;
  7f0:	81 e0       	ldi	r24, 0x01	; 1
  7f2:	09 c0       	rjmp	.+18     	; 0x806 <__DATA_REGION_LENGTH__+0x6>
 HLCD_enuErrorStatus_t HLCD_enuLCD_WriteSpecialChar(u8 Copy_enuLCDNum , u8 Copy_u8BlockNumber , u8* pattern ,u8 Copy_u8X , u8 Copy_u8Y)
 {
-			HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
-			if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
-			{
-				Ret_enuError =HLCD_enuINVALIDLCDNAME;
+	HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
+	if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDNAME;
  7f4:	82 e0       	ldi	r24, 0x02	; 2
  7f6:	07 c0       	rjmp	.+14     	; 0x806 <__DATA_REGION_LENGTH__+0x6>
-				
-			}
-			else if(IS_INVALID_LCD_BLOCK(Copy_u8BlockNumber))
-			{
-				Ret_enuError =HLCD_enuINVALIDBLOCK;
+		
+	}
+	else if(IS_INVALID_LCD_BLOCK(Copy_u8BlockNumber))
+	{
+		Ret_enuError =HLCD_enuINVALIDBLOCK;
  7f8:	85 e0       	ldi	r24, 0x05	; 5
  7fa:	05 c0       	rjmp	.+10     	; 0x806 <__DATA_REGION_LENGTH__+0x6>
-			}
-			else if(IS_INVALID_LCD_PATTERN(pattern))
-			{
-				Ret_enuError =HLCD_enuINVALIDPTR;
+	}
+	else if(IS_INVALID_LCD_PATTERN(pattern))
+	{
+		Ret_enuError =HLCD_enuINVALIDPTR;
  7fc:	86 e0       	ldi	r24, 0x06	; 6
  7fe:	03 c0       	rjmp	.+6      	; 0x806 <__DATA_REGION_LENGTH__+0x6>
-			}
-	        else if(IS_INVALID_LCD_Y(Copy_u8Y))
-	        {
-		        Ret_enuError =HLCD_enuINVALIDLCDY;
+	}
+	else if(IS_INVALID_LCD_Y(Copy_u8Y))
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDY;
  800:	84 e0       	ldi	r24, 0x04	; 4
  802:	01 c0       	rjmp	.+2      	; 0x806 <__DATA_REGION_LENGTH__+0x6>
 		
-	        }
-	        else if(IS_INVALID_LCD_X(Copy_u8X))
-	        {
-		       Ret_enuError =HLCD_enuINVALIDLCDX;
+	}
+	else if(IS_INVALID_LCD_X(Copy_u8X))
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDX;
  804:	83 e0       	ldi	r24, 0x03	; 3
-	            HLCD_enuLCD_GotoXY(Copy_enuLCDNum , Copy_u8X , Copy_u8Y);
-	            HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum , Copy_u8BlockNumber );
-				
-			}
-			return Ret_enuError ;
+		HLCD_enuLCD_GotoXY(Copy_enuLCDNum , Copy_u8X , Copy_u8Y);
+		HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum , Copy_u8BlockNumber );
+		
+	}
+	return Ret_enuError ;
 }
  806:	df 91       	pop	r29
  808:	cf 91       	pop	r28
@@ -1569,62 +1569,62 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteString(u8 Copy_enuLCDNum , u8* string)
  814:	df 93       	push	r29
  816:	18 2f       	mov	r17, r24
  818:	eb 01       	movw	r28, r22
-			HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
-			if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
+	HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
+	if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
  81a:	83 30       	cpi	r24, 0x03	; 3
  81c:	60 f4       	brcc	.+24     	; 0x836 <HLCD_enuLCD_WriteString+0x26>
-			{
-				Ret_enuError =HLCD_enuINVALIDLCDNAME;
-				
-			}
-			else if(IS_INVALID_LCD_PATTERN(string))
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDNAME;
+		
+	}
+	else if(IS_INVALID_LCD_PATTERN(string))
  81e:	20 97       	sbiw	r28, 0x00	; 0
  820:	29 f4       	brne	.+10     	; 0x82c <HLCD_enuLCD_WriteString+0x1c>
  822:	0b c0       	rjmp	.+22     	; 0x83a <HLCD_enuLCD_WriteString+0x2a>
-			else
-			{
-				Ret_enuError = HLCD_enuOK;
-	            while(*string != '\0' ) // \0 is the last element in the array
-	            {
-		          HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum,*string);
+	else
+	{
+		Ret_enuError = HLCD_enuOK;
+		while(*string != '\0' ) // \0 is the last element in the array
+		{
+			HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum,*string);
  824:	81 2f       	mov	r24, r17
  826:	0e 94 94 02 	call	0x528	; 0x528 <HLCD_enuLCD_WriteCharacter>
-		          string++;
+			string++;
  82a:	21 96       	adiw	r28, 0x01	; 1
-				Ret_enuError =HLCD_enuINVALIDPTR;
-			}
-			else
-			{
-				Ret_enuError = HLCD_enuOK;
-	            while(*string != '\0' ) // \0 is the last element in the array
+		Ret_enuError =HLCD_enuINVALIDPTR;
+	}
+	else
+	{
+		Ret_enuError = HLCD_enuOK;
+		while(*string != '\0' ) // \0 is the last element in the array
  82c:	68 81       	ld	r22, Y
  82e:	61 11       	cpse	r22, r1
  830:	f9 cf       	rjmp	.-14     	; 0x824 <HLCD_enuLCD_WriteString+0x14>
-			{
-				Ret_enuError =HLCD_enuINVALIDPTR;
-			}
-			else
-			{
-				Ret_enuError = HLCD_enuOK;
+	{
+		Ret_enuError =HLCD_enuINVALIDPTR;
+	}
+	else
+	{
+		Ret_enuError = HLCD_enuOK;
  832:	81 e0       	ldi	r24, 0x01	; 1
  834:	03 c0       	rjmp	.+6      	; 0x83c <HLCD_enuLCD_WriteString+0x2c>
 HLCD_enuErrorStatus_t HLCD_enuLCD_WriteString(u8 Copy_enuLCDNum , u8* string)
 {
-			HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
-			if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
-			{
-				Ret_enuError =HLCD_enuINVALIDLCDNAME;
+	HLCD_enuErrorStatus_t Ret_enuError = HLCD_enuNOK;
+	if(IS_INVALID_LCD_NAME(Copy_enuLCDNum))
+	{
+		Ret_enuError =HLCD_enuINVALIDLCDNAME;
  836:	82 e0       	ldi	r24, 0x02	; 2
  838:	01 c0       	rjmp	.+2      	; 0x83c <HLCD_enuLCD_WriteString+0x2c>
-				
-			}
-			else if(IS_INVALID_LCD_PATTERN(string))
-			{
-				Ret_enuError =HLCD_enuINVALIDPTR;
+		
+	}
+	else if(IS_INVALID_LCD_PATTERN(string))
+	{
+		Ret_enuError =HLCD_enuINVALIDPTR;
  83a:	86 e0       	ldi	r24, 0x06	; 6
-	            }
-			}
-			return Ret_enuError ;
+		}
+	}
+	return Ret_enuError ;
 
 
 }
@@ -1661,16 +1661,16 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteNumber(u8 Copy_enuLCDNum ,u32 Copy_U32Num
 	}
 	else
 	{
-	Ret_enuError = HLCD_enuOK;
-	 // Handle special case for 0
-	 if (Copy_U32Number == 0)
+		Ret_enuError = HLCD_enuOK;
+		// Handle special case for 0
+		if (Copy_U32Number == 0)
  866:	61 15       	cp	r22, r1
  868:	71 05       	cpc	r23, r1
  86a:	81 05       	cpc	r24, r1
  86c:	91 05       	cpc	r25, r1
  86e:	c9 f4       	brne	.+50     	; 0x8a2 <__stack+0x43>
-	 {
-		 HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum,'0');
+		{
+			HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum,'0');
  870:	60 e3       	ldi	r22, 0x30	; 48
  872:	80 2f       	mov	r24, r16
  874:	0e 94 94 02 	call	0x528	; 0x528 <HLCD_enuLCD_WriteCharacter>
@@ -1679,15 +1679,15 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteNumber(u8 Copy_enuLCDNum ,u32 Copy_U32Num
 	}
 	else
 	{
-	Ret_enuError = HLCD_enuOK;
+		Ret_enuError = HLCD_enuOK;
  878:	81 e0       	ldi	r24, 0x01	; 1
  87a:	2f c0       	rjmp	.+94     	; 0x8da <__stack+0x7b>
-	u8 digits[10];  // Array to hold the digits (u32 has at most 10 digits)
-	u8 count = 0;   // Counter for the number of digits
-	// Extract digits and store them in the array
-	 while (Copy_U32Number != 0)
-	 {
-		 digits[count++] = Copy_U32Number % 10;  // Store the last digit
+			u8 digits[10];  // Array to hold the digits (u32 has at most 10 digits)
+			u8 count = 0;   // Counter for the number of digits
+			// Extract digits and store them in the array
+			while (Copy_U32Number != 0)
+			{
+				digits[count++] = Copy_U32Number % 10;  // Store the last digit
  87c:	2a e0       	ldi	r18, 0x0A	; 10
  87e:	30 e0       	ldi	r19, 0x00	; 0
  880:	40 e0       	ldi	r20, 0x00	; 0
@@ -1700,45 +1700,45 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteNumber(u8 Copy_enuLCDNum ,u32 Copy_U32Num
  890:	e1 0f       	add	r30, r17
  892:	f1 1d       	adc	r31, r1
  894:	60 83       	st	Z, r22
-		 Copy_U32Number /= 10;                   // Remove the last digit
+				Copy_U32Number /= 10;                   // Remove the last digit
  896:	62 2f       	mov	r22, r18
  898:	73 2f       	mov	r23, r19
  89a:	84 2f       	mov	r24, r20
  89c:	95 2f       	mov	r25, r21
-	u8 digits[10];  // Array to hold the digits (u32 has at most 10 digits)
-	u8 count = 0;   // Counter for the number of digits
-	// Extract digits and store them in the array
-	 while (Copy_U32Number != 0)
-	 {
-		 digits[count++] = Copy_U32Number % 10;  // Store the last digit
+			u8 digits[10];  // Array to hold the digits (u32 has at most 10 digits)
+			u8 count = 0;   // Counter for the number of digits
+			// Extract digits and store them in the array
+			while (Copy_U32Number != 0)
+			{
+				digits[count++] = Copy_U32Number % 10;  // Store the last digit
  89e:	1f 5f       	subi	r17, 0xFF	; 255
  8a0:	01 c0       	rjmp	.+2      	; 0x8a4 <__stack+0x45>
  8a2:	10 e0       	ldi	r17, 0x00	; 0
-	 else
-	 {
-	u8 digits[10];  // Array to hold the digits (u32 has at most 10 digits)
-	u8 count = 0;   // Counter for the number of digits
-	// Extract digits and store them in the array
-	 while (Copy_U32Number != 0)
+		else
+		{
+			u8 digits[10];  // Array to hold the digits (u32 has at most 10 digits)
+			u8 count = 0;   // Counter for the number of digits
+			// Extract digits and store them in the array
+			while (Copy_U32Number != 0)
  8a4:	61 15       	cp	r22, r1
  8a6:	71 05       	cpc	r23, r1
  8a8:	81 05       	cpc	r24, r1
  8aa:	91 05       	cpc	r25, r1
  8ac:	39 f7       	brne	.-50     	; 0x87c <__stack+0x1d>
-	 {
-		 digits[count++] = Copy_U32Number % 10;  // Store the last digit
-		 Copy_U32Number /= 10;                   // Remove the last digit
-	 }
-	 if(count > 10)
+			{
+				digits[count++] = Copy_U32Number % 10;  // Store the last digit
+				Copy_U32Number /= 10;                   // Remove the last digit
+			}
+			if(count > 10)
  8ae:	1b 30       	cpi	r17, 0x0B	; 11
  8b0:	88 f4       	brcc	.+34     	; 0x8d4 <__stack+0x75>
  8b2:	0c c0       	rjmp	.+24     	; 0x8cc <__stack+0x6d>
-	 else
-	 {
-	 // Print the digits in reverse order (from the array)
-	 while (count > 0)
-	 {
-		 HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum , digits[--count] + '0');  // Convert digit to ASCII and print
+			else
+			{
+				// Print the digits in reverse order (from the array)
+				while (count > 0)
+				{
+					HLCD_enuLCD_WriteCharacter(Copy_enuLCDNum , digits[--count] + '0');  // Convert digit to ASCII and print
  8b4:	11 50       	subi	r17, 0x01	; 1
  8b6:	e1 e0       	ldi	r30, 0x01	; 1
  8b8:	f0 e0       	ldi	r31, 0x00	; 0
@@ -1750,12 +1750,12 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteNumber(u8 Copy_enuLCDNum ,u32 Copy_U32Num
  8c4:	60 5d       	subi	r22, 0xD0	; 208
  8c6:	80 2f       	mov	r24, r16
  8c8:	0e 94 94 02 	call	0x528	; 0x528 <HLCD_enuLCD_WriteCharacter>
-		 
-	 }
-	 else
-	 {
-	 // Print the digits in reverse order (from the array)
-	 while (count > 0)
+				
+			}
+			else
+			{
+				// Print the digits in reverse order (from the array)
+				while (count > 0)
  8cc:	11 11       	cpse	r17, r1
  8ce:	f2 cf       	rjmp	.-28     	; 0x8b4 <__stack+0x55>
 		Ret_enuError =HLCD_enuINVALIDLCDNAME;
@@ -1763,15 +1763,15 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteNumber(u8 Copy_enuLCDNum ,u32 Copy_U32Num
 	}
 	else
 	{
-	Ret_enuError = HLCD_enuOK;
+		Ret_enuError = HLCD_enuOK;
  8d0:	81 e0       	ldi	r24, 0x01	; 1
  8d2:	03 c0       	rjmp	.+6      	; 0x8da <__stack+0x7b>
-		 digits[count++] = Copy_U32Number % 10;  // Store the last digit
-		 Copy_U32Number /= 10;                   // Remove the last digit
-	 }
-	 if(count > 10)
-	 {
-		 Ret_enuError =HLCD_enuINVALIDNUMBER;
+				digits[count++] = Copy_U32Number % 10;  // Store the last digit
+				Copy_U32Number /= 10;                   // Remove the last digit
+			}
+			if(count > 10)
+			{
+				Ret_enuError =HLCD_enuINVALIDNUMBER;
  8d4:	88 e0       	ldi	r24, 0x08	; 8
  8d6:	01 c0       	rjmp	.+2      	; 0x8da <__stack+0x7b>
 {
@@ -1781,10 +1781,10 @@ HLCD_enuErrorStatus_t HLCD_enuLCD_WriteNumber(u8 Copy_enuLCDNum ,u32 Copy_U32Num
 	{
 		Ret_enuError =HLCD_enuINVALIDLCDNAME;
  8d8:	82 e0       	ldi	r24, 0x02	; 2
-	 }
+		}
 
 	}
- return Ret_enuError ;
+	return Ret_enuError ;
 	
  8da:	2a 96       	adiw	r28, 0x0a	; 10
  8dc:	0f b6       	in	r0, 0x3f	; 63

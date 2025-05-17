@@ -77,7 +77,7 @@ typedef enum
 
 typedef enum
 {
-	HLCD_enu_NoShift = 0,  
+	HLCD_enu_NoShift = 0,
 	HLCD_enu_EnableShift       /*like scrolling*/
 }HLCD_enuShift_EntireDisplay_t;
 
